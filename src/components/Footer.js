@@ -1,0 +1,26 @@
+import React from 'react'
+import "../styles/components.css"
+const Footer = () => {
+    return (
+        <footer>
+            <div className='menu'>
+
+                <ul><h4>Menu</h4>
+                    <li>Home</li>
+                    <li>Membership Area</li>
+                    <li>About Us</li>
+                    <li>Support</li>
+                    <li>Terms of Service</li>
+                </ul>
+            </div>
+            <p className='message'>
+                <h4>Welcome</h4>
+            </p>
+            <h3>
+                Money<span>Strikers</span>
+            </h3>
+        </footer>
+    )
+}
+
+export default Footer;
