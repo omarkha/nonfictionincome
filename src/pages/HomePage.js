@@ -18,7 +18,7 @@ const HomePage = () => {
                     <h3>
                         The conscise blueprint for rapidly creating small online businesses with less than $100!
                     </h3>
-                    <h4 className='package'>Short eBook + Online tools</h4>
+                    <h4 className='package'>Short eBook + Online Tools + Premium Membership</h4>
                     <hr /><h4 className='limitedtimeoffer'>limited time offer</h4>
                     <div className='price'>
 
