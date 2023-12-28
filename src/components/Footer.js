@@ -14,7 +14,8 @@ const Footer = () => {
                 </ul>
             </div>
             <p className='message'>
-                <h4>Welcome</h4>
+                <h4>Our Mission</h4>
+                <p>MoneyStrikers strives to provide the vital assistance young entrepreneurs need in the beginning of their careers.</p>
             </p>
             <h3>
                 Money<span>Strikers</span>

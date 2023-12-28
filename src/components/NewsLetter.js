@@ -9,7 +9,7 @@ const NewsLetter = () => {
 
     return (
         <form className='newsletter' onSubmit={(e) => handleSubscribe(e.target)}>
-            <h4>Subscribe for money-making tips and tricks</h4>
+            <h4>Subscribe for more money-making tips and tricks</h4>
             <input type="email" placeholder='Enter your email...' />
             <button type='submit'>Subscribe</button>
         </form>

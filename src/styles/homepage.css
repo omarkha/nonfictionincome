@@ -108,3 +108,11 @@
 .payment-method img {
     width: 55px;
 }
+
+.copy {
+    width: 62.8%;
+    margin: 21px auto;
+    font-size: 21px;
+    text-align: start;
+    font-family: 'Times New Roman', Times, serif;
+}

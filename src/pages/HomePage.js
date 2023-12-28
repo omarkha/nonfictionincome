@@ -35,7 +35,14 @@ const HomePage = () => {
                         <img src={paypal} alt="payapl logo" />
                     </div>
                 </div>
-            </div>
+
+            </div><p className='copy'>
+                The sea of irrelevant information makes it difficult for entrepreneurs to make breakthroughs. But,
+                you don't have to be an entrepreneuship professor to reach financial freedom.
+                <br /><br />
+                The Non-Fiction Income Method package gives you the ultimate practical shortcuts to
+                engage effectively in rewarding entrepreneurial endeavors, right off the start.
+            </p>
             <Newsletter />
         </div>
     )

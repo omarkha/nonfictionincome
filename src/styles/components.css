@@ -133,3 +133,7 @@ footer h4 {
     margin: 0 auto;
     text-align: center;
 }
+
+footer .message {
+    width: 377px;
+}
