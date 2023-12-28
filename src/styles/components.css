@@ -107,13 +107,13 @@
 footer {
     max-width: 62.8%;
     margin: 0 auto;
-    padding: 55px 55px 21px 21px;
+    padding: 55px 55px 55px 21px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: start;
-    border-top: 2px solid #BD0A0D;
+    border-top: 3px solid #BD0A0D;
     font-family: sans-serif;
 }
 

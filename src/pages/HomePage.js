@@ -81,10 +81,12 @@ const HomePage = () => {
                 AND ALSO..
                 <br /><br />
                 When you buy The Method, now, you get Premium Membership to all of our current and future service for an ENTIRE YEAR.
-                <br /><br />get the blueprint to creating online businesses along with our online tools and premium membership for only $19.99.<br /><br /> Click the 'Check Out' button and get your products delivered immediately!<br /> <br /><br />
+                <br /><br />get the blueprint to creating online businesses along with our online tools and premium membership for only $19.99.<br /><br /><br />
 
-                Enter Promo Code "Save15," right now, and get 15% off The Non-Fiction Income Method!
+                Enter Promo Code "Save15," right now, and get 15% off The Non-Fiction Income Method!<br /> <br /><span className='cta'>Click the 'Check Out' button and get your products delivered immediately!</span>
+                <br />
 
+                <br /><br /> <br />
                 <div className='copy-checkout'>
                     Limited Time Offer
                     <div className='price'>

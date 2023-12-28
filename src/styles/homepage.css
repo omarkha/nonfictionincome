@@ -5,7 +5,7 @@
 
 .home-page {
     max-width: 100vw;
-    padding: 21px 5vw;
+    padding: 21px 5vw 55px 5vw;
     box-sizing: border-box;
 
 }
@@ -26,6 +26,7 @@
     width: 62.8vw;
     margin: 21px auto;
     gap: 21px;
+
 }
 
 
@@ -72,7 +73,7 @@
     margin: 0;
     padding: 0 55px;
     box-sizing: border-box;
-
+    color: #BD0A0D;
 }
 
 .limitedtimeoffer {
@@ -118,6 +119,9 @@
     font-size: 21px;
     text-align: start;
     font-family: sans-serif;
+    border-top: 3px solid #BD0A0D;
+    padding: 55px 89px;
+    box-sizing: border-box;
 }
 
 .copy-checkout {
@@ -129,4 +133,12 @@
     align-items: center;
     padding: 0;
     gap: 0;
+}
+
+.cta {
+    width: 233px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bolder;
+
 }
