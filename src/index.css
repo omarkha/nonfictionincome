@@ -16,3 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.body-background-element {
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(45deg, #fff, #fff, #eee)
+}

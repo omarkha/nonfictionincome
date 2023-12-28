@@ -5,6 +5,9 @@
 .navbar h1 {
     color: #212121;
     font-size: 34px;
+    letter-spacing: 1px;
+    font-weight: 100;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 
@@ -37,6 +40,7 @@
     font-weight: bold;
     color: #212121;
     transition: all 0.09s ease;
+    font-family: sans-serif;
 }
 
 .navbar ul li:hover {
@@ -108,8 +112,9 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
-    align-items: center;
+    align-items: start;
     border-top: 2px solid #BD0A0D;
+    font-family: sans-serif;
 }
 
 footer ul {
@@ -123,6 +128,8 @@ footer ul {
 footer h3 {
     font-size: 34px;
     color: #353535;
+    font-weight: 100;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 footer h3 span {

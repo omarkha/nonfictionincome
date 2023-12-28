@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="App">
+      <div className='body-background-element' />
       <TopBanner />
       <NavBar />
       <HomePage />

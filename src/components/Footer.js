@@ -17,9 +17,13 @@ const Footer = () => {
                 <h4>Our Mission</h4>
                 <p>MoneyStrikers strives to provide the vital assistance young entrepreneurs need in the beginning of their careers.</p>
             </p>
-            <h3>
-                Money<span>Strikers</span>
-            </h3>
+            <div className='logo'>
+
+                <h3>
+                    Money<span>Strikers</span>
+                </h3>
+                © 2023
+            </div>
         </footer>
     )
 }
