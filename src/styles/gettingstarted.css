@@ -1,0 +1,71 @@
+.getting-started {
+    width: 100%;
+    padding: 0 5vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation {
+    width: 100%;
+    padding: 0 21px;
+    display: flex;
+    flex-direction: row;
+    height: 55px;
+}
+
+.tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 21px;
+    border-radius: 21px;
+    font-weight: bold;
+    height: 55px;
+    border: 2px solid #0DBD0A;
+    color: #0DBD0A;
+    box-sizing: border-box;
+    padding: 0 21px;
+    cursor: pointer;
+}
+
+.tool:hover {
+
+    border: 2px solid #0DBD0A;
+    background-color: #0DBD0A;
+    color: #fff;
+}
+
+.tool h4 {
+    margin: 0;
+
+}
+
+.info {
+    height: 100%;
+    width: 100%;
+
+}
+
+.niches {
+    height: 38.2%;
+    width: 100%;
+    overflow: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #212121;
+    color: #fff;
+    padding: 21px;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+.niche ul li {
+    text-align: start;
+}
+
+.niche h4 {
+    text-align: start;
+    margin: 0;
+}

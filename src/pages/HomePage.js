@@ -52,7 +52,7 @@ const HomePage = () => {
                 <br /><br />
                 But you won't.
                 <br /><br />
-                We share our <strong>unique psychographic approach to market research</strong> that gives you insights into your customer's psychology and the strategy to profit from your findings.
+                We share our <span className='highlight'>unique psychographic approach</span>  to market researchthat gives you <strong>insights into your customer's psychology</strong> and the strategy to profit from your findings.
                 <br /><br />
                 The marketing research method taught in this eBook gives you the competitve advantage to conquer markets.
 
@@ -65,7 +65,7 @@ const HomePage = () => {
                 <br /><br />
                 It takes money to make money.
                 <br /><br />
-                But when you leverage your creativity and resourcefulness, it'll take you less than $100 to start a 6-figure online company.
+                But when you leverage your creativity and resourcefulness, it'll take you less than  <span className='highlight'>$100 to start a 6-figure online company.</span>
                 <br /><br />
                 The <strong> few and short chapters</strong>  make this guide <u>easy to get through and understand.</u>
                 <br /><br />
@@ -75,8 +75,8 @@ const HomePage = () => {
                 <br /><br />
                 NOT ONLY THAT!
                 <br /><br />
-                When you buy The Non-Fiction Income Method you also get <u>ACCESS</u> to our <strong>online Business Builder
-                    tool</strong> that helps you plan out and organize your business quicker and more effectively.
+                When you buy The Non-Fiction Income Method you also get <u>ACCESS</u> to our <span className='highlight'>online Business Builder
+                    tool</span> that helps you plan out and organize your businessquicker and more effectively.
                 <br /><br />
                 AND ALSO..
                 <br /><br />
