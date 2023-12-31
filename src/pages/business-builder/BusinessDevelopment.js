@@ -161,17 +161,17 @@ const BusinessDevelopment = (props) => {
                     </div>
                     <div className='area' onClick={() => handleArea("Motivation")}>
                         <h4>
-                            1.   Identifying Customer Motivations
+                            1.    Customer Motivations
                         </h4>
                     </div>
                     <div className='area' onClick={() => handleArea("Struggle")}>
                         <h4>
-                            2.  Identifying Customer Struggles
+                            2.   Customer Struggles
 
                         </h4>
                     </div> <div className='area' onClick={() => handleArea("Value")}>
                         <h4>
-                            3.   Identifying Customer Values
+                            3.    Customer Values
                         </h4>
                     </div>
                     <div className='area' onClick={() => handleArea("Specification")}>

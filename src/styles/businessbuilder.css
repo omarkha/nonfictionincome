@@ -4,7 +4,7 @@
 
 .business-development {
     width: 100%;
-    padding: 0 5vw;
+    padding: 21px 5vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -20,10 +20,11 @@
 
 .business-builder {
     width: 100%;
-    padding: 0 5vw;
+    padding: 21px 5vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #212121;
 }
 
 .areas {
@@ -39,7 +40,8 @@
     border-radius: 21px;
     height: 55px;
     border: 2px solid #A01A1F;
-    color: #A01A1F;
+    color: #EA5849;
+    letter-spacing: 2px;
     box-sizing: border-box;
     padding: 0 21px;
     cursor: pointer;
@@ -96,7 +98,7 @@
 }
 
 .element h4 {
-    color: #212121;
+    color: #fff;
 }
 
 .element input {
@@ -191,7 +193,8 @@
     letter-spacing: 1px;
     font-weight: 100;
     font-size: 21px;
-    border-bottom: 3px solid #0DBD0A;
+    border-bottom: 3px solid #A01A1F;
+    color: #A01A1F;
     border-radius: 21px;
     height: fit-content;
     padding: 13px 21px;
@@ -209,4 +212,8 @@
 .tips h3 {
     font-size: 16px;
     text-align: start;
+    color: #fff;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    font-weight: 200;
 }

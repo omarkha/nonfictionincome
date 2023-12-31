@@ -1,13 +1,15 @@
 .finishing-up {
     width: 100%;
-    padding: 0 5vw;
+    padding: 21px 5vw;
     box-sizing: border-box;
+    background-color: #212121;
 }
 
 .assets {
 
     margin: 55px auto;
 }
+
 
 .asset textarea {
     width: 610px;
@@ -18,4 +20,38 @@
     font-size: 16px;
     border-radius: 13px;
     background: none;
+}
+
+.finishing-up .builder-body {
+    width: 100%;
+    padding: 0;
+}
+
+.finishing-up .area-view {
+    padding: 0;
+    width: 50%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+}
+
+.finishing-up .areas {
+    width: 50%;
+}
+
+.finishing-up h3 {
+    color: #fff;
+}
+
+.finishing-up li {
+    color: #fff;
+}
+
+.finishing-up textarea {
+    color: #fff;
+}
+
+.finishing-up h4 {
+    color: #fff;
 }

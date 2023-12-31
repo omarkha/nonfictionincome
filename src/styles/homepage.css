@@ -1,158 +1,55 @@
-/*
-    Color Scheme: #212121, #A01A1F, #EA5849, #EA2100, #BD0A0D, #353535
-*/
+.home-page .usp {
+    font-size: 55px;
+    font-family: sans-serif;
+    color: #fff;
+    text-shadow: 0 0 8px #000;
 
+    font-weight: bolder;
+}
+
+.home-page .usp_and_cta {
+    width: 610px;
+
+}
+
+.home-page .cta-btn {
+    padding: 13px 34px;
+    font-size: 21px;
+
+}
+
+
+.home-page .cta-btn:hover {
+
+    font-size: 21px;
+
+}
 
 .home-page {
-    max-width: 100vw;
-    padding: 21px 5vw 55px 5vw;
+    width: 100%;
+    padding: 0;
     box-sizing: border-box;
-
 }
 
-.main-promotion .product-image {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-width: 377px;
-    height: 500px;
-    border-radius: 21px;
-}
-
-.main-promotion {
+.home-page .front-section {
     display: flex;
     flex-direction: row;
-    padding: 21px 55px;
-    width: 62.8vw;
-    margin: 21px auto;
-    gap: 21px;
-
+    justify-content: end;
+    align-items: center;
+    background-size: cover;
+    height: calc(100vh - 144px);
+    padding: 21px 144px;
+    box-sizing: border-box;
+    margin-bottom: 55px;
 }
 
-
-.checkout-btn {
-    background-color: #0DBD0A;
-    color: #fff;
-    font-size: 21px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 62.8%;
-    height: fit-content;
-    padding: 13px 34px;
-    border-radius: 8px;
-    border: 1px solid #0DBD0A;
+.home-page .home-copy {
+    width: 100%;
+    padding: 21px 23vw;
+    box-sizing: border-box;
 }
 
-.checkout-btn:hover {
-    background-color: #fff;
-    color: #212121;
-    border: 1px solid #212121;
-
-}
-
-.main-promotion h1 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    letter-spacing: 1px;
-    font-weight: 100;
-    font-size: 55px;
-    width: 377px;
-    margin: 0 auto;
-    line-height: 76px;
-    padding: 0;
-
-}
-
-.main-promotion hr {
-    width: 500px;
-    margin: 21px auto;
-}
-
-.main-promotion .package {
-    margin: 0 auto;
-    font-size: 21px;
-}
-
-
-.main-promotion h3 {
+.home-copy p {
+    font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 29px;
-    margin: 0;
-    padding: 0 55px;
-    box-sizing: border-box;
-    color: #BD0A0D;
-}
-
-.limitedtimeoffer {
-    margin: 0 auto;
-    font-weight: 400;
-    letter-spacing: 1px;
-    padding: 0;
-    width: 38.2%;
-    padding: 5px 13px 8px 13px;
-    border-radius: 5px;
-    color: #fff;
-    background-color: #BD0A0D;
-    font-family: sans-serif;
-}
-
-.price {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: row;
-    gap: 21px;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0 89px;
-    box-sizing: border-box;
-}
-
-.payment-method {
-    height: 89px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.payment-method img {
-    width: 55px;
-}
-
-.copy {
-    width: 62.8%;
-    margin: 21px auto;
-    font-size: 21px;
-    text-align: start;
-    font-family: sans-serif;
-    border-top: 3px solid #BD0A0D;
-    padding: 55px 89px;
-    box-sizing: border-box;
-}
-
-.copy-checkout {
-    width: 62.8%;
-    margin: 21px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    gap: 0;
-}
-
-.cta {
-    width: 233px;
-    margin: 0 auto;
-    text-align: center;
-    font-weight: bolder;
-
-}
-
-.highlight {
-    background-color: #FFe849;
-    color: #BD0A0D;
-    padding: 3px 5px;
-    font-weight: bold;
 }

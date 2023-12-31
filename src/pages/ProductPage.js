@@ -1,0 +1,107 @@
+
+
+import React from 'react'
+import "../styles/productpage.css"
+import book from "../media/book.png";
+import visa from "../media/visa.png";
+import mastercard from "../media/mastercard.png";
+import americanexpress from "../media/americanexpress.png";
+import paypal from "../media/paypal.png";
+import Newsletter from '../components/NewsLetter';
+import TopBanner from '../components/TopBanner';
+
+const ProductPage = () => {
+    return (
+        <div className='product-page'>
+            <TopBanner />
+            <div className='main-promotion'>
+                <div className='product-image' style={{ backgroundImage: `url(${book})` }} alt="book image" />
+                <div className='info'>
+                    <h1>The Non-Fiction Income Method</h1>
+
+                    <h3>
+                        Create Small Online Businesses With Less Than $100
+                    </h3>
+                    <h4 className='package'>Short eBook + Online Tools + Premium Membership</h4>
+                    <hr /><h4 className='limitedtimeoffer'>limited time offer</h4>
+                    <div className='price'>
+
+                        <h5>
+                            <strike>$39.99 USD</strike>
+                        </h5>
+                        <h4>  $19.99 USD</h4>
+                    </div>
+                    <button className='checkout-btn'>Check Out</button>
+                    <div className='payment-method'>
+                        <img src={visa} alt="visa logo" />
+                        <img src={mastercard} alt="mastercard  logo" />
+                        <img src={americanexpress} alt="americanexpress  logo" />
+                        <img src={paypal} alt="payapl logo" />
+                    </div>
+                </div>
+
+            </div><p className='copy'>
+                Are you tired of waiting for your online business dreams to come true? With The Non-Fiction Income Method, you can start making money online right away without the need for years of study or training in entrepreneurship.
+                <br /> <br />
+                Imagine building your entire business blueprint in just one day. Our comprehensive guide provides you with the exact steps and strategies you need to kickstart your online business journey. No more wasting time on trial and error – get quick and tangible results that will boost your motivation and confidence from day one.
+                <br /> <br />
+                What sets The Non-Fiction Income Method apart is our unique psychographic approach to market research. Unlock valuable insights into your customers' psychology and gain a competitive advantage in your industry. Say goodbye to guesswork, and hello to targeted marketing strategies that actually work.
+                <br /> <br />
+                We also believe in leveraging the power of artificial intelligence to open new doors of opportunity for aspiring entrepreneurs. Discover how to harness the potential of AI to propel your online business to the next level, all while staying ahead of the curve.
+                <br /> <br />
+                The best part? You don't need a massive budget to succeed. With The Non-Fiction Income Method, you can start a 6-figure online company for less than $100. Learn how to leverage your creativity and resourcefulness to maximize your returns and minimize your investment.
+                <br /> <br />
+                We understand that complex business concepts can be overwhelming, which is why we've made our guide easy to understand with clear and concise chapters. Plus, we provide you with market research templates that will shortcut your way to success.
+                <br /> <br />
+                But that's not all! When you purchase The Non-Fiction Income Method, you'll also gain access to our online Business Builder tool. Plan, organize, and streamline your business activities for maximum efficiency and productivity.
+                <br /> <br />
+                And as a special bonus, you'll receive a premium membership to all of our current and future services for an entire year. Stay updated with the latest industry trends, tools, and strategies to ensure your continued success.
+                <br /> <br />
+                Get your hands on The Non-Fiction Income Method today for only $19.99. That's right – the blueprint, tools, and premium membership, all for one affordable price.
+                <br /> <br />
+                Don't wait any longer – take action now! Upon checkout, you'll receive immediate delivery of your products. Your journey to online success starts here.
+                <br /> <br />
+                Invest in your future with The Non-Fiction Income Method. Get started today!<br /> <br />
+                <br />
+
+                <br /><br /> <br />
+                <div className='copy-checkout'>
+                    Limited Time Offer
+                    <div className='price'>
+
+                        <h5>
+                            <strike>$49.99 USD</strike>
+                        </h5>
+                        <h4>  $19.99 USD</h4>
+                    </div>
+
+                    <button className='checkout-btn'>Check Out</button>
+                    <div className='payment-method'>
+                        <img src={visa} alt="visa logo" />
+                        <img src={mastercard} alt="mastercard  logo" />
+                        <img src={americanexpress} alt="americanexpress  logo" />
+                        <img src={paypal} alt="payapl logo" />
+                    </div>
+                </div>
+                <h3>What You Get:</h3>
+                <ul>
+                    <li> The Non-Fiction Income Method: A practical shortcut to start making money online</li>
+                    <li>  Build your entire business blueprint in just ONE day</li>
+                    <li>  Gain quick and tangible results to increase motivation and confidence</li>
+                    <li>   Unique psychographic approach to market research for a competitive advantage</li>
+                    <li>   Leverage artificial intelligence for new entrepreneurial opportunities</li>
+                    <li>  Start a 6-figure online company for less than $100</li>
+                    <li>   Easy-to-understand chapters and market research templates provided</li>
+                    <li>  EXTRA: Access to online Business Builder tool for effective business planning</li>
+                    <li> EXTRA: Premium membership to current and future services for a year included</li>
+                    <li>  Get the blueprint, tools, and membership for only $19.99</li>
+                    <li>  Immediate delivery of your products upon checkout</li>
+
+                </ul>
+            </p>
+            <Newsletter />
+        </div>
+    )
+}
+
+export default ProductPage;

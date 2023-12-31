@@ -6,107 +6,42 @@ import mastercard from "../media/mastercard.png";
 import americanexpress from "../media/americanexpress.png";
 import paypal from "../media/paypal.png";
 import Newsletter from '../components/NewsLetter';
+import frontbanner from "../media/homebanner3.png"
+import { useNavigate } from 'react-router-dom';
+
 
 const HomePage = () => {
+
+    const navigate = useNavigate()
+
     return (
         <div className='home-page'>
-            <div className='main-promotion'>
-                <div className='product-image' style={{ backgroundImage: `url(${book})` }} alt="book image" />
-                <div className='info'>
-                    <h1>The Non-Fiction Income Method</h1>
-
-                    <h3>
-                        Create Small Online Businesses With Less Than $100
-                    </h3>
-                    <h4 className='package'>Short eBook + Online Tools + Premium Membership</h4>
-                    <hr /><h4 className='limitedtimeoffer'>limited time offer</h4>
-                    <div className='price'>
-
-                        <h5>
-                            <strike>$39.99 USD</strike>
-                        </h5>
-                        <h4>  $19.99 USD</h4>
-                    </div>
-                    <button className='checkout-btn'>Check Out</button>
-                    <div className='payment-method'>
-                        <img src={visa} alt="visa logo" />
-                        <img src={mastercard} alt="mastercard  logo" />
-                        <img src={americanexpress} alt="americanexpress  logo" />
-                        <img src={paypal} alt="payapl logo" />
-                    </div>
+            <div className='front-section' style={{ backgroundImage: `url(${frontbanner})` }}>
+                <div className='usp_and_cta'>
+                    <p className='usp'>
+                        Reach Financial Freedom Earlier!
+                    </p>
+                    <button className='cta-btn' onClick={() => navigate("/product")}>Click Here To Learn How</button>
                 </div>
+            </div>
 
-            </div><p className='copy'>
-                You can't afford to wait a lifetime to start making money online. Don't worry.
-                You don't have to be a scholar of entrepreneuship to reach financial freedom.
-                <br /><br />
-                <strong>The Non-Fiction Income Method</strong> empowers you with <strong>the ultimate practical shortcut</strong> to start rewarding entrepreneurial endeavors, right away.
-                <br /><br />
-                Lack of results at the beginning of their careers stops most entrepreneurs from reaching their full potential.
-                <br /><br />
-                This actionable package enables you to <strong>build your entire online business within only <u> ONE day</u>.</strong>
-                <br /><br />
-                The quick tangible results that The Non-Fiction Income Method gives you will motivate you, increase your confidence, and push you towards your dreams.
-                <br /><br />
-                Most small business owners struggle with market research the most.
-                <br /><br />
-                But you won't.
-                <br /><br />
-                We share our <span className='highlight'>unique psychographic approach</span>  to market researchthat gives you <strong>insights into your customer's psychology</strong> and the strategy to profit from your findings.
-                <br /><br />
-                The marketing research method taught in this eBook gives you the competitve advantage to conquer markets.
+            <div className='home-copy'>
 
-                <br /><br />
-                But doesn't starting a business cost a lot of money?
-                <br /><br />
-                The rise of artificial intelligence creates new possibilities for aspiring entrepreneurs.
-                <br /><br />
-                Our guide gives you entrepreneurial gems and the essential information you need to capitalize on these new opportunities.
-                <br /><br />
-                It takes money to make money.
-                <br /><br />
-                But when you leverage your creativity and resourcefulness, it'll take you less than  <span className='highlight'>$100 to start a 6-figure online company.</span>
-                <br /><br />
-                The <strong> few and short chapters</strong>  make this guide <u>easy to get through and understand.</u>
-                <br /><br />
-                The eBook, also, provides you with small question templates for shortcutting lots of market research for you.
-                <br /><br />
-                The Non-Fiction Income Method is your blueprint to create the company of your dreams ASAP.
-                <br /><br />
-                NOT ONLY THAT!
-                <br /><br />
-                When you buy The Non-Fiction Income Method you also get <u>ACCESS</u> to our <span className='highlight'>online Business Builder
-                    tool</span> that helps you plan out and organize your businessquicker and more effectively.
-                <br /><br />
-                AND ALSO..
-                <br /><br />
-                When you buy The Method, now, you get Premium Membership to all of our current and future service for an ENTIRE YEAR.
-                <br /><br />get the blueprint to creating online businesses along with our online tools and premium membership for only $19.99.<br /><br /><br />
-
-                Enter Promo Code "Save15," right now, and get 15% off The Non-Fiction Income Method!<br /> <br /><span className='cta'>Click the 'Check Out' button and get your products delivered immediately!</span>
-                <br />
-
-                <br /><br /> <br />
-                <div className='copy-checkout'>
-                    Limited Time Offer
-                    <div className='price'>
-
-                        <h5>
-                            <strike>$49.99 USD</strike>
-                        </h5>
-                        <h4>  $19.99 USD</h4>
-                    </div>
-
-                    <button className='checkout-btn'>Check Out</button>
-                    <div className='payment-method'>
-                        <img src={visa} alt="visa logo" />
-                        <img src={mastercard} alt="mastercard  logo" />
-                        <img src={americanexpress} alt="americanexpress  logo" />
-                        <img src={paypal} alt="payapl logo" />
-                    </div>
-                </div>
-
-            </p>
+                <h3>The Non-Fiction Income Method</h3>
+                <p>
+                    Are you tired of waiting for the perfect moment to start making money online? Look no further. We believe that everyone deserves the opportunity to achieve financial freedom, regardless of their background or expertise in entrepreneurship. That's why we've created The Non-Fiction Income Method - the ultimate practical shortcut to kickstart your rewarding entrepreneurial journey right away.
+                    <br /><br />
+                    Our actionable package empowers you to build your entire online business within just ONE day. Say goodbye to the frustrations of slow progress and hello to quick, tangible results. The Non-Fiction Income Method is designed to motivate you, boost your confidence, and propel you towards your dreams.
+                    <br /><br />
+                    One of the biggest challenges for small business owners is market research. But with The Non-Fiction Income Method, you won't have to struggle anymore. We'll share our unique psychographic approach to market research, giving you deep insights into your customer's psychology and the strategy to profit from your findings. Our eBook will equip you with a competitive advantage to conquer markets.
+                    <br /><br />
+                    But we don't stop there. We understand that an eBook alone might limit your potential. That's why we offer more than just knowledge. With The Non-Fiction Income Method, you'll gain access to our online business builder tool. This comprehensive tool provides step-by-step guidance, ready-made templates, and valuable resources to streamline your business setup process. Whether you're a beginner or an experienced entrepreneur, our tool will save you time and effort, allowing you to focus on what truly matters - growing your business.
+                    <br /><br />
+                    And that's not all. When you join The Non-Fiction Income Method, you become part of our premium membership community. Connect with like-minded individuals who share your entrepreneurial drive. Seek advice, collaborate, and inspire each other on your journey towards financial freedom. Together, we'll create an unstoppable force of motivated entrepreneurs, supporting and pushing each other to achieve greatness.
+                    <br /><br />
+                    Don't let another day go by without taking action. It's time to unlock your true potential with The Non-Fiction Income Method. Start your journey towards financial freedom today and turn your entrepreneurial dreams into reality. Join us now and let's make your success story a reality.
+                </p>
+            </div>
             <Newsletter />
         </div>
     )

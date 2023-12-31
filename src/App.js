@@ -13,19 +13,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import FinishingUp from './pages/business-builder/FinishingUp';
 import LoginPage from './pages/LoginPage';
 import UserDashboard from './pages/UserDashboard';
+import BusinessViewer from './pages/business-builder/BusinessViewer';
+import ProductPage from './pages/ProductPage';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <ToastContainer />
-        <TopBanner />
+
         <NavBar />
         <Routes>
-          <Route element={<HomePage />} path='/' />
+          <Route element={<HomePage />} path="/" />
+          <Route element={<ProductPage />} path='/product' />
           <Route element={<GettingStarted />} path='/business-builder/getting-started' />
           <Route element={<BusinessDevelopment />} path='/business-builder/development' />
           <Route element={<FinishingUp />} path='/business-builder/finishing-up' />
+          <Route element={<BusinessViewer />} path='/business-builder/project-viewer' />
           <Route element={<LoginPage />} path='/login' />
           <Route element={<UserDashboard />} path="/dashboard" />
         </Routes>

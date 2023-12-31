@@ -1,9 +1,10 @@
 .getting-started {
     width: 100%;
-    padding: 0 5vw;
+    padding: 21px 5vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #212121;
 }
 
 .navigation {
@@ -54,8 +55,8 @@
     overflow: scroll;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #212121;
-    color: #fff;
+    background-color: #eee;
+    color: #212121;
     padding: 21px;
     box-sizing: border-box;
     border-radius: 13px;

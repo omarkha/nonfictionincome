@@ -118,7 +118,7 @@ const GettingStarted = (props) => {
 
                     <div className='area' onClick={() => handleArea("Interest")}>
                         <h4>
-                            1. Listing Passions and Interests
+                            1. Your Passions and Interests
                         </h4>
                     </div>
                     <div className='area' onClick={() => handleArea("Customer")}>

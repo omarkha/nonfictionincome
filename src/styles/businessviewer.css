@@ -1,0 +1,35 @@
+.business-viewer {
+    width: 100%;
+    padding: 21px 5vw;
+    box-sizing: border-box;
+    background-color: #212121;
+}
+
+ul li {
+    text-align: start;
+}
+
+h3 {
+    text-align: center;
+}
+
+.finished-asset {
+    border-radius: 34px;
+    padding: 21px 55px;
+    box-sizing: border-box;
+    color: #212121;
+    margin: 13px auto;
+}
+
+.business-document {
+    padding: 21px;
+    margin: 34px 15vw;
+    border: 1px solid #212121;
+    background-color: #fff;
+
+}
+
+.business-document h1 {
+    text-decoration: underline;
+
+}
