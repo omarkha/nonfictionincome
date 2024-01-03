@@ -1,0 +1,64 @@
+/*
+    Color Scheme: #212121, #A01A1F, #EA5849, #EA2100, #BD0A0D, #353535
+*/
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 8px;
+    margin: 34px 144px;
+    border: 1px solid #A01A1F;
+    padding: 55px;
+    border-radius: 13px;
+}
+
+.login-page {
+    width: 100%;
+    padding: 0 23vw;
+    box-sizing: border-box;
+}
+
+form input {
+    width: 100%;
+    height: 34px;
+    border-radius: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 1px solid #212121;
+}
+
+label {
+    color: #A01A1F;
+    font-weight: bold;
+}
+
+button {
+
+    padding: 8px 34px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #A01A1F;
+    background: none;
+    color: #A01A1F;
+    margin: 13px auto;
+    font-weight: bold;
+    transition: all 0.38s ease-in-out;
+}
+
+button:hover {
+
+    border: 1px solid #A01A1F;
+    background-color: #A01A1F;
+    color: #fff;
+    transition: all 0.38s ease-in-out;
+}
+
+.login-page .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+}

@@ -1,0 +1,10 @@
+.sign-up-page {
+    width: 100%;
+    padding: 34px 5vw;
+    box-sizing: border-box;
+}
+
+.sign-up-page form {
+    width: 38.2%;
+    margin: 0 auto;
+}
