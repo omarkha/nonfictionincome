@@ -7,6 +7,7 @@ router.get("/api/users", userController.getAllUsers);
 router.get("/api/users/userid/:userid", userController.getUserById);
 router.get("/api/users/email/", userController.getUserByEmail);
 router.get("/api/users/session/:sid", userController.getUserByStripeId);
+router.get("/api/users/firebase/:fid", userController.getUserByFirebaseId);
 router.post("/api/users", userController.addUser);
 router.put("/api/users", userController.updateUser);
 router.delete("/api/users/userid/:userid", userController.deleteUser);

@@ -1,5 +1,5 @@
 const Business = require("../models/businessModel");
-
+const User = require("../models/userModel")
 
 const getAllBusinesses = async (req, res) => {
     try {
@@ -13,7 +13,18 @@ const getAllBusinesses = async (req, res) => {
 
 const getBusinessById = async (req, res) => {
     try {
-        const business = await Business.findOneById(req.body.id)
+        const business = await Business.findOne({ _id: req.params.bid })
+        res.send(business)
+    } catch (err) {
+        res.send(err)
+    }
+}
+
+
+const getBusinessesByOwner = async (req, res) => {
+    try {
+        const businesses = await Business.find({ owner_id: req.params.owner_id })
+        res.send(businesses)
     } catch (err) {
         res.send(err)
     }
@@ -21,7 +32,9 @@ const getBusinessById = async (req, res) => {
 
 const postBusiness = async (req, res) => {
     try {
-        const business = await new Business({
+        console.log(req.body.owner_id)
+        const business = new Business({
+            owner_id: req.body.owner_id,
             project_name: req.body.project_name,
             final_customer: req.body.final_customer,
             final_product: req.body.final_product,
@@ -37,13 +50,15 @@ const postBusiness = async (req, res) => {
 
         });
         business.save()
+        const user = await User.findByIdAndUpdate(req.body.owner_id, { $push: { business_projects: { id: business.id, customer: business.final_customer, usp: business.final_usp } } })
+        console.log(user)
     } catch (error) {
         res.send(error)
     }
 }
 
 
-const deleteBusiness = async (req, res) => {
+const deleteBusinessById = async (req, res) => {
     try {
         const res = await Business.findOneByIdAndDelete(req.body.id)
         res.send({ msg: "business deleted" })
@@ -62,15 +77,6 @@ const updateBusiness = async (req, res) => {
 
 }
 
-const findBusinessByUserID = async (req, res) => {
-    try {
-        const businesses = await Business.find({ _id: req.body.id })
-        res.json(businesses)
-    } catch (err) {
-        res.send(err)
-    }
-}
-
 module.exports = {
-    getAllBusinesses, getBusinessById, postBusiness, updateBusiness, deleteBusiness, findBusinessByUserID
+    getBusinessesByOwner, getAllBusinesses, getBusinessById, postBusiness, updateBusiness, deleteBusinessById
 }

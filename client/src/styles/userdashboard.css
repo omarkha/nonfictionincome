@@ -20,8 +20,8 @@
 .dashboard-projects .dashboard-project {
 
     border-radius: 13px;
-    background: linear-gradient(-34deg, #212121, #0D10EDF0);
-    color: #fff;
+    background: linear-gradient(-34deg, #eeeeee, #dddddd);
+    color: #212121;
     height: 177px;
     max-height: 177px;
     padding: 0 21px;
@@ -29,8 +29,13 @@
     max-width: 400px;
 }
 
-.dashboard-project h5 {
-    margin: 0;
+.dashboard-project h6 {
+    font-size: 13px;
+    margin: 0 0 21px 0;
+}
+
+.dashboard-project h3 {
+    color: #A01A1F;
 }
 
 .dashboard-project h3 {
@@ -45,6 +50,6 @@
 .view-project-btn {
     margin: 0;
     padding: 5px 13px;
-    color: #fff;
+    color: #212121;
     border-color: #fff;
 }

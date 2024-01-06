@@ -1,6 +1,7 @@
 /*
     Color Scheme: #212121, #A01A1F, #EA5849, #EA2100, #BD0A0D, #353535
 */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
 
 .navbar h1 {
     color: #212121;
@@ -26,6 +27,7 @@
     justify-content: space-evenly;
     align-items: center;
     height: 89px;
+    font-family: 'Oswald', sans-serif;
 }
 
 .navbar ul {
@@ -53,18 +55,17 @@
 
 .topbanner {
     height: 34px;
-    width: 62.8%;
+    width: 86%;
     margin: 0 auto;
-    border-bottom-left-radius: 21px;
-    border-bottom-right-radius: 21px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #BD0A0D;
+    background-color: #000;
     color: #fff;
-    font-weight: bold;
+    font-size: 21px;
     border-bottom: 3px solid #fff;
-    ;
+    font-family: 'Rubik Glitch', system-ui;
 }
 
 .newsletter {
@@ -144,4 +145,30 @@ footer h4 {
 
 footer .message {
     width: 377px;
+}
+
+.confirmation-box {
+    width: 38.2vw;
+    height: 38.2vh;
+    position: fixed;
+    left: calc(50vw - 38.2vw / 2);
+    top: calc(50vh - 38.2vh / 2);
+    background-color: #fff;
+    box-shadow: 0 0 55px 13px #BD0A0D;
+    border-radius: 21px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 34px;
+    box-sizing: border-box;
+}
+
+.confirmation-box-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(25, 25, 25, 0.86)
 }

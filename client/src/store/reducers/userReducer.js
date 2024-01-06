@@ -7,7 +7,7 @@ const initialState = {
     user_id: "",
     customer_name: "",
     signed_in: false,
-    business_ids: {}
+    business_ids: []
 }
 
 const userReducer = (state = initialState, action) => {

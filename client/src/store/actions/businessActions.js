@@ -1,4 +1,8 @@
 import {
+    SET_INITIAL_CUSTOMER,
+    POPULATE_PRODUCTS, POPULATE_SPECIFICATIONS, POPULATE_VALUES, POPULATE_STRUGGLES, POPULATE_MOTIVATIONS, POPULATE_CUSTOMERS, POPULATE_INTERESTS,
+    START_EDIT_MODE, STOP_EDIT_MODE, RESET_BUSINESS,
+    EMPTY_INTERESTS, EMPTY_CUSTOMERS, EMPTY_MOTIVATIONS, EMPTY_STRUGGLES, EMPTY_VALUES, EMPTY_SPECIFICATIONS, EMPTY_PRODUCTS,
     ADD_CUSTOMER, ADD_FINAL_CUSTOMER, ADD_FINAL_MISSION_STATEMENT,
     ADD_FINAL_PRODUCT, ADD_FINAL_USP, ADD_INTEREST, ADD_MOTIVATION,
     ADD_PRODUCT, ADD_SPECIFICATION, ADD_STRUGGLE, ADD_VALUE, DELETE_CUSTOMER,
@@ -7,8 +11,20 @@ import {
     DELETE_SPECIFICATION, DELETE_STRUGGLE, DELETE_VALUE, SELECT_CUSTOMERS, SELECT_INTERESTS, SELECT_MOTIVATIONS, SELECT_PRODUCTS, SELECT_SPECIFICATIONS, SELECT_STRUGGLES, SELECT_VALUES, UPDATE_CUSTOMER,
     UPDATE_FINAL_CUSTOMER, UPDATE_FINAL_MISSION_STATEMENT, UPDATE_FINAL_PRODUCT,
     UPDATE_FINAL_USP, UPDATE_INTEREST, UPDATE_MOTIVATION, UPDATE_PRODUCT,
-    UPDATE_SPECIFICATION, UPDATE_STRUGGLE, UPDATE_VALUE
+    UPDATE_SPECIFICATION, UPDATE_STRUGGLE, UPDATE_VALUE, ADD_BUSINESS_NAME, DELETE_BUSINESS_NAME, UPDATE_BUSINESS_NAME, SET_SERVER_DATA_LOADED
 } from '../actiontypes'
+
+
+export const ResetBusiness = () => ({
+    type: RESET_BUSINESS,
+
+})
+
+export const SetInitialCustomer = (customer) => ({
+    type: SET_INITIAL_CUSTOMER,
+    payload: customer
+
+})
 
 // Interests
 
@@ -31,6 +47,11 @@ export const SelectInterests = () => ({
     type: SELECT_INTERESTS,
 })
 
+export const EmptyInterests = () => ({
+    type: EMPTY_INTERESTS,
+})
+
+
 // Customers
 
 export const AddCustomer = (customer) => ({
@@ -38,9 +59,9 @@ export const AddCustomer = (customer) => ({
     payload: customer
 })
 
-export const DeleteCustomer = (customer) => ({
+export const DeleteCustomer = (cus) => ({
     type: DELETE_CUSTOMER,
-    payload: customer
+    payload: cus
 })
 
 export const UpdateCustomer = (customer) => ({
@@ -50,6 +71,10 @@ export const UpdateCustomer = (customer) => ({
 
 export const SelectCustomers = () => ({
     type: SELECT_CUSTOMERS,
+})
+
+export const EmptyCustomers = () => ({
+    type: EMPTY_CUSTOMERS,
 })
 
 
@@ -74,6 +99,10 @@ export const SelectMotivations = () => ({
     type: SELECT_MOTIVATIONS,
 })
 
+export const EmptyMotivations = () => ({
+    type: EMPTY_MOTIVATIONS,
+})
+
 
 // Struggles
 
@@ -95,6 +124,10 @@ export const UpdateStruggle = (struggle) => ({
 export const SelectStruggles = () => ({
     type: SELECT_STRUGGLES,
 })
+export const EmptyStruggles = () => ({
+    type: EMPTY_STRUGGLES,
+})
+
 
 
 // Values
@@ -116,6 +149,10 @@ export const UpdateValue = (value) => ({
 
 export const SelectValues = () => ({
     type: SELECT_VALUES,
+})
+
+export const EmptyValues = () => ({
+    type: EMPTY_VALUES,
 })
 
 
@@ -140,6 +177,10 @@ export const SelectSpecifications = () => ({
     type: SELECT_SPECIFICATIONS,
 })
 
+export const EmptySpecifications = () => ({
+    type: EMPTY_SPECIFICATIONS,
+})
+
 
 // Products
 
@@ -160,6 +201,10 @@ export const UpdateProduct = (interproductest) => ({
 
 export const SelectProducts = () => ({
     type: SELECT_PRODUCTS,
+})
+
+export const EmptyProducts = () => ({
+    type: EMPTY_PRODUCTS,
 })
 
 
@@ -233,3 +278,83 @@ export const UpdateFinalMissionStatemet = (final_mission_statement) => ({
     type: UPDATE_FINAL_MISSION_STATEMENT,
     payload: final_mission_statement
 })
+
+// Business Name
+
+
+export const AddBusinessName = (business_name) => ({
+    type: ADD_BUSINESS_NAME,
+    payload: business_name
+})
+
+export const DeleteBusinessName = () => ({
+    type: DELETE_BUSINESS_NAME,
+})
+
+export const UpdateBusinessName = (business_name) => ({
+    type: UPDATE_BUSINESS_NAME,
+    payload: business_name
+})
+
+
+// Edit Mode
+
+export const StartEditMode = (business_id) => ({
+    type: START_EDIT_MODE,
+    payload: business_id
+})
+export const StopEditMode = (business_id) => ({
+    type: STOP_EDIT_MODE,
+    payload: business_id
+})
+
+
+// Populating from the server
+
+export const PopulateInterests = (arr) => ({
+    type: POPULATE_INTERESTS,
+    payload: arr
+})
+
+
+export const PopulateCustomers = (arr) => ({
+    type: POPULATE_CUSTOMERS,
+    payload: arr
+})
+
+
+export const PopulateMotivations = (arr) => ({
+    type: POPULATE_MOTIVATIONS,
+    payload: arr
+})
+
+
+export const PopulateStruggles = (arr) => ({
+    type: POPULATE_STRUGGLES,
+    payload: arr
+})
+
+
+export const PopulateValues = (arr) => ({
+    type: POPULATE_VALUES,
+    payload: arr
+})
+
+
+export const PopulateSpecifications = (arr) => ({
+    type: POPULATE_SPECIFICATIONS,
+    payload: arr
+})
+
+
+export const PopulateProducts = (arr) => ({
+    type: POPULATE_PRODUCTS,
+    payload: arr
+})
+
+
+export const SetServerDataLoaded = (bool) => ({
+    type: SET_SERVER_DATA_LOADED,
+    payload: bool
+})
+

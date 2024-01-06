@@ -1,10 +1,12 @@
 .home-page .usp {
-    font-size: 55px;
+    font-size: 47px;
     font-family: sans-serif;
     color: #fff;
-    text-shadow: 0 0 8px #000;
-
+    text-shadow: 0 0 13px #A01A1F;
+    width: 233px;
     font-weight: bolder;
+    margin: 55px auto;
+    background: rgba(25, 25, 25, 0.628)
 }
 
 .home-page .usp_and_cta {
@@ -12,16 +14,26 @@
 
 }
 
-.home-page .cta-btn {
-    padding: 13px 34px;
-    font-size: 21px;
+/*
+    Color Scheme: #212121, #A01A1F, #EA5849, #EA2100, #BD0A0D, #353535
+*/
 
+.home-page .cta-btn {
+
+    background-color: #EA2100;
+    color: #fff;
+    padding: 13px 34px;
+    font-size: 29px;
+    border: 5px solid #fff;
+    border-radius: 13px;
 }
 
 
 .home-page .cta-btn:hover {
-
-    font-size: 21px;
+    background-color: #fff;
+    color: #EA2100;
+    border: 5px solid #EA2100;
+    font-size: 29px;
 
 }
 

@@ -31,6 +31,11 @@
     cursor: pointer;
 }
 
+.choose-btn {
+    background-color: yellow;
+    color: #212121;
+}
+
 .tool:hover {
 
     border: 2px solid #0DBD0A;

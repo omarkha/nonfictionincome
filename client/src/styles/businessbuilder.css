@@ -74,10 +74,25 @@
 }
 
 .editor {
+    border: none;
+    padding: 0;
+    margin: 0;
     width: 100%;
 
 }
 
+.editor form {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: none;
+}
+
+.getting-started .buttons {
+    display: flex;
+
+    flex-direction: row;
+}
 
 
 .element-btn {
@@ -87,6 +102,18 @@
     background-color: #A01A1F;
     border: 0;
     color: #fff;
+    font-size: 18px;
+    border-radius: 21px;
+    cursor: pointer;
+}
+
+.element-btn:hover {
+    margin: 13px;
+    width: fit-content;
+    padding: 8px 21px;
+    background-color: #fff;
+    border: 0;
+    color: #A01A1F;
     font-size: 18px;
     border-radius: 21px;
     cursor: pointer;
@@ -108,7 +135,7 @@
     padding: 0 13px;
     box-sizing: border-box;
     background: none;
-    color: #A01A1F;
+    color: #fff;
     border: 2px solid #A01A1F;
     letter-spacing: 1px;
     font-size: 16px;
@@ -129,6 +156,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.listed-elements-container {
+    overflow: scroll;
+    border: 2px solid #212121;
+    height: 233px;
+    width: 100%;
+}
+
+
+
 .listed-elements {
     display: flex;
     flex-direction: column;
@@ -136,14 +172,14 @@
     width: 100%;
     align-items: start;
     justify-content: start;
-    overflow: scroll;
-    height: 233px;
-    border: 2px solid #212121;
+
+    height: fit-content;
+
     border-radius: 13px;
     color: #fff;
     padding: 21px 0;
-
 }
+
 
 .listed-element {
     width: 92%;
@@ -209,6 +245,8 @@
 
 }
 
+
+
 .tips h3 {
     font-size: 16px;
     text-align: start;
@@ -216,4 +254,10 @@
     letter-spacing: 1px;
     word-spacing: 1px;
     font-weight: 200;
+}
+
+.business-builder h3 {
+    color: #fff;
+    width: 62.8%;
+    margin: 0 auto;
 }

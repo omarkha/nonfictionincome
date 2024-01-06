@@ -14,7 +14,7 @@ const BusinessSchema = new mongoose.Schema(
         values: { type: Array, required: false },
         specifications: { type: Array, required: false },
         products: { type: Array, required: false },
-        owner_id: { type: String }
+        owner_id: { type: String, required: true }
     },
     { timestamps: true }
 )

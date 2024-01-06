@@ -12,6 +12,7 @@ import TopBanner from '../components/TopBanner';
 import { loadStripe } from "@stripe/stripe-js";
 import { AddCustomerSessionID } from '../store/actions/userActions';
 import { connect } from "react-redux"
+import { Typography } from '@material-ui/core';
 
 const ProductPage = (props) => {
 
@@ -58,13 +59,11 @@ const ProductPage = (props) => {
             <div className='main-promotion'>
                 <div className='product-image' style={{ backgroundImage: `url(${book})` }} alt="book image" />
                 <div className='info'>
-                    <h1>The Non-Fiction Income Method</h1>
+                    <Typography variant="h1">The Non-Fiction Income Method</Typography>
 
-                    <h3>
-                        Create Small Online Businesses With Less Than $100
-                    </h3>
-                    <h4 className='package'>Short eBook + Online Tools + Premium Membership</h4>
-                    <hr /><h4 className='limitedtimeoffer'>limited time offer</h4>
+
+                    <h4 className='package'>The eBook + Online Tools + Premium Membership</h4>
+                    <hr />
                     <div className='price'>
 
                         <h5>
@@ -72,7 +71,8 @@ const ProductPage = (props) => {
                         </h5>
                         <h4>  $19.99 USD</h4>
                     </div>
-                    <button className='checkout-btn' onClick={() => makePayment()}>Check Out</button>
+                    <button className='checkout-btn' onClick={() => makePayment()}>Buy Now</button>
+                    <h4 className='limitedtimeoffer'>Offer ends soon</h4>
                     <div className='payment-method'>
                         <img src={visa} alt="visa logo" />
                         <img src={mastercard} alt="mastercard  logo" />
@@ -82,38 +82,39 @@ const ProductPage = (props) => {
                 </div>
 
             </div><div className='copy'>
-                <p>
+                <iframe width="610px" height="377px" src="https://www.youtube.com/embed/MlCkEl0DkDY?si=Bss5YsxeEu75wpwL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <Typography paragraph>
                     Are you tired of waiting for your online business dreams to come true? With The Non-Fiction Income Method, you can start making money online right away without the need for years of study or training in entrepreneurship.
-                    <br /> <br />
-                    <span className="subhead">Quick and Tangible Results That Propell You To Financial Freedom</span>
-                    Imagine building your entire business blueprint in just one day. Our comprehensive guide provides you with the exact steps and strategies you need to kickstart your online business journey. No more wasting time on trial and error – get quick and tangible results that will boost your motivation and confidence from day one.
-                    <br /> <br />
-                    <span className="subhead">The Archetypes of Psychographics For Laser-Focused Marketing</span>
-                    What sets The Non-Fiction Income Method apart is our unique psychographic approach to market research. Unlock valuable insights into your customers' psychology and gain a competitive advantage in your industry. Say goodbye to guesswork, and hello to targeted marketing strategies that actually work.
-                    <br /> <br />
-                    <span className="subhead">Leveraging Artificial Intelligence For Maximum Results In Minimum Time</span>
-                    We also believe in leveraging the power of artificial intelligence to open new doors of opportunity for aspiring entrepreneurs. Discover how to harness the potential of AI to propel your online business to the next level, all while staying ahead of the curve.
-                    <br /> <br />
-                    <span className="subhead">Enjoy The Journey By Exercising Your Creativity and Resourcefulness</span>
-                    The best part? You don't need a massive budget to succeed. With The Non-Fiction Income Method, you can start a 6-figure online company for less than $100. Learn how to leverage your creativity and resourcefulness to maximize your returns and minimize your investment.
-                    <br /> <br />
-                    <span className="subhead">Short, Simple, and Concise, The eBook Offers You All You Need To Know</span>
-                    We understand that complex business concepts can be overwhelming, which is why we've made our guide easy to understand with clear and concise chapters. Plus, we provide you with market research templates that will shortcut your way to success.
-                    <br /> <br />
-                    <span className="subhead">Use Our Business-Builder Online Tool</span>
-                    But that's not all! When you purchase The Non-Fiction Income Method, you'll also gain access to our online Business Builder tool. Plan, organize, and streamline your business activities for maximum efficiency and productivity.
-                    <br /> <br />
-                    <span className="subhead">We Continue To Provide Services</span>
-                    And as a special bonus, you'll receive a premium membership to all of our current and future services for an entire year. Stay updated with the latest industry trends, tools, and strategies to ensure your continued success.
-                    <br /> <br />
-                    <span className="subhead">Take Advantage of Our Launching Price</span>
-                    Get your hands on The Non-Fiction Income Method today for only $19.99. That's right – the blueprint, tools, and premium membership, all for one affordable price.
-                    <br /> <br />
-                    Don't wait any longer – take action now! Upon checkout, you'll receive immediate delivery of your products. Your journey to online success starts here.
-                    <br /> <br />
-                    Invest in your future with The Non-Fiction Income Method. Get started today!<br /> <br />
-                    <br />
-                </p>
+                </Typography>  <br /> <br />
+                <Typography variant="h5">Quick and Tangible Results That Propell You To Financial Freedom</Typography>
+                <Typography paragraph>Imagine building your entire business blueprint in just one day. Our comprehensive guide provides you with the exact steps and strategies you need to kickstart your online business journey. No more wasting time on trial and error – get quick and tangible results that will boost your motivation and confidence from day one.</Typography>
+                <br /> <br />
+                <Typography variant="h5">The Archetypes of Psychographics For Laser-Focused Marketing</Typography>
+                <Typography paragraph>What sets The Non-Fiction Income Method apart is our unique psychographic approach to market research. Unlock valuable insights into your customers' psychology and gain a competitive advantage in your industry. Say goodbye to guesswork, and hello to targeted marketing strategies that actually work.</Typography>
+                <br /> <br />
+                <Typography variant="h5">Leveraging Artificial Intelligence For Maximum Results In Minimum Time</Typography>
+                <Typography paragraph> We also believe in leveraging the power of artificial intelligence to open new doors of opportunity for aspiring entrepreneurs. Discover how to harness the potential of AI to propel your online business to the next level, all while staying ahead of the curve.</Typography>
+                <br /> <br />
+                <Typography variant="h5">Enjoy The Journey By Exercising Your Creativity and Resourcefulness</Typography>
+                <Typography paragraph> The best part? You don't need a massive budget to succeed. With The Non-Fiction Income Method, you can start a 6-figure online company for less than $100. Learn how to leverage your creativity and resourcefulness to maximize your returns and minimize your investment.</Typography>
+                <br /> <br />
+                <Typography variant="h5">Short, Simple, and Concise, The eBook Offers You All You Need To Know</Typography>
+                <Typography paragraph> We understand that complex business concepts can be overwhelming, which is why we've made our guide easy to understand with clear and concise chapters. Plus, we provide you with market research templates that will shortcut your way to success.</Typography>
+                <br /> <br />
+                <Typography variant="h5">Use Our Business-Builder Online Tool</Typography>
+                <Typography paragraph> But that's not all! When you purchase The Non-Fiction Income Method, you'll also gain access to our online Business Builder tool. Plan, organize, and streamline your business activities for maximum efficiency and productivity.</Typography>
+                <br /> <br />
+                <Typography variant="h5">We Continue To Provide Services</Typography>
+                <Typography paragraph> And as a special bonus, you'll receive a premium membership to all of our current and future services for an entire year. Stay updated with the latest industry trends, tools, and strategies to ensure your continued success.</Typography>
+                <br /> <br />
+                <Typography variant="h5">Take Advantage of Our Launching Price</Typography>
+                <Typography paragraph>   Get your hands on The Non-Fiction Income Method today for only $19.99. That's right – the blueprint, tools, and premium membership, all for one affordable price.</Typography>
+                <br /> <br />
+                <Typography paragraph>  Don't wait any longer – take action now! Upon checkout, you'll receive immediate delivery of your products. Your journey to online success starts here.</Typography>
+                <br /> <br />
+                Invest in your future with The Non-Fiction Income Method. Get started today!<br /> <br />
+                <br />
+
                 <br /><br /> <br />
                 <div className='copy-checkout'>
                     <h4>Limited Time Offer</h4>
@@ -125,7 +126,7 @@ const ProductPage = (props) => {
                         <h4>  $19.99 USD</h4>
                     </div>
 
-                    <button className='checkout-btn'>Check Out</button>
+                    <button className='checkout-btn'>Buy Now</button>
                     <div className='payment-method'>
                         <img src={visa} alt="visa logo" />
                         <img src={mastercard} alt="mastercard  logo" />

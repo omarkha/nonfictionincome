@@ -30,9 +30,19 @@ const getUserByEmail = async (req, res) => {
     }
 }
 
+const getUserByFirebaseId = async (req, res) => {
+    try {
+        console.log(req.params.fid)
+        const user = await User.find({ user_firebase_id: req.params.fid })
+        res.json(user)
+    } catch (err) {
+        res.send(err)
+    }
+}
+
 const getUserByStripeId = async (req, res) => {
     try {
-        const user = await User.find({ stripe_session_id: req.params.sid })
+        const user = await User.findOne({ stripe_session_id: req.params.sid })
         res.json(user)
     } catch (err) {
         res.send(err)
@@ -69,7 +79,7 @@ const updateUser = async (req, res) => {
 const deleteUser = (req, res) => {
     try {
         console.log(req.params.userid)
-        User.findByIdAndDelete(req.params.userid)
+        User.deleteOne({ id: req.params.userid })
     } catch (error) {
         console.log(error)
         res.send(error)
@@ -77,12 +87,12 @@ const deleteUser = (req, res) => {
 }
 const deleteAllUsers = (req, res) => {
     try {
-
-        User.deleteMany()
+        console.log("delete all")
+        User.deleteOne({ _id: "65959b476f87115f7a09eb7d" })
 
     } catch (error) {
         console.log("ERRRRRROR" + error)
     }
 }
 
-module.exports = { deleteAllUsers, addUser, getAllUsers, getUserByEmail, getUserById, deleteUser, updateUser, getUserByStripeId }
+module.exports = { getUserByFirebaseId, deleteAllUsers, addUser, getAllUsers, getUserByEmail, getUserById, deleteUser, updateUser, getUserByStripeId }

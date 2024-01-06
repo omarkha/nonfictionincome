@@ -1,29 +1,99 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import "../../styles/businessviewer.css"
-import BuilderNavigation from '../../components/BuilderNavigation'
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
 
 const BusinessViewer = (props) => {
-
+    const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
     const [projectName, setProjectName] = useState("New Project");
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        setProjectName(props.businessState.business_name)
+        if (props.businessState.edit_mode.isInEditMode) {
+            populateDatabaseBusiness()
+        }
+    }, [])
+
+
+    const [editBusiness, setEditBusiness] = useState({});
+
+    const populateDatabaseBusiness = async () => {
+        if (!props.businessState.server_data_loaded) {
+            await axios.get(`${uri}/api/businesses/byid/${props.businessState.edit_mode.id}`).then(res => {
+                console.log(res)
+                props.populateInterests(res.data.interests)
+                props.populateCustomers(res.data.customers)
+                props.populateMotivations(res.data.motivations)
+                props.populateStruggles(res.data.struggles)
+                props.populateValues(res.data.values)
+                props.populateSpecifications(res.data.specifications)
+                props.populateProducts(res.data.products)
+                setProjectName(res.data.business_name)
+                props.updateBusinessName(res.data.business_name)
+                props.addFinalCustomer(res.data.final_customer)
+                props.addFinalMissionStatement(res.data.final_mission_statement)
+                props.addFinalProduct(res.data.final_product)
+                props.addFinalUsp(res.data.final_usp)
+                SetServerDataLoaded(true)
+            })
+        }
+    }
+
+    const updateElement = (value) => {
+
+
+        setProjectName(value)
+        props.updateBusinessName(value)
+
+
+    }
+
+
     const saveBusiness = async () => {
-        await axios.post("http://localhost:3001/api/businesses", {
-            project_name: projectName,
-            final_customer: props.businessState.final_customer,
-            final_product: props.businessState.final_product,
-            final_usp: props.businessState.final_usp,
-            final_mission_statement: props.businessState.final_mission_statement,
-            interests: props.businessState.interests,
-            customers: props.businessState.customers,
-            motivations: props.businessState.motivations,
-            struggles: props.businessState.struggles,
-            values: props.businessState.values,
-            specifications: props.businessState.specifications,
-            products: props.businessState.products,
-        })
+        console.log(props.userState.user_id)
+        const userId = props.userState.user_id;
+        if (!props.business.inEditMode) {
+
+
+            await axios.post(`${uri}/api/businesses`, {
+                owner_id: userId,
+                project_name: props.businessState.business_name,
+                final_customer: props.businessState.final_customer,
+                final_mission_statement: props.businessState.final_mission_statement,
+                final_usp: props.businessState.final_usp,
+                final_product: props.businessState.final_product,
+                interests: [...props.businessState.interests],
+                customers: [...props.businessState.customers],
+                motivations: [...props.businessState.motivations],
+                struggles: [...props.businessState.struggles],
+                values: [...props.businessState.values],
+                specifications: [...props.businessState.specifications],
+                products: [...props.businessState.products],
+            })
+        } else {
+            await axios.put(`${uri}/api/businesses/byid`, {
+                business_id: props.businessState.edit_mode.id,
+                data: {
+                    owner_id: userId,
+                    project_name: props.businessState.business_name,
+                    final_customer: props.businessState.final_customer,
+                    final_mission_statement: props.businessState.final_mission_statement,
+                    final_usp: props.businessState.final_usp,
+                    final_product: props.businessState.final_product,
+                    interests: [...props.businessState.interests],
+                    customers: [...props.businessState.customers],
+                    motivations: [...props.businessState.motivations],
+                    struggles: [...props.businessState.struggles],
+                    values: [...props.businessState.values],
+                    specifications: [...props.businessState.specifications],
+                    products: [...props.businessState.products],
+                }
+            })
+        }
     }
 
 
@@ -32,7 +102,7 @@ const BusinessViewer = (props) => {
 
             <div className='project-name'>
                 <label>Project Name: </label>
-                <input type='text' className='project-name-field' value={projectName} onChange={(e) => setProjectName(e.target.value)} placeholder='Project name' />
+                <input type='text' className='project-name-field' value={projectName} onChange={(e) => updateElement(e.target.value)} placeholder='Project name' />
             </div>
             <button className='save-business-btn' onClick={() => saveBusiness()} >Save Business</button>
             <div className='control-buttons'>
@@ -80,40 +150,33 @@ const BusinessViewer = (props) => {
                     </p>
                 </div>
                 <hr />
-                <div className='finished-asset'>
-                    <h3>  <u> Potential Products </u>  </h3><ul>
-                        {props.businessState.products ? props.businessState.products.map(e => {
-                            return (
-                                <li><strong>{e.title + ". "}</strong> {e.description} </li>
-                            )
-                        }) : null}</ul>
-                </div>
+
                 <div className='finished-asset'>
                     <h3>  <u> Customer Values </u>  </h3><ul>
-                        {props.businessState.values ? props.businessState.values.map(e => {
+                        {props.businessState.values?.map(e => {
                             return (
                                 <li><strong>{e.title + ". "}</strong> {e.description} </li>
                             )
-                        }) : null}</ul>
+                        })}</ul>
                 </div>
                 <div className='finished-asset'>
                     <h3>  <u> Customer Motivations  </u></h3>
                     <ul>
 
 
-                        {props.businessState.motivations ? props.businessState.motivations.map(e => {
+                        {props.businessState.motivations?.map(e => {
                             return (
                                 <li><strong>{e.title + ". "}</strong> {e.description} </li>
                             )
-                        }) : null}</ul>
+                        })}</ul>
                 </div>
                 <div className="finished-asset">
                     <h3> <u>  Customer Struggles </u>  </h3><ul>
-                        {props.businessState.struggles ? props.businessState.struggles.map(e => {
+                        {props.businessState.struggles?.map(e => {
                             return (
                                 <li><strong>{e.title + ". "}</strong> {e.description} </li>
                             )
-                        }) : null}</ul>
+                        })}</ul>
                 </div>
             </div>
         </div>
@@ -123,7 +186,8 @@ const BusinessViewer = (props) => {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        businessState: state
+        businessState: state.business,
+        userState: state.user
     }
 }
 
@@ -137,6 +201,32 @@ const mapActionsToProps = (dispatch) => {
         addCustomer: (newCustomer) => dispatch(AddCustomer(newCustomer)),
         removeCustomer: (index) => dispatch(DeleteCustomer(index)),
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
+        updateBusinessName: (obj) => dispatch(UpdateBusinessName(obj)),
+
+        addFinalProduct: (val) => dispatch(AddFinalProduct(val)),
+        removeFinalProduct: (index) => dispatch(DeleteFinalProduct(index)),
+        updateFinalProduct: (obj) => dispatch(UpdateFinalProduct(obj)),
+
+        addFinalUsp: (val) => dispatch(AddFinalUSP(val)),
+        removeFinalUsp: (index) => dispatch(DeleteFinalUSP(index)),
+        updateFinalUsp: (obj) => dispatch(UpdateFinalUSP(obj)),
+
+        addFinalCustomer: (val) => dispatch(AddFinalCustomer(val)),
+        removeFinalCustomer: (index) => dispatch(DeleteFinalCustomer(index)),
+        updateFinalCustomer: (obj) => dispatch(UpdateFinalCustomer(obj)),
+
+        addFinalMissionStatement: (val) => dispatch(AddFinalMissionStatemet(val)),
+        removeFinalMissionStatement: (index) => dispatch(DeleteFinalMissionStatemet(index)),
+        updateFinalMissionStatement: (obj) => dispatch(UpdateFinalMissionStatemet(obj)),
+
+        populateProducts: (arr) => dispatch(PopulateProducts(arr)),
+        populateSpecifications: (arr) => dispatch(PopulateSpecifications(arr)),
+        populateValues: (arr) => dispatch(PopulateValues(arr)),
+        populateStruggles: (arr) => dispatch(PopulateStruggles(arr)),
+        populateMotivations: (arr) => dispatch(PopulateMotivations(arr)),
+        populateCustomers: (arr) => dispatch(PopulateCustomers(arr)),
+        populateInterests: (arr) => dispatch(PopulateInterests(arr)),
+        SetServerDataLoaded: (bool) => dispatch(SetServerDataLoaded(bool))
     }
 }
 

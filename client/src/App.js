@@ -20,10 +20,32 @@ import PurchaseSuccessPage from './pages/PurchaseSuccessPage';
 import PurchaseCancelPage from './pages/PurchaseCancelPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { useEffect } from "react"
+import { auth } from "./config/firebase"
+import { onAuthStateChanged } from 'firebase/auth';
+import axios from 'axios';
+import { SetUserID } from './store/actions/userActions';
+import { connect } from "react-redux"
+function App(props) {
+  const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
+  useEffect(() => {
+    checkLoggedIn()
+  }, [])
 
-function App() {
+  const checkLoggedIn = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+        handleUserId(user.uid)
+      }
+    })
+  }
 
 
+
+  const handleUserId = async (fireID) => {
+
+    await axios.get(`${uri}/api/users/firebase/${fireID}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => console.log(props.userState.user_id))
+  }
 
   return (
     <Router>
@@ -50,5 +72,19 @@ function App() {
     </Router>
   );
 }
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    userState: state.user
+  }
+}
 
-export default App;
+const mapActionsToProps = (dispatch) => {
+  return {
+    setUserID: (val) => dispatch(SetUserID(val)),
+
+  }
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(App);

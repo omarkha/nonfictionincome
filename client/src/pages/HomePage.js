@@ -6,9 +6,9 @@ import mastercard from "../media/mastercard.png";
 import americanexpress from "../media/americanexpress.png";
 import paypal from "../media/paypal.png";
 import Newsletter from '../components/NewsLetter';
-import frontbanner from "../media/homebanner3.png"
+import frontbanner from "../media/homebanner4.png"
 import { useNavigate } from 'react-router-dom';
-
+import { Typography } from "@material-ui/core";
 
 const HomePage = () => {
 
@@ -21,29 +21,44 @@ const HomePage = () => {
                     <p className='usp'>
                         Reach Financial Freedom Earlier!
                     </p>
-                    <button className='cta-btn' onClick={() => navigate("/product")}>Click Here To Learn How</button>
+                    <button className='cta-btn' onClick={() => navigate("/product")}>Shortcut The Journey</button>
                 </div>
             </div>
 
             <div className='home-copy'>
 
-                <h3>The Non-Fiction Income Method</h3>
-                <p>
+                <Typography variant="h3">The Non-Fiction Income Method</Typography><br /><br />
+                <Typography paragraph align="left">
                     Are you tired of waiting for the perfect moment to start making money online? Look no further. We believe that everyone deserves the opportunity to achieve financial freedom, regardless of their background or expertise in entrepreneurship. That's why we've created The Non-Fiction Income Method - the ultimate practical shortcut to kickstart your rewarding entrepreneurial journey right away.
-                    <br /><br />
+                </Typography><br /><br />
+                <Typography variant="h5" align="left">Get To Action FAST</Typography>
+                <Typography paragraph align="left">
                     Our actionable package empowers you to build your entire online business within just ONE day. Say goodbye to the frustrations of slow progress and hello to quick, tangible results. The Non-Fiction Income Method is designed to motivate you, boost your confidence, and propel you towards your dreams.
-                    <br /><br />
+                </Typography>
+                <br /><br />
+                <Typography variant="h5" align="left">Choose Your Perfect Customers</Typography>
+                <Typography paragraph align="left">
                     One of the biggest challenges for small business owners is market research. But with The Non-Fiction Income Method, you won't have to struggle anymore. We'll share our unique psychographic approach to market research, giving you deep insights into your customer's psychology and the strategy to profit from your findings. Our eBook will equip you with a competitive advantage to conquer markets.
-                    <br /><br />
+                </Typography>
+                <br /><br />
+                <Typography variant="h5" align="left">Use Our Online Tool</Typography>
+                <Typography paragraph align="left">
                     But we don't stop there. We understand that an eBook alone might limit your potential. That's why we offer more than just knowledge. With The Non-Fiction Income Method, you'll gain access to our online business builder tool. This comprehensive tool provides step-by-step guidance, ready-made templates, and valuable resources to streamline your business setup process. Whether you're a beginner or an experienced entrepreneur, our tool will save you time and effort, allowing you to focus on what truly matters - growing your business.
-                    <br /><br />
+                </Typography>
+                <br /><br />
+                <Typography variant="h5" align="left">The Gift That Keeps Giving</Typography>
+                <Typography paragraph align="left">
                     And that's not all. When you join The Non-Fiction Income Method, you become part of our premium membership community. Connect with like-minded individuals who share your entrepreneurial drive. Seek advice, collaborate, and inspire each other on your journey towards financial freedom. Together, we'll create an unstoppable force of motivated entrepreneurs, supporting and pushing each other to achieve greatness.
-                    <br /><br />
+                </Typography>
+                <br /><br />
+                <Typography variant="h5" align="left">Are You Ready For REAL Income?</Typography>
+                <Typography align="left">
                     Don't let another day go by without taking action. It's time to unlock your true potential with The Non-Fiction Income Method. Start your journey towards financial freedom today and turn your entrepreneurial dreams into reality. Join us now and let's make your success story a reality.
-                </p>
+                </Typography><br />
+                <button className='cta-btn' onClick={() => navigate("/product")}>Learn The Non-Fiction Income Method</button>
             </div>
             <Newsletter />
-        </div>
+        </div >
     )
 }
 

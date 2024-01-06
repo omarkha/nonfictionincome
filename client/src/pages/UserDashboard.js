@@ -5,6 +5,7 @@ import axios from "axios"
 import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
+import { ResetBusiness, StartEditMode } from '../store/actions/businessActions'
 
 const UserDashboard = (props) => {
 
@@ -14,17 +15,23 @@ const UserDashboard = (props) => {
 
     const fetchBusinesses = async () => {
 
+        const id = props.userState.user_id
+        console.log(id)
 
-        console.log(userEmail)
-
-        await axios.get("http://localhost:3001/api/users/email", { email: userEmail }).then(res => {
+        await axios.get(`http://localhost:3001/api/businesses/owner/${id}`).then(res => {
             console.log(res)
+            setBusinesses(res.data)
         })
 
         // const res = await axios.get("http://localhost:3001/api/businesses/email/", { email: props.userState.email, firebaseId: })
         // console.log(res)
         // setUser(res)
 
+    }
+
+    const handleNewBusiness = () => {
+        props.resetBusiness()
+        navigate("/business-builder/getting-started")
     }
 
     useEffect(() => {
@@ -40,29 +47,38 @@ const UserDashboard = (props) => {
         });
     }
 
+    const handleEditMode = (tid) => {
+        props.resetBusiness()
+        props.startEditMode(tid)
+
+        navigate("/business-builder/project-viewer")
+    }
+
     return (
         <div className='user-dashboard'>
             <div className='user-info'>
                 <h4>You're logged in as {userEmail}</h4>
             </div>
 
-            <Link to="/business-builder/getting-started">
-                <div className='tool'>
-                    + New Business
-                </div>
-            </Link>
+
+            <div className='tool' onClick={() => handleNewBusiness()}>
+                + New Business
+            </div>
+
 
             <h3>Projects</h3>
+
             <div className='dashboard-projects'>
                 {
-                    businesses.map((e, i) => {
+                    businesses?.map((e, i) => {
 
                         return (
                             <div className='dashboard-project'>
                                 <h3>{e.project_name}</h3>
-                                <h5>{e._id}</h5>
+
                                 <p>{e.final_customer}</p>
-                                <button className='view-project-btn' onClick={() => navigate("/business-builder/project-viewer")}>View Project</button>
+                                <h6>{e.createdAt}</h6>
+                                <button className='view-project-btn' onClick={() => handleEditMode(e._id)}>View Project</button>
                             </div>
                         )
                     })
@@ -74,7 +90,9 @@ const UserDashboard = (props) => {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        userState: state.user
+        userState: state.user,
+        businessState: state.business
+
     }
 }
 
@@ -86,7 +104,8 @@ const mapActionsToProps = (dispatch) => {
         customerName: (name) => dispatch(AddCustomerName(name)),
         signIn: () => dispatch(SignIn()),
         signOut: () => dispatch(SignOut()),
-
+        startEditMode: (id) => dispatch(StartEditMode(id)),
+        resetBusiness: () => dispatch(ResetBusiness())
     }
 }
 

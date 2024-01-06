@@ -3,17 +3,10 @@ import "../../styles/businessbuilder.css"
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import BuilderNavigation from '../../components/BuilderNavigation';
-import { AddMotivation, AddProduct, AddSpecification, AddStruggle, AddValue, DeleteMotivation, DeleteProduct, DeleteSpecification, DeleteStruggle, DeleteValue, SelectMotivations, SelectProducts, SelectSpecifications, SelectStruggles, SelectValues, UpdateMotivation, UpdateProduct, UpdateSpecification, UpdateStruggle, UpdateValue } from '../../store/actions/businessActions';
+import { EmptyStruggles, EmptyValues, EmptySpecifications, EmptyProducts, AddMotivation, AddProduct, AddSpecification, AddStruggle, AddValue, DeleteMotivation, DeleteProduct, DeleteSpecification, DeleteStruggle, DeleteValue, EmptyMotivations, SelectMotivations, SelectProducts, SelectSpecifications, SelectStruggles, SelectValues, UpdateMotivation, UpdateProduct, UpdateSpecification, UpdateStruggle, UpdateValue } from '../../store/actions/businessActions';
 
 const BusinessDevelopment = (props) => {
 
-    const [motivations, setMotivations] = useState([]);
-    const [struggles, setStruggles] = useState([]);
-    const [values, setValues] = useState([]);
-    const [specifications, setSpecifications] = useState([]);
-    const [products, setProducts] = useState([]);
-
-    const [selectedData, setSelectedData] = useState([]);
     const [selectedElementType, setSelectedElementType] = useState("Info");
 
     const [title, setTitle] = useState("");
@@ -29,67 +22,139 @@ const BusinessDevelopment = (props) => {
     const [selectedElementData, setSelectedElementData] = useState({});
 
     const handleElementClicked = (title, desc, index) => {
-        setTitle(title);
-        setDescription(desc);
-        setSelectedIndex(index)
-        console.log(index);
+        if (selectedIndex !== -1) {
+            setTitle("");
+            setDescription("");
+            setSelectedIndex(-1)
+            console.log(index);
+        } else {
+
+
+            setTitle(title);
+            setDescription(desc);
+            setSelectedIndex(index)
+            console.log(index);
+        }
     }
 
-    const addElement = () => {
 
-        switch (selectedElementType) {
-            case "Motivation":
-                props.addMotivation({ title: title, description: description })
-                handlePopulation(selectedElementType);
-                break;
-            case "Struggle":
-                props.addStruggle({ title: title, description: description })
-                handlePopulation(selectedElementType);
-                break;
-            case "Value":
-                props.addValue({ title: title, description: description })
-                handlePopulation(selectedElementType);
-                break;
-            case "Specification":
-                props.addSpecification({ title: title, description: description })
-                handlePopulation(selectedElementType);
-                break;
-            case "Product Idea":
-                props.addProduct({ title: title, description: description })
-                handlePopulation(selectedElementType);
-                break;
-            default:
-                break;
+    const handleObjectModified = (element, data) => {
+        if (element === "title") {
+            setTitle(data)
+        } else {
+            setDescription(data)
+        }
+        updateElement(element, data)
 
+    }
+
+    const addElement = (e) => {
+
+        e.preventDefault()
+
+        if (props.businessState.selected_data.length < 20 && title.length > 0) {
+
+            switch (selectedElementType) {
+                case "Motivation":
+                    props.addMotivation({ title: title, description: description })
+                    handlePopulation(selectedElementType);
+                    setSelectedIndex(-1)
+                    break;
+                case "Struggle":
+                    props.addStruggle({ title: title, description: description })
+                    handlePopulation(selectedElementType);
+                    setSelectedIndex(-1)
+                    break;
+                case "Value":
+                    props.addValue({ title: title, description: description })
+                    handlePopulation(selectedElementType);
+                    setSelectedIndex(-1)
+                    break;
+                case "Specification":
+                    props.addSpecification({ title: title, description: description })
+                    handlePopulation(selectedElementType);
+                    setSelectedIndex(-1)
+                    break;
+                case "Product":
+                    props.addProduct({ title: title, description: description })
+                    handlePopulation(selectedElementType);
+                    setSelectedIndex(-1)
+                    break;
+                default:
+                    break;
+
+            }
+        } else if (props.businessState.selected_data.length >= 20) {
+            toast.warn("You can only add up 20 items per list.")
+        } else {
+            null
         }
 
+
+
     }
 
-    const updateElement = () => {
+    const emptyElements = () => {
         switch (selectedElementType) {
             case "Motivation":
-                props.updateMotivation({ package: { title: title, description: description }, index: selectedIndex })
-                props.selectMotivations()
+                props.emptyMotivations()
+                setSelectedIndex(-1)
                 break;
             case "Struggle":
-                props.updateStruggle({ package: { title: title, description: description }, index: selectedIndex })
-                props.selectStruggles()
+                props.emptyStruggles()
+                setSelectedIndex(-1)
                 break;
             case "Value":
-                props.updateValue({ package: { title: title, description: description }, index: selectedIndex })
-                props.selectValues()
+                props.emptyValues()
+                setSelectedIndex(-1)
                 break;
             case "Specification":
-                props.updateSpecification({ package: { title: title, description: description }, index: selectedIndex })
-                props.selectSpecifications()
+                props.emptySpecifications()
+                setSelectedIndex(-1)
                 break;
-            case "Product Idea":
-                props.updateProduct({ package: { title: title, description: description }, index: selectedIndex })
-                props.selectProducts()
-                break;
-            default:
+            case "Product":
+                props.emptyProducts()
+                setSelectedIndex(-1)
                 break;
 
+            default:
+                break;
+        }
+    }
+
+    const updateElement = (element, data) => {
+        if (selectedIndex !== -1) {
+
+
+            switch (selectedElementType) {
+                case "Motivation":
+                    props.updateMotivation({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
+                    props.selectMotivations()
+
+                    break;
+                case "Struggle":
+                    props.updateStruggle({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
+                    props.selectStruggles()
+
+                    break;
+                case "Value":
+                    props.updateValue({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
+                    props.selectValues()
+
+                    break;
+                case "Specification":
+                    props.updateSpecification({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
+                    props.selectSpecifications()
+
+                    break;
+                case "Product":
+                    props.updateProduct({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
+                    props.selectProducts()
+
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
@@ -99,22 +164,27 @@ const BusinessDevelopment = (props) => {
             case "Motivation":
                 props.removeMotivation(selectedIndex)
                 props.selectMotivations()
+                setSelectedIndex(-1)
                 break;
             case "Struggle":
                 props.removeStruggle(selectedIndex)
                 props.selectStruggles()
+                setSelectedIndex(-1)
                 break;
             case "Value":
                 props.removeValue(selectedIndex)
                 props.selectValues()
+                setSelectedIndex(-1)
                 break;
             case "Specification":
                 props.removeSpecification(selectedIndex)
                 props.selectSpecifications()
+                setSelectedIndex(-1)
                 break;
-            case "Product Idea":
+            case "Product":
                 props.removeProduct(selectedIndex)
                 props.selectProducts();
+                setSelectedIndex(-1)
                 break;
             default:
                 break;
@@ -127,18 +197,23 @@ const BusinessDevelopment = (props) => {
         switch (element) {
             case "Motivation":
                 props.selectMotivations()
+                setSelectedIndex(-1)
                 break;
             case "Struggle":
                 props.selectStruggles()
+                setSelectedIndex(-1)
                 break;
             case "Value":
                 props.selectValues()
+                setSelectedIndex(-1)
                 break;
             case "Specification":
                 props.selectSpecifications()
+                setSelectedIndex(-1)
                 break;
-            case "Product Idea":
+            case "Product":
                 props.selectProducts()
+                setSelectedIndex(-1)
                 break;
             default:
                 break;
@@ -151,7 +226,7 @@ const BusinessDevelopment = (props) => {
     return (
         <div className='business-builder'>
             <BuilderNavigation page="business_development" />
-
+            <h3>{props.businessState.initial_customer}</h3>
             <div className='builder-body'>
 
 
@@ -159,31 +234,28 @@ const BusinessDevelopment = (props) => {
                     <div className='tool' onClick={() => handleArea("Info")}>
                         Goals and Tips
                     </div>
+                    <div className='area' onClick={() => handleArea("Specification")}>
+                        <h4>
+                            1.  Focusing Your Niche
+                        </h4>
+                    </div>
                     <div className='area' onClick={() => handleArea("Motivation")}>
                         <h4>
-                            1.    Customer Motivations
+                            2.    Customer Motivations
                         </h4>
                     </div>
                     <div className='area' onClick={() => handleArea("Struggle")}>
                         <h4>
-                            2.   Customer Struggles
+                            3.   Customer Struggles
 
                         </h4>
-                    </div> <div className='area' onClick={() => handleArea("Value")}>
+                    </div>
+                    <div className='area' onClick={() => handleArea("Value")}>
                         <h4>
-                            3.    Customer Values
+                            4.    Customer Values
                         </h4>
                     </div>
-                    <div className='area' onClick={() => handleArea("Specification")}>
-                        <h4>
-                            4.  Focusing Your Niche
-                        </h4>
-                    </div>
-                    <div className='area' onClick={() => handleArea("Product Idea")}>
-                        <h4>
-                            5.  Creating Valuable Products
-                        </h4>
-                    </div>
+
 
                 </div>
                 <div className='area-view'>
@@ -201,42 +273,47 @@ const BusinessDevelopment = (props) => {
                                 <br /><br />
                             </h3>
                         </div> :
-                            <div className='editor'>
+                            <form className='editor' onSubmit={(e) => addElement(e)}>
 
                                 <div className='element'>
                                     <h4>{selectedElementType}</h4>
-                                    <input type="text" placeholder={selectedElementType + " Title"} value={title} onChange={(e) => setTitle(e.target.value)} />
-                                    <textarea placeholder={selectedElementType + " Description"} value={description} onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
+                                    <input maxlength="100" type="text" placeholder={selectedElementType + " Title"} value={title} onChange={(e) => handleObjectModified("title", e.target.value)} onPaste={(e) => handleObjectModified("title", e.target.value)} />
+                                    <textarea maxlength="1000" placeholder={selectedElementType + " Description"} value={description} onChange={(e) => handleObjectModified("desc", e.target.value)} onPaste={(e) => handleObjectModified("desc", e.target.value)}>{description}</textarea>
                                 </div>
-                                <button className='element-btn' onClick={() => addElement()}> ADD {selectedElementType}</button>
-                                <button className='element-btn' onClick={() => updateElement()}> UPDATE {selectedElementType}</button>
-                                <button className='element-btn' onClick={() => removeElement()}> REMOVE {selectedElementType}</button>
-                            </div>
+                                <div className="buttons">
+                                    <button className='element-btn' type="submit" onSubmit={(e) => addElement(e)}> ADD {selectedElementType}</button>
+                                    <button className='element-btn' onClick={() => removeElement()}> REMOVE {selectedElementType} </button>
+                                    <button className='element-btn' onClick={() => emptyElements()}> EMPTY LIST</button>
+                                </div>
+                            </form>
                     }
 
-
-                    <div className='listed-elements'> {
-                        props.businessState.selected_data.length === 0 ? props.businessState.selected_data.map((e, i) => {
-                            return (
-                                <div className='listed-element' style={{ backgroundColor: i == selectedIndex ? "#A01A1F" : "#212121" }} onClick={() => handleElementClicked(e.title, e.description, i)} key={"id_" + i}>
-                                    <h4>{i + 1 + ". " + e.title}</h4>
-                                </div>
-                            )
-                        }) : ""}
-                    </div>
-
+                    {
+                        selectedElementType !== "Info" ?
+                            <div className='listed-elements-container'>
+                                <div className='listed-elements'>
+                                    {
+                                        props.businessState.selected_data?.map((e, i) => {
+                                            return (
+                                                <div className='listed-element' style={{ backgroundColor: i == selectedIndex ? "#A01A1F" : "#212121" }} onClick={() => handleElementClicked(e.title, e.description, i)} key={"id_" + i}>
+                                                    <h4>{i + 1 + ". " + e.title}</h4>
+                                                </div>
+                                            )
+                                        })}
+                                </div> </div> : null
+                    }
 
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
 const mapStateToProps = (state) => {
 
     return {
-        businessState: state
+        businessState: state.business
     }
 }
 
@@ -247,6 +324,12 @@ const mapActionsToProps = (dispatch) => {
         selectValues: () => dispatch(SelectValues()),
         selectProducts: () => dispatch(SelectProducts()),
         selectSpecifications: () => dispatch(SelectSpecifications()),
+
+        emptyMotivations: () => dispatch(EmptyMotivations()),
+        emptyStruggles: () => dispatch(EmptyStruggles()),
+        emptyValues: () => dispatch(EmptyValues()),
+        emptyProducts: () => dispatch(EmptyProducts()),
+        emptySpecifications: () => dispatch(EmptySpecifications()),
 
         addMotivation: (val) => dispatch(AddMotivation(val)),
         removeMotivation: (index) => dispatch(DeleteMotivation(index)),
