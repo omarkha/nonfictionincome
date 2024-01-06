@@ -30,9 +30,9 @@ const ProductPage = (props) => {
         const headers = {
             "Content-Type": "application/json",
         };
-
+        const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
         const response = await fetch(
-            "http://localhost:3001/api/create-checkout-session",
+            `${uri}/api/create-checkout-session`,
             {
                 method: "POST",
                 headers: headers,

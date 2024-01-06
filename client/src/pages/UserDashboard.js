@@ -14,11 +14,11 @@ const UserDashboard = (props) => {
     const [userEmail, setUserEmail] = useState("");
 
     const fetchBusinesses = async () => {
-
+        const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
         const id = props.userState.user_id
         console.log(id)
 
-        await axios.get(`http://localhost:3001/api/businesses/owner/${id}`).then(res => {
+        await axios.get(`${uri}api/businesses/owner/${id}`).then(res => {
             console.log(res)
             setBusinesses(res.data)
         })

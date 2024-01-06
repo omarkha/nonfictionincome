@@ -11,9 +11,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(logger('dev'))
 app.disable('etag');
 const mongoose = require('mongoose')
-
+const uri = process.env.NODE_ENV === "production" ? process.env.ATLAS_URI : 'mongodb://superuser:Soridl846@127.0.0.1:27017/msDB?authSource=admin'
 mongoose
-    .connect('mongodb://superuser:Soridl846@127.0.0.1:27017/msDB?authSource=admin', { useNewUrlParser: true })
+    .connect(uri, { useNewUrlParser: true })
     .then(() => {
         console.log('Successfully connected to MongoDB.')
     })

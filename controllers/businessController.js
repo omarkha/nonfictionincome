@@ -34,6 +34,7 @@ const postBusiness = async (req, res) => {
     try {
         console.log(req.body.owner_id)
         const business = new Business({
+            initial_customer: req.body.initial_customer,
             owner_id: req.body.owner_id,
             project_name: req.body.project_name,
             final_customer: req.body.final_customer,
@@ -69,8 +70,8 @@ const deleteBusinessById = (req, res) => {
 
 const updateBusiness = async (req, res) => {
     try {
-        await Business.updateOne({ id: req.body.id }, req.body)
-        console.log("business updates")
+        await Business.findByIdAndUpdate(req.body.id, req.body.package)
+        console.log(req.body.id + " business updated")
     } catch (err) {
         res.send(err)
     }

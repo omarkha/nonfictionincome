@@ -79,20 +79,21 @@ const BusinessViewer = (props) => {
         } else {
             await axios.put(`${uri}/api/businesses`, {
                 id: props.businessState.edit_mode.business_id,
-                owner_id: userId,
-                project_name: props.businessState.business_name,
-                final_customer: props.businessState.final_customer,
-                final_mission_statement: props.businessState.final_mission_statement,
-                final_usp: props.businessState.final_usp,
-                final_product: props.businessState.final_product,
-                interests: [...props.businessState.interests],
-                customers: [...props.businessState.customers],
-                motivations: [...props.businessState.motivations],
-                struggles: [...props.businessState.struggles],
-                values: [...props.businessState.values],
-                specifications: [...props.businessState.specifications],
-                products: [...props.businessState.products],
-
+                package: {
+                    owner_id: userId,
+                    project_name: props.businessState.business_name,
+                    final_customer: props.businessState.final_customer,
+                    final_mission_statement: props.businessState.final_mission_statement,
+                    final_usp: props.businessState.final_usp,
+                    final_product: props.businessState.final_product,
+                    interests: [...props.businessState.interests],
+                    customers: [...props.businessState.customers],
+                    motivations: [...props.businessState.motivations],
+                    struggles: [...props.businessState.struggles],
+                    values: [...props.businessState.values],
+                    specifications: [...props.businessState.specifications],
+                    products: [...props.businessState.products],
+                }
             })
         }
     }

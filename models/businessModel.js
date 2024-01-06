@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const BusinessSchema = new mongoose.Schema(
     {
+        initial_customer: { type: String, required: false },
         project_name: { type: String, required: false },
         final_customer: { type: String, required: false },
         final_mission_statement: { type: String, required: false },
