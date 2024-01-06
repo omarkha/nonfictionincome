@@ -38,7 +38,7 @@ const NavBar = (props) => {
 
     return (
         <nav className='navbar'>
-            <Link to="/"> <h1>Money<span>Strikers</span></h1></Link>
+            <Link to="/"> <h1>Income<span>Strikers</span></h1></Link>
             <ul>
                 <Link to="/product"> <li>The Non-Fiction Income Method</li> </Link>
 

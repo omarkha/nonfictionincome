@@ -303,9 +303,8 @@ export const StartEditMode = (business_id) => ({
     type: START_EDIT_MODE,
     payload: business_id
 })
-export const StopEditMode = (business_id) => ({
+export const StopEditMode = () => ({
     type: STOP_EDIT_MODE,
-    payload: business_id
 })
 
 

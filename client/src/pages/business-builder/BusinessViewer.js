@@ -4,6 +4,7 @@ import "../../styles/businessviewer.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
+import ConfirmationBox from '../../components/ConfirmationBox';
 
 const BusinessViewer = (props) => {
     const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
@@ -12,8 +13,9 @@ const BusinessViewer = (props) => {
 
 
     useEffect(() => {
-        setProjectName(props.businessState.business_name)
-        if (props.businessState.edit_mode.isInEditMode) {
+
+        if (props.businessState.edit_mode.isInEditMode === true) {
+            setProjectName(props.businessState.business_name)
             populateDatabaseBusiness()
         }
     }, [])
@@ -23,7 +25,7 @@ const BusinessViewer = (props) => {
 
     const populateDatabaseBusiness = async () => {
         if (!props.businessState.server_data_loaded) {
-            await axios.get(`${uri}/api/businesses/byid/${props.businessState.edit_mode.id}`).then(res => {
+            await axios.get(`${uri}/api/businesses/byid/${props.businessState.edit_mode.business_id}`).then(res => {
                 console.log(res)
                 props.populateInterests(res.data.interests)
                 props.populateCustomers(res.data.customers)
@@ -32,13 +34,13 @@ const BusinessViewer = (props) => {
                 props.populateValues(res.data.values)
                 props.populateSpecifications(res.data.specifications)
                 props.populateProducts(res.data.products)
-                setProjectName(res.data.business_name)
-                props.updateBusinessName(res.data.business_name)
+                setProjectName(res.data.project_name)
+                props.updateBusinessName(res.data.project_name)
                 props.addFinalCustomer(res.data.final_customer)
                 props.addFinalMissionStatement(res.data.final_mission_statement)
                 props.addFinalProduct(res.data.final_product)
                 props.addFinalUsp(res.data.final_usp)
-                SetServerDataLoaded(true)
+                props.setServerDataLoaded(true)
             })
         }
     }
@@ -56,7 +58,7 @@ const BusinessViewer = (props) => {
     const saveBusiness = async () => {
         console.log(props.userState.user_id)
         const userId = props.userState.user_id;
-        if (!props.business.inEditMode) {
+        if (!props.businessState.edit_mode.isInEditMode) {
 
 
             await axios.post(`${uri}/api/businesses`, {
@@ -75,31 +77,41 @@ const BusinessViewer = (props) => {
                 products: [...props.businessState.products],
             })
         } else {
-            await axios.put(`${uri}/api/businesses/byid`, {
-                business_id: props.businessState.edit_mode.id,
-                data: {
-                    owner_id: userId,
-                    project_name: props.businessState.business_name,
-                    final_customer: props.businessState.final_customer,
-                    final_mission_statement: props.businessState.final_mission_statement,
-                    final_usp: props.businessState.final_usp,
-                    final_product: props.businessState.final_product,
-                    interests: [...props.businessState.interests],
-                    customers: [...props.businessState.customers],
-                    motivations: [...props.businessState.motivations],
-                    struggles: [...props.businessState.struggles],
-                    values: [...props.businessState.values],
-                    specifications: [...props.businessState.specifications],
-                    products: [...props.businessState.products],
-                }
+            await axios.put(`${uri}/api/businesses`, {
+                id: props.businessState.edit_mode.business_id,
+                owner_id: userId,
+                project_name: props.businessState.business_name,
+                final_customer: props.businessState.final_customer,
+                final_mission_statement: props.businessState.final_mission_statement,
+                final_usp: props.businessState.final_usp,
+                final_product: props.businessState.final_product,
+                interests: [...props.businessState.interests],
+                customers: [...props.businessState.customers],
+                motivations: [...props.businessState.motivations],
+                struggles: [...props.businessState.struggles],
+                values: [...props.businessState.values],
+                specifications: [...props.businessState.specifications],
+                products: [...props.businessState.products],
+
             })
         }
     }
 
 
+    const handleConfirmed = (val) => {
+        if (val == true) {
+            axios.delete(`${uri}/api/businesses/deleteone/${props.businessState.edit_mode.business_id}`)
+        } else {
+            null
+        }
+    }
+
+
+    const [showConfirmBox, setShowConfirmBox] = useState(false)
+
     return (
         <div className='business-viewer'>
-
+            {showConfirmBox ? <ConfirmationBox massage={`Are you sure you want to delete ${projectName}?`} handleConfirmed={handleConfirmed} action="Delete Forever" /> : null}
             <div className='project-name'>
                 <label>Project Name: </label>
                 <input type='text' className='project-name-field' value={projectName} onChange={(e) => updateElement(e.target.value)} placeholder='Project name' />
@@ -108,11 +120,11 @@ const BusinessViewer = (props) => {
             <div className='control-buttons'>
                 <button onClick={() => {
                     navigate("/business-builder/getting-started")
-                }}>Edit</button><button>Delete</button>
+                }}>Edit</button><button onClick={() => setShowConfirmBox(true)}>Delete</button>
             </div>
             <div className='business-document'>
 
-                <h1>Business Core</h1>
+                <h1>{projectName} - Business Blueprint</h1>
 
                 <div className="finished-asset">
                     <h3><u>Unique Selling Proposition</u></h3>
@@ -226,7 +238,7 @@ const mapActionsToProps = (dispatch) => {
         populateMotivations: (arr) => dispatch(PopulateMotivations(arr)),
         populateCustomers: (arr) => dispatch(PopulateCustomers(arr)),
         populateInterests: (arr) => dispatch(PopulateInterests(arr)),
-        SetServerDataLoaded: (bool) => dispatch(SetServerDataLoaded(bool))
+        setServerDataLoaded: (bool) => dispatch(SetServerDataLoaded(bool))
     }
 }
 

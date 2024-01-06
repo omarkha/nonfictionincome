@@ -14,8 +14,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    min-width: 475px;
-    height: 500px;
+    min-width: calc(475px * 0.86);
+    height: calc(500px * 0.86);
     border-radius: 21px;
     margin-top: 0;
 
@@ -110,6 +110,7 @@
     font-size: 16px;
     text-align: center;
     box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
 .price {
@@ -117,13 +118,13 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     letter-spacing: 1px;
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
-    font-size: 21px;
+    font-size: 24px;
 
     width: 267px;
     text-align: left;
@@ -133,12 +134,14 @@
 .price h5 {
     margin: 0;
     padding: 0;
+    font-weight: 100;
 }
 
 .main-promotion .info {
     width: fit-content;
     margin: 0;
-
+    border-left: 2px solid #aaa;
+    padding-left: 34px;
 }
 
 .payment-method {
@@ -160,7 +163,7 @@
     font-size: 21px;
     text-align: start;
     font-family: sans-serif;
-    border-bottom: 3px solid #BD0A0D;
+    border-bottom: 3px solid #0ABDBA;
 
     padding: 21px 89px 55px 89px;
     box-sizing: border-box;
@@ -196,8 +199,11 @@
 }
 
 .product-page li {
-    font-weight: bold;
+
     margin: 13px auto;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    font-size: 21px;
 }
 
 .product-page span {
@@ -210,9 +216,11 @@
     margin: 21px auto;
     width: fit-content;
     margin-bottom: 89px;
+
 }
 
 .copy {
+
     margin: 34px auto;
 }
 
@@ -220,5 +228,51 @@ iframe {
     width: 987px;
     height: 62vh;
     margin: 89px auto;
-    box-shadow: 0 0 55px 13px #212121;
+    box-shadow: 0 0 55px 13px #353535;
+}
+
+.info h6 {
+    margin: 0 auto;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 0;
+    width: 267px;
+    padding: 5px 13px 8px 13px;
+    border-radius: 5px;
+    color: #000;
+    font-size: 13px;
+    text-align: left;
+    font-weight: 100;
+    font-family: 'Oswald', sans-serif;
+}
+
+.copy h5 {
+    width: 86%;
+
+    margin: 0 auto;
+
+}
+
+.copy.price {
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 24px;
+
+    width: 267px;
+    text-align: left;
+}
+
+.copy .price h5,
+.copy .price h4 {
+    margin: 0;
+    padding: 0;
+    width: fit-content;
 }

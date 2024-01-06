@@ -55,15 +55,16 @@ const ProductPage = (props) => {
 
     return (
         <div className='product-page'>
-            <TopBanner />
+
             <div className='main-promotion'>
                 <div className='product-image' style={{ backgroundImage: `url(${book})` }} alt="book image" />
                 <div className='info'>
+                    <h6>MoneyStrikers</h6>
                     <Typography variant="h1">The Non-Fiction Income Method</Typography>
 
 
                     <h4 className='package'>The eBook + Online Tools + Premium Membership</h4>
-                    <hr />
+
                     <div className='price'>
 
                         <h5>
@@ -72,7 +73,7 @@ const ProductPage = (props) => {
                         <h4>  $19.99 USD</h4>
                     </div>
                     <button className='checkout-btn' onClick={() => makePayment()}>Buy Now</button>
-                    <h4 className='limitedtimeoffer'>Offer ends soon</h4>
+                    <h4 className='limitedtimeoffer'>Limited Time Offer</h4>
                     <div className='payment-method'>
                         <img src={visa} alt="visa logo" />
                         <img src={mastercard} alt="mastercard  logo" />
@@ -112,7 +113,7 @@ const ProductPage = (props) => {
                 <br /> <br />
                 <Typography paragraph>  Don't wait any longer – take action now! Upon checkout, you'll receive immediate delivery of your products. Your journey to online success starts here.</Typography>
                 <br /> <br />
-                Invest in your future with The Non-Fiction Income Method. Get started today!<br /> <br />
+                <Typography variant="h4"> Invest in your future with<br /> The Non-Fiction Income Method.<br /> Get started today!</Typography><br /> <br />
                 <br />
 
                 <br /><br /> <br />

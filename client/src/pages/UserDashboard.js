@@ -5,7 +5,7 @@ import axios from "axios"
 import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
-import { ResetBusiness, StartEditMode } from '../store/actions/businessActions'
+import { ResetBusiness, StartEditMode, StopEditMode } from '../store/actions/businessActions'
 
 const UserDashboard = (props) => {
 
@@ -31,6 +31,7 @@ const UserDashboard = (props) => {
 
     const handleNewBusiness = () => {
         props.resetBusiness()
+        props.stopEditMode()
         navigate("/business-builder/getting-started")
     }
 
@@ -105,6 +106,7 @@ const mapActionsToProps = (dispatch) => {
         signIn: () => dispatch(SignIn()),
         signOut: () => dispatch(SignOut()),
         startEditMode: (id) => dispatch(StartEditMode(id)),
+        stopEditMode: () => dispatch(StopEditMode()),
         resetBusiness: () => dispatch(ResetBusiness())
     }
 }

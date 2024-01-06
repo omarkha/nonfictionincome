@@ -50,7 +50,7 @@ const postBusiness = async (req, res) => {
 
         });
         business.save()
-        const user = await User.findByIdAndUpdate(req.body.owner_id, { $push: { business_projects: { id: business.id, customer: business.final_customer, usp: business.final_usp } } })
+        const user = await User.findByIdAndUpdate(req.body.owner_id, { business_projects: { $push: { id: business.id, customer: business.final_customer, usp: business.final_usp } } })
         console.log(user)
     } catch (error) {
         res.send(error)
@@ -58,10 +58,10 @@ const postBusiness = async (req, res) => {
 }
 
 
-const deleteBusinessById = async (req, res) => {
+const deleteBusinessById = (req, res) => {
     try {
-        const res = await Business.findOneByIdAndDelete(req.body.id)
-        res.send({ msg: "business deleted" })
+        Business.deleteOne({ id: req.params.business_id }).then(res => console.log(res))
+        console.log(req.params.business_id + " deleted.")
     } catch (err) {
         res.send(err)
     }
@@ -69,8 +69,8 @@ const deleteBusinessById = async (req, res) => {
 
 const updateBusiness = async (req, res) => {
     try {
-        const business = await Business.findByIdAndUpdate({ _id: req.body.id }, req.body)
-        res.send({ msg: "business updates" })
+        await Business.updateOne({ id: req.body.id }, req.body)
+        console.log("business updates")
     } catch (err) {
         res.send(err)
     }

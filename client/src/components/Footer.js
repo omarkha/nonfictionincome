@@ -15,12 +15,12 @@ const Footer = () => {
             </div>
             <p className='message'>
                 <h4>Our Mission</h4>
-                <p>MoneyStrikers strives to provide the vital assistance young entrepreneurs need in the beginning of their careers.</p>
+                <p>IncomeStrikers strives to provide the vital assistance young entrepreneurs need in the beginning of their careers.</p>
             </p>
             <div className='logo'>
 
                 <h3>
-                    Money<span>Strikers</span>
+                    Income<span>Strikers</span>
                 </h3>
                 © 2023
             </div>

@@ -20,7 +20,8 @@
 .dashboard-projects .dashboard-project {
 
     border-radius: 13px;
-    background: linear-gradient(-34deg, #eeeeee, #dddddd);
+    background: linear-gradient(-34deg, #21CCC5, #1AA09B);
+    box-shadow: 0 0 13px 3px #21CCC5;
     color: #212121;
     height: 177px;
     max-height: 177px;
@@ -32,10 +33,16 @@
 .dashboard-project h6 {
     font-size: 13px;
     margin: 0 0 21px 0;
+    color: #fff;
 }
 
 .dashboard-project h3 {
-    color: #A01A1F;
+    color: #212121;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
+    font-weight: 100;
+    font-size: 21px;
+    margin: 8px auto 0 auto;
 }
 
 .dashboard-project h3 {
@@ -43,13 +50,17 @@
 }
 
 .dashboard-project p {
+    margin: 0 auto 8px auto;
     max-height: 21px;
     overflow: hidden;
+    font-weight: 800;
+    color: #fff;
 }
 
 .view-project-btn {
     margin: 0;
-    padding: 5px 13px;
-    color: #212121;
+    padding: 5px;
+    width: 86%;
+    color: #fff;
     border-color: #fff;
 }

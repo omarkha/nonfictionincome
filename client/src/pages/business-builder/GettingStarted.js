@@ -249,18 +249,8 @@ const GettingStarted = (props) => {
 
                 </div>
                 <div className='area-view'>
-                    {selectedElementType === "Info" ? <div className='info'> <div className='niches'>{
-                        evergreenNiches.map((e, i) => {
-                            return (
-
-                                <div className='niche'>
-                                    <h4>{e.name}</h4>
-                                    <ul>
-                                        {e.subniches.map(e => { return (<li>{e}</li>) })}</ul>
-                                </div>
-                            )
-                        })
-                    }</div ><div className='tips'>
+                    {selectedElementType === "Info" ?
+                        <div className='tips'>
                             <h3>
 
 
@@ -272,7 +262,7 @@ const GettingStarted = (props) => {
                                 2. Find out the categories of people SPENDING MONEY on products in your sub-niche. <br /><br />
                                 3. Choose the category of customers who are serious buyers and the ones MOST LIKELY TO PURCHASE.
                             </h3>
-                        </div> </div> :
+                        </div> :
                         <div className='editor'>
 
 

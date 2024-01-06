@@ -13,7 +13,7 @@ app.disable('etag');
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb://root:Soridl846@127.0.0.1:27017/msDB?authSource=admin', { useNewUrlParser: true })
+    .connect('mongodb://superuser:Soridl846@127.0.0.1:27017/msDB?authSource=admin', { useNewUrlParser: true })
     .then(() => {
         console.log('Successfully connected to MongoDB.')
     })

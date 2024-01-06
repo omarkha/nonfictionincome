@@ -2,7 +2,7 @@
     width: 100%;
     padding: 21px 5vw;
     box-sizing: border-box;
-    background-color: #212121;
+    background-color: #fff;
 }
 
 .assets {
@@ -41,17 +41,17 @@
 }
 
 .finishing-up h3 {
-    color: #fff;
+    color: #0ABDBA;
 }
 
 .finishing-up li {
-    color: #fff;
+    color: #0ABDBA;
 }
 
 .finishing-up textarea {
-    color: #fff;
+    color: #0ABDBA;
 }
 
 .finishing-up h4 {
-    color: #fff;
+    color: #0ABDBA;
 }

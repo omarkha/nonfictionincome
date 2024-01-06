@@ -5,12 +5,17 @@
     background-color: #212121;
 }
 
-ul li {
+.business-document ul li {
     text-align: start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    margin: 13px 0;
+
 }
 
-h3 {
+.business-document h3 {
     text-align: center;
+    text-align: left;
 }
 
 .finished-asset {
@@ -22,7 +27,7 @@ h3 {
 }
 
 .business-document {
-    padding: 21px;
+    padding: 55px 21px;
     margin: 34px 15vw;
     border: 1px solid #212121;
     background-color: #fff;
@@ -30,7 +35,11 @@ h3 {
 }
 
 .business-document h1 {
-    text-decoration: underline;
+
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
+    color: #1AA09B;
 
 }
 
@@ -86,4 +95,10 @@ h3 {
     border-color: #A01A1F;
 
     background-color: #fff;
+}
+
+.business-document p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    text-align: left;
 }

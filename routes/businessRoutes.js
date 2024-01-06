@@ -7,5 +7,5 @@ router.get("/api/businesses/byid/:bid", businessController.getBusinessById);
 router.get("/api/businesses/owner/:owner_id", businessController.getBusinessesByOwner);
 router.post("/api/businesses", businessController.postBusiness);
 router.put("/api/businesses", businessController.updateBusiness);
-router.delete("/api/businesses/byid/", businessController.deleteBusinessById);
+router.delete("/api/businesses/deleteone/:business_id", businessController.deleteBusinessById);
 module.exports = router;

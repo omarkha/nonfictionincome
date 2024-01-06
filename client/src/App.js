@@ -51,7 +51,7 @@ function App(props) {
     <Router>
       <div className="App">
         <ToastContainer />
-
+        <TopBanner />
         <NavBar />
         <Routes>
           <Route element={<HomePage />} path="/" />

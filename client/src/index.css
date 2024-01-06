@@ -27,3 +27,7 @@ a {
 h1 {
   font-family: 'Lato', sans-serif;
 }
+
+ul li {
+  text-align: left;
+}

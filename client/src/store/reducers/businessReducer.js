@@ -61,9 +61,9 @@ const businessReducer = (state = initialState, action) => {
         case SET_INITIAL_CUSTOMER:
             return { ...state, initial_customer: action.payload }
         case ADD_INTEREST:
-
-            return { ...state, interests: [...state.interests, action.payload] }
-
+            if (state.interests?.length < 20) {
+                return { ...state, interests: [...state.interests, action.payload] }
+            }
         case DELETE_INTEREST:
             return {
                 ...state, interests: state.interests.filter((e, i) => {
@@ -83,12 +83,12 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_INTERESTS:
             return { ...state, interests: [], selected_data: [] }
         case ADD_CUSTOMER:
-
-            return { ...state, customers: [...state.customers, action.payload] }
-
+            if (state.customers?.length < 20) {
+                return { ...state, customers: [...state.customers, action.payload] }
+            }
         case DELETE_CUSTOMER:
             return {
-                ...state, customers: state.customers.filter((e, i) => {
+                ...state, customer: state.customers.filter((e, i) => {
                     return i !== action.payload
                 })
             }
@@ -248,7 +248,7 @@ const businessReducer = (state = initialState, action) => {
             return { ...state, final_mission_statement: action.payload }
         case DELETE_FINAL_MISSION_STATEMENT:
             return {
-                ...state, final_final_mission_statement: ""
+                ...state, final_final_mission_statementcustomer: ""
             }
         case UPDATE_FINAL_MISSION_STATEMENT:
             return {
@@ -266,11 +266,11 @@ const businessReducer = (state = initialState, action) => {
             }
         case START_EDIT_MODE:
             return {
-                ...state, edit_mode: { isInEditMode: true, id: action.payload }
+                ...state, edit_mode: { isInEditMode: true, business_id: action.payload }
             }
         case STOP_EDIT_MODE:
             return {
-                ...state, edit_mode: { isInEditMode: false, id: "" }
+                ...state, edit_mode: { isInEditMode: false, business_id: "" }
             }
         case RESET_BUSINESS:
             return {
