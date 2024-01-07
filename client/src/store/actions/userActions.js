@@ -17,6 +17,8 @@ export const CustomerPurchaseFailed = () => ({
     type: CUSTOMER_PURCHASE_FAILED,
 
 })
+
+
 export const AddCustomerName = (customer_name) => ({
     type: ADD_CUSTOMER_NAME,
     payload: customer_name

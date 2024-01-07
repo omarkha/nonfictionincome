@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/aut
 import { CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut } from '../store/actions/userActions'
 const SignUpPage = (props) => {
 
-
+    const { sid } = useParams();
     const [email, setEmail] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -27,17 +27,12 @@ const SignUpPage = (props) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 props.signIn();
-                navigate("/dashboard")
+
             } else {
                 props.signOut();
             }
         });
     }
-
-
-
-
-    const [fbID, setfbID] = useState("");
 
 
 
@@ -50,8 +45,9 @@ const SignUpPage = (props) => {
         if (firstname.length > 1 && lastname.length > 1 && emailValid && passwordValid) {
 
             await createUserWithEmailAndPassword(auth, email, password).then((res) => {
-                if (res.user.uid) { setfbID(res.user.uid); makeUserAccount(res.user.uid) }
-            }).catch((err) => {
+                console.log(res); makeUserAccount(res.user.uid)
+            }
+            ).catch((err) => {
 
                 if (err.code == "auth/email-already-in-use") {
                     toast.warn("The email you chose already has an account.")
@@ -68,18 +64,18 @@ const SignUpPage = (props) => {
 
     const makeUserAccount = async (uid) => {
 
-        const stripeSessionId = props.userState.session_id;
+        const paypalSessionId = props.userState.purchase_session_id ? props.userState.purchase_session_id : sid;
         const date = new Date();
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
         const currentdate = [month, day, year].join('-');
         const expirationdate = [month, day, year + 1].join('-');
-
+        console.log(`session: ${paypalSessionId}...... uid: ${uid}`)
         await axios.post(`${uri}/api/users`, {
             first_name: firstname,
             last_name: lastname,
-            stripe_session_id: stripeSessionId,
+            paypal_session_id: paypalSessionId,
             email: email,
             user_firebase_id: uid,
             membership_sign_up_date: currentdate,
@@ -87,6 +83,7 @@ const SignUpPage = (props) => {
         }).then(res => {
             console.log("UserCreated")
             console.log(res)
+            navigate("/dashboard")
         }).catch(error => {
             toast.warn("A problem occured during account creation on our servers.")
             console.log(error)

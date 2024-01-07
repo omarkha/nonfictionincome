@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/productpage.css"
 import book from "../media/book.png";
 import visa from "../media/visa.png";
@@ -8,51 +8,66 @@ import mastercard from "../media/mastercard.png";
 import americanexpress from "../media/americanexpress.png";
 import paypal from "../media/paypal.png";
 import Newsletter from '../components/NewsLetter';
-import { loadStripe } from "@stripe/stripe-js";
-import { AddCustomerSessionID } from '../store/actions/userActions';
+import { AddCustomerSessionID, CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerName } from '../store/actions/userActions';
 import { connect } from "react-redux"
-
+import { useNavigate } from "react-router-dom";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 const ProductPage = (props) => {
+    const createOrder = async () => {
+        // replace this url with your server
+        return await fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/create-order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // use the "body" param to optionally pass additional order information
+            // like product ids and quantities
+            body: JSON.stringify({
+                cart: [
+                    {
+                        sku: "1blwyeo8",
+                        quantity: 2,
+                    },
+                ],
+            }),
+        })
+            .then((response) => response.json())
+            .then((order) => {
+                // Your code here after create the order
+                return order.id;
+            });
+    }
 
-    const [product, setProduct] = useState({
-        name: "The Non-Fiction Income Method",
-        price: 20,
-        productOwner: "MoneyStrikers",
-        description: "This beginner-friendly Entrepreneurial package offers an eBook and online tools to help aspiring entrepreneurs create successful businesses.",
-        quantity: 1,
-    });
+    const navigate = useNavigate();
 
-    const makePayment = async () => {
-        const stripe = await loadStripe("pk_test_51LewmOI2yKOXdLkUzVSbdvYkWrYEWhOEddbatpR5JQADPpaU0m1dfSlSzbBspKbieJc5yTne1u8LsiZkcS9ikNsu00DO4hAF3b");
-        const body = { product }
-        const headers = {
-            "Content-Type": "application/json",
-        };
-        const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
-        const response = await fetch(
-            `${uri}/api/create-checkout-session`,
-            {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(product),
-            }
-        );
+    const onApprove = async (data) => {
+        // replace this url with your server
+        return await fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/capture-order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                orderID: data.orderID,
+            }),
+        })
+            .then((response) => response.json())
+            .then((orderData) => {
+                // Your code here after capture the order
+                console.log(orderData)
+                props.setSessionID(orderData.id)
+                props.confirmPurchase()
+                props.setCustomerEmail(orderData.payer.email_address)
+                props.setCustomerName(orderData.payer.name.given_name)
 
-        const session = await response.json();
+            }).then(() => navigate("/purchase-successful"))
 
-        await props.setSessionID(session.id)
-
-        const result = stripe.redirectToCheckout({
-            sessionId: session.id,
-        });
-        console.log("result: " + result)
-        if (result.error) {
-            console.log(result.error);
-        }
-    };
-
+    }
+    const style = { "layout": "vertical" };
+    const [{ isPending }] = usePayPalScriptReducer();
     return (
+
         <div className='product-page'>
 
             <div className='main-promotion'>
@@ -63,7 +78,7 @@ const ProductPage = (props) => {
 
 
                     <h4 className='package'>The eBook + Online Tools + Premium Membership</h4>
-
+                    <h4 className='limitedtimeoffer'>Limited Time Offer</h4>
                     <div className='price'>
 
                         <h5>
@@ -71,18 +86,21 @@ const ProductPage = (props) => {
                         </h5>
                         <h4>  $19.99 USD</h4>
                     </div>
-                    <button className='checkout-btn' onClick={() => makePayment()}>Buy Now</button>
-                    <h4 className='limitedtimeoffer'>Limited Time Offer</h4>
-                    <div className='payment-method'>
-                        <img src={visa} alt="visa logo" />
-                        <img src={mastercard} alt="mastercard  logo" />
-                        <img src={americanexpress} alt="americanexpress  logo" />
-                        <img src={paypal} alt="payapl logo" />
-                    </div>
+
+
+
+                    {isPending ? <div className="spinner" /> : null}
+                    <PayPalButtons disabled={false}
+                        forceReRender={[style]}
+                        fundingSource={undefined}
+                        createOrder={createOrder}
+                        onApprove={onApprove} />
+
+
                 </div>
 
             </div><div className='copy'>
-                <iframe width="610px" height="377px" src="https://www.youtube.com/embed/MlCkEl0DkDY?si=Bss5YsxeEu75wpwL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe className='video' width="610px" height="377px" src="https://www.youtube.com/embed/MlCkEl0DkDY?si=Bss5YsxeEu75wpwL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <p>
                     Are you tired of waiting for your online business dreams to come true? With The Non-Fiction Income Method, you can start making money online right away without the need for years of study or training in entrepreneurship.
                 </p>  <br /> <br />
@@ -152,20 +170,23 @@ const ProductPage = (props) => {
             </div>
             <Newsletter />
         </div>
+
     )
 }
 
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        businessState: state.user
+        userState: state.user
     }
 }
 
 const mapActionsToProps = (dispatch) => {
     return {
-        setSessionID: () => dispatch(AddCustomerSessionID()),
-
+        setSessionID: (val) => dispatch(AddCustomerSessionID(val)),
+        confirmPurchase: () => dispatch(CustomerPurchaseSuccessful()),
+        setCustomerEmail: (val) => dispatch(AddCustomerEmail(val)),
+        setCustomerName: (val) => dispatch(AddCustomerName(val)),
     }
 }
 

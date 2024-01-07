@@ -65,20 +65,26 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, interests: [...state.interests, action.payload] }
             }
         case DELETE_INTEREST:
-            return {
-                ...state, interests: state.interests.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, interests: state.interests.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_INTEREST:
-            return {
-                ...state, interests: state.interests.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+
+
+                return {
+                    ...state, interests: state.interests.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_INTERESTS:
             return { ...state, interests: [], selected_data: [] }
@@ -87,20 +93,24 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, customers: [...state.customers, action.payload] }
             }
         case DELETE_CUSTOMER:
-            return {
-                ...state, customer: state.customers.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, customer: state.customers.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_CUSTOMER:
-            return {
-                ...state, customers: state.customers.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, customers: state.customers.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_CUSTOMERS:
             return { ...state, customers: [], selected_data: [] }
@@ -109,10 +119,12 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, motivations: [...state.motivations, action.payload] }
             }
         case DELETE_MOTIVATION:
-            return {
-                ...state, motivations: state.motivations.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, motivations: state.motivations.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_MOTIVATION:
             return {
@@ -131,20 +143,24 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, struggles: [...state.struggles, action.payload] }
             }
         case DELETE_STRUGGLE:
-            return {
-                ...state, struggles: state.struggles.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, struggles: state.struggles.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_STRUGGLE:
-            return {
-                ...state, struggles: state.struggles.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, struggles: state.struggles.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_STRUGGLES:
             return { ...state, struggles: [], selected_data: [] }
@@ -153,20 +169,24 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, values: [...state.values, action.payload] }
             }
         case DELETE_VALUE:
-            return {
-                ...state, values: state.values.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, values: state.values.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_VALUE:
-            return {
-                ...state, values: state.values.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, values: state.values.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_VALUES:
             return { ...state, values: [], selected_data: [] }
@@ -175,20 +195,24 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, specifications: [...state.specifications, action.payload] }
             }
         case DELETE_SPECIFICATION:
-            return {
-                ...state, specifications: state.specifications.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, specifications: state.specifications.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_SPECIFICATION:
-            return {
-                ...state, specifications: state.specifications.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, specifications: state.specifications.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_SPECIFICATIONS:
             return { ...state, specifications: [], selected_data: [] }
@@ -197,20 +221,24 @@ const businessReducer = (state = initialState, action) => {
                 return { ...state, products: [...state.products, action.payload] }
             }
         case DELETE_PRODUCT:
-            return {
-                ...state, products: state.products.filter((e, i) => {
-                    return i !== action.payload
-                })
+            if (Number.isInteger(action.payload)) {
+                return {
+                    ...state, products: state.products.filter((e, i) => {
+                        return i !== action.payload
+                    })
+                }
             }
         case UPDATE_PRODUCT:
-            return {
-                ...state, products: state.products.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, products: state.products.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_PRODUCTS:
             return { ...state, products: [], selected_data: [] }

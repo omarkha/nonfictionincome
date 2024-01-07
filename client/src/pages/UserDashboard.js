@@ -6,27 +6,30 @@ import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
 import { StartEditMode, StopEditMode, ResetBusiness } from '../store/actions/businessActions'
-import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful } from "../store/actions/userActions"
+import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful, SetUserID } from "../store/actions/userActions"
 const UserDashboard = (props) => {
 
     const [businesses, setBusinesses] = useState([])
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState("");
+    const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
+    const fetchUser = async (fireid) => {
+
+
+        if (!props.userState.user_id) {
+
+
+            await axios.get(`${uri}/api/users/firebase/${fireid}`).then(res => { props.setUserID(res.data[0]._id); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); fetchBusinesses() })
+        } else {
+            fetchBusinesses(props.userState.user_id)
+        }
+    }
 
     const fetchBusinesses = async () => {
-        const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
-        const id = props.userState.user_id
-        console.log(id)
-
-        await axios.get(`${uri}api/businesses/owner/${id}`).then(res => {
+        await axios.get(`${uri}api/businesses/owner/${props.userState.user_id}`).then(res => {
             console.log(res)
             setBusinesses(res.data)
-        })
-
-        // const res = await axios.get("http://localhost:3001/api/businesses/email/", { email: props.userState.email, firebaseId: })
-        // console.log(res)
-        // setUser(res)
-
+        }).catch((err) => console.log(err))
     }
 
     const handleNewBusiness = () => {
@@ -37,16 +40,19 @@ const UserDashboard = (props) => {
 
     useEffect(() => {
         checkLoggedIn()
-        fetchBusinesses()
+
     }, [])
 
     const checkLoggedIn = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserEmail(user.email)
+                fetchUser(user.uid)
             }
         });
     }
+
+    const [fireID, setFireID] = useState("")
 
     const handleEditMode = (tid) => {
         props.resetBusiness()
@@ -110,7 +116,9 @@ const mapActionsToProps = (dispatch) => {
         signOut: () => dispatch(SignOut()),
         startEditMode: (id) => dispatch(StartEditMode(id)),
         stopEditMode: () => dispatch(StopEditMode()),
-        resetBusiness: () => dispatch(ResetBusiness())
+        resetBusiness: () => dispatch(ResetBusiness()),
+        setUserID: (id) => dispatch(SetUserID(id)),
+
     }
 }
 

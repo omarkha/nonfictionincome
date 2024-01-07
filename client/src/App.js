@@ -25,6 +25,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import { SetUserID } from './store/actions/userActions';
 import { connect } from "react-redux"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 function App(props) {
   const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
   useEffect(() => {
@@ -47,29 +48,41 @@ function App(props) {
     await axios.get(`${uri}/api/users/firebase/${fireID}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => console.log(props.userState.user_id))
   }
 
+  const initialOptions = {
+    "client-id": "AVT_V9nXxcbOxgJVhv5snTaCGKa8Xk01XgQyBkXEZT-NUx42rFHT30kLFOo_s2w9P1RluUjcG2BxUvju",
+    currency: "USD",
+    intent: "capture",
+  };
+
   return (
+
+
+
     <Router>
       <div className="App">
         <ToastContainer />
         <TopBanner />
         <NavBar />
-        <Routes>
-          <Route element={<HomePage />} path="/" />
-          <Route element={<ProductPage />} path='/product' />
-          <Route element={<GettingStarted />} path='/business-builder/getting-started' />
-          <Route element={<BusinessDevelopment />} path='/business-builder/development' />
-          <Route element={<FinishingUp />} path='/business-builder/finishing-up' />
-          <Route element={<BusinessViewer />} path='/business-builder/project-viewer' />
-          <Route element={<LoginPage />} path='/login' />
-          <Route element={<SignUpPage />} path='/sign-up/:id' />
-          <Route element={<UserDashboard />} path="/dashboard" />
-          <Route element={<PurchaseSuccessPage />} path="/purchase-successful/:id" />
-          <Route element={<PurchaseCancelPage />} path="/purchase-canceled" />
-          <Route element={<AdminDashboard />} path="/admin-dashboard" />
-        </Routes>
+        <PayPalScriptProvider deferLoading={false} options={initialOptions}>
+          <Routes>
+            <Route element={<HomePage />} path="/" />
+            <Route element={<ProductPage />} path='/product' />
+            <Route element={<GettingStarted />} path='/business-builder/getting-started' />
+            <Route element={<BusinessDevelopment />} path='/business-builder/development' />
+            <Route element={<FinishingUp />} path='/business-builder/finishing-up' />
+            <Route element={<BusinessViewer />} path='/business-builder/project-viewer' />
+            <Route element={<LoginPage />} path='/login' />
+            <Route element={<SignUpPage />} path='/sign-up/:sid' />
+            <Route element={<UserDashboard />} path="/dashboard" />
+            <Route element={<PurchaseSuccessPage />} path="/purchase-successful" />
+            <Route element={<PurchaseCancelPage />} path="/purchase-canceled" />
+            <Route element={<AdminDashboard />} path="/admin-dashboard" />
+
+          </Routes></PayPalScriptProvider>
         <Footer />
       </div>
     </Router>
+
   );
 }
 const mapStateToProps = (state) => {

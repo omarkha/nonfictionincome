@@ -2,36 +2,26 @@ import { React, useEffect, useState } from 'react'
 import "../styles/purchasesuccesspage.css"
 import { connect } from "react-redux"
 import { AddCustomerEmail, AddCustomerName, AddCustomerSessionID, CustomerPurchaseSuccessful } from '../store/actions/userActions'
-import axios from "axios"
-import { useNavigate, useParams } from "react-router-dom"
+
+import { useNavigate } from "react-router-dom"
 
 
 const PurchaseSuccessPage = (props) => {
 
-    const { id } = useParams()
-    const [allSessions, setAllSessions] = useState({});
-    const idString = String.toString(id);
+
     const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
-    const consoleLogInfo = () => {
-        axios.get(uri + "/api/retrieve-stripe-session/" + id).then(res => {
-            console.log(res)
-            setAllSessions(res)
-            res.data.map((e, i) => {
-                if (e.payment_status == "paid") {
-                    props.customerPurchaseSuccessful();
-                    props.customerEmail(e.customer_details.email)
-                    props.customerSessionId(e.id)
-                    props.customerName(e.customer_details.name)
-                    setCustomerName(e.customer_details.name)
 
-                }
-            })
-        }).catch((err) => {
-            console.log(err)
-            setError(true);
-        })
 
-    }
+    useEffect(() => {
+        if (props.userState.customer_name) {
+            setCustomerName(props.userState.customer_name)
+        }
+        if (props.userState.purchase_session_id && props.userState.customer_purchase_success) {
+            setError(false)
+        } else {
+            setError(true)
+        }
+    }, [])
 
     const [customerName, setCustomerName] = useState("Customer")
 
@@ -40,7 +30,7 @@ const PurchaseSuccessPage = (props) => {
     const navigate = useNavigate();
 
     const navigateToSignUp = () => {
-        navigate(`/sign-up/${id}`)
+        navigate(`/sign-up/${props.userState.purchase_session_id}`)
     }
 
     return (
@@ -66,7 +56,7 @@ const PurchaseSuccessPage = (props) => {
                     Please contact customer support at copyresearcher@gmail.com.<br />
                     We promise to resolve this issue promptly.<br />
                     Provide the name and email address you used at checkout. <br />We apologize for this inconvenience.</h2> :
-                    <button onClick={() => navigateToSignUp()}>Sign Up And Recieve Your Package!</button>}
+                    <button onClick={() => navigateToSignUp()}>Click Here For Your Premium Account!</button>}
         </div>
     )
 }

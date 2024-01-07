@@ -3,7 +3,7 @@ import { ADD_BUSINESS_IDS, SET_USER_ID, SIGN_IN, SIGN_OUT, ADD_CUSTOMER_EMAIL, A
 const initialState = {
     customer_email: "",
     customer_purchase_success: false,
-    stripe_session_id: "",
+    purchase_session_id: "",
     user_id: "",
     customer_name: "",
     signed_in: false,
@@ -19,7 +19,7 @@ const userReducer = (state = initialState, action) => {
         case ADD_CUSTOMER_NAME:
             return { ...state, customer_name: action.payload }
         case ADD_CUSTOMER_SESSION_ID:
-            return { ...state, stripe_session_id: action.payload }
+            return { ...state, purchase_session_id: action.payload }
         case CUSTOMER_PURCHASE_SUCCESSFUL:
             return { ...state, customer_purchase_success: true }
         case CUSTOMER_PURCHASE_FAILED:

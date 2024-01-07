@@ -40,9 +40,9 @@ const getUserByFirebaseId = async (req, res) => {
     }
 }
 
-const getUserByStripeId = async (req, res) => {
+const getUserByPayPalSessionId = async (req, res) => {
     try {
-        const user = await User.findOne({ stripe_session_id: req.params.sid })
+        const user = await User.findOne({ paypal_session_id: req.params.sid })
         res.json(user)
     } catch (err) {
         res.send(err)
@@ -51,11 +51,12 @@ const getUserByStripeId = async (req, res) => {
 
 const addUser = (req, res) => {
     try {
+        console.log(req.body)
         const user = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
-            stripe_session_id: req.body.stripe_session_id,
+            paypal_session_id: req.body.paypal_session_id,
             membership_sign_up_date: req.body.membership_sign_up_date,
             user_firebase_id: req.body.user_firebase_id,
             membership_expiration_date: req.body.membership_expiration_date,
@@ -95,4 +96,4 @@ const deleteAllUsers = (req, res) => {
     }
 }
 
-module.exports = { getUserByFirebaseId, deleteAllUsers, addUser, getAllUsers, getUserByEmail, getUserById, deleteUser, updateUser, getUserByStripeId }
+module.exports = { getUserByFirebaseId, deleteAllUsers, addUser, getAllUsers, getUserByEmail, getUserById, deleteUser, updateUser, getUserByPayPalSessionId }

@@ -93,7 +93,7 @@ const GettingStarted = (props) => {
 
     const updateElement = (value) => {
 
-        if (selectedIndex !== -1) {
+        if (selectedIndex > -1) {
 
 
             switch (selectedElementType) {
@@ -161,23 +161,25 @@ const GettingStarted = (props) => {
 
 
     const removeElement = () => {
+        if (selectedIndex > -1) {
 
-        switch (selectedElementType) {
-            case "Interest":
-                props.removeInterest(selectedIndex)
-                props.selectInterests();
-                setSelectedIndex(-1)
-                break;
-            case "Customer":
-                props.removeCustomer(selectedIndex)
-                props.selectCustomers()
-                setSelectedIndex(-1)
-                break;
-            default:
-                break;
 
+            switch (selectedElementType) {
+                case "Interest":
+                    props.removeInterest(selectedIndex)
+                    props.selectInterests();
+                    setSelectedIndex(-1)
+                    break;
+                case "Customer":
+                    props.removeCustomer(selectedIndex)
+                    props.selectCustomers()
+                    setSelectedIndex(-1)
+                    break;
+                default:
+                    break;
+
+            }
         }
-
     }
 
 
