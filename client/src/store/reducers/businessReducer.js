@@ -32,6 +32,7 @@ const initialState = {
 }
 
 const businessReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case SELECT_INTERESTS:
 
@@ -61,8 +62,8 @@ const businessReducer = (state = initialState, action) => {
         case SET_INITIAL_CUSTOMER:
             return { ...state, initial_customer: action.payload }
         case ADD_INTEREST:
-            if ((state.interests.length ? state.interests.length : 0) < 20) {
-                return { ...state, interests: [...state.interests, action.payload] }
+            if ((state.interests ? state.interests.length : 0) < 20) {
+                return { ...state, interests: state.interests ? [...state.interests, action.payload] : [action.payload] }
             }
         case DELETE_INTEREST:
             if (Number.isInteger(action.payload)) {
@@ -88,8 +89,8 @@ const businessReducer = (state = initialState, action) => {
             return { ...state, interests: [], selected_data: [] }
         case ADD_CUSTOMER:
 
-            if ((state.customers.length ? state.customers.length : 0) < 20) {
-                return { ...state, customers: [...state.customers, action.payload] }
+            if ((state.customers ? state.customers.length : 0) < 20) {
+                return { ...state, customers: state.customers ? [...state.customers, action.payload] : [action.payload] }
             }
         case DELETE_CUSTOMER:
             if (Number.isInteger(action.payload)) {
@@ -115,8 +116,8 @@ const businessReducer = (state = initialState, action) => {
             return { ...state, customers: [], selected_data: [] }
         case ADD_MOTIVATION:
 
-            if ((state.motivations.length ? state.motivations.length : 0) < 20) {
-                return { ...state, motivations: [...state.motivations, action.payload] }
+            if ((state.motivations ? state.motivations.length : 0) < 20) {
+                return { ...state, motivations: state.motivations ? [...state.motivations, action.payload] : [action.payload] }
             }
         case DELETE_MOTIVATION:
             if (Number.isInteger(action.payload)) {
@@ -141,8 +142,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_MOTIVATIONS:
             return { ...state, motivations: [], selected_data: [] }
         case ADD_STRUGGLE:
-            if ((state.struggles.length ? state.struggles.length : 0) < 20) {
-                return { ...state, struggles: [...state.struggles, action.payload] }
+            if ((state.struggles ? state.struggles.length : 0) < 20) {
+                return { ...state, struggles: state.struggles ? [...state.struggles, action.payload] : [action.payload] }
             }
         case DELETE_STRUGGLE:
             if (Number.isInteger(action.payload)) {
@@ -167,8 +168,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_STRUGGLES:
             return { ...state, struggles: [], selected_data: [] }
         case ADD_VALUE:
-            if ((state.values.length ? state.values.length : 0) < 20) {
-                return { ...state, values: [...state.values, action.payload] }
+            if ((state.values ? state.values.length : 0) < 20) {
+                return { ...state, values: state.values ? [...state.values, action.payload] : [action.payload] }
             }
         case DELETE_VALUE:
             if (Number.isInteger(action.payload)) {
@@ -193,8 +194,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_VALUES:
             return { ...state, values: [], selected_data: [] }
         case ADD_SPECIFICATION:
-            if ((state.specifications.length ? state.specifications.length : 0) < 20) {
-                return { ...state, specifications: [...state.specifications, action.payload] }
+            if ((state.specifications ? state.specifications.length : 0) < 20) {
+                return { ...state, specifications: state.specifications ? [...state.specifications, action.payload] : [action.payload] }
             }
         case DELETE_SPECIFICATION:
             if (Number.isInteger(action.payload)) {
@@ -219,8 +220,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_SPECIFICATIONS:
             return { ...state, specifications: [], selected_data: [] }
         case ADD_PRODUCT:
-            if ((state.products.length ? state.products.length : 0) < 20) {
-                return { ...state, products: [...state.products, action.payload] }
+            if ((state.products ? state.products.length : 0) < 20) {
+                return { ...state, products: state.products ? [...state.products, action.payload] : [action.payload] }
             }
         case DELETE_PRODUCT:
             if (Number.isInteger(action.payload)) {
