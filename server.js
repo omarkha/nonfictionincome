@@ -14,11 +14,11 @@ app.disable('etag');
 const mongoose = require('mongoose')
 const uri = process.env.NODE_ENV === "production" ? process.env.ATLAS_URI : 'mongodb://superuser:Soridl846@127.0.0.1:27017/msDB?authSource=admin'
 
-// app.use(express.static(`${__dirname}/client/build`))
+app.use(express.static(`${__dirname}/client/build`))
 
-// app.get('/*', (req, res) => {
-//     res.sendFile(`${__dirname}/client/build/index.html`)
-// })
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
 
 mongoose
     .connect(uri, { useNewUrlParser: true })
