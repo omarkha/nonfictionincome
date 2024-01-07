@@ -18,7 +18,7 @@ const UserDashboard = (props) => {
     const fetchBusinesses = async () => {
         await axios.get(`${uri}/api/businesses/owner/${props.userState.user_id}`).then(res => {
             console.log(res)
-            if (res.data[1]._id) {
+            if (res.data[0]._id) {
                 setBusinesses(res.data)
             }
 
