@@ -35,6 +35,7 @@ const getUserByFirebaseId = async (req, res) => {
         console.log(req.params.fid)
         const user = await User.find({ user_firebase_id: req.params.fid })
         res.send(user)
+        console.log(user)
     } catch (err) {
         res.send(err)
     }
