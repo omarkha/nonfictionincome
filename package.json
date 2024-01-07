@@ -11,7 +11,7 @@
     "build": "cd client && rm -rf build && npm install && npm run build"
   },
   "engines": {
-    "npm": "18.2.4",
+    "npm": "10.2.4",
     "node": "20.9.0"
   },
   "keywords": [],
