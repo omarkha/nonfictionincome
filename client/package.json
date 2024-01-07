@@ -28,6 +28,7 @@
     "npm": "10.2.4",
     "node": "20.9.0"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
