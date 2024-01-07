@@ -25,6 +25,8 @@ const BusinessViewer = (props) => {
     const checkLoggedIn = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log("FirebaseID");
+                console.log(user)
                 const fuid = user.uid;
                 fetchUserId(fuid)
             }
