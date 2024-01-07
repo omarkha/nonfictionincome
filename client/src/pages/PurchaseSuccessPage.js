@@ -15,7 +15,7 @@ const PurchaseSuccessPage = (props) => {
     const consoleLogInfo = () => {
         axios.get(uri + "/api/retrieve-stripe-session").then(res => {
             setAllSessions(res.data)
-            res.data.data.map((e, i) => {
+            res.data.map((e, i) => {
                 if (e.payment_status == "paid") {
                     props.customerPurchaseSuccessful();
                     props.customerEmail(e.customer_details.email)
