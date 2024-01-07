@@ -31,7 +31,7 @@ const BusinessViewer = (props) => {
     }
 
     const fetchUserId = async (fireid) => {
-        await axios.get(`${uri}/api/users/firebase/${props.userState.firebase_id ? props.userState.firebase_id : fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); saveBusiness(res.data[0]._id) }).catch(err => console.log(err))
+        await axios.get(`${uri}/api/users/firebase/`, { fireid: props.userState.firebase_id ? props.userState.firebase_id : fireid }).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); saveBusiness(res.data[0]._id) }).catch(err => console.log(err))
     }
 
 
