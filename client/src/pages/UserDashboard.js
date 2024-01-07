@@ -19,7 +19,8 @@ const UserDashboard = (props) => {
         await axios.get(`${uri}/api/businesses/owner/${props.userState.user_id}`).then(res => {
             console.log(res)
             setBusinesses(res.data)
-        }).catch((err) => console.log(err))
+            setLoaded(true)
+        }).catch((err) => { console.log(err); setLoaded(false) })
     }
 
     const handleNewBusiness = () => {
@@ -42,7 +43,7 @@ const UserDashboard = (props) => {
         });
     }
 
-    const [fireID, setFireID] = useState("")
+    const [loaded, setLoaded] = useState(false)
 
     const handleEditMode = (tid) => {
         props.resetBusiness()
@@ -66,7 +67,7 @@ const UserDashboard = (props) => {
             <h3>Projects</h3>
 
             <div className='dashboard-projects'>
-                {
+                {loaded ?
                     businesses?.map((e, i) => {
 
                         return (
@@ -78,7 +79,7 @@ const UserDashboard = (props) => {
                                 <button className='view-project-btn' onClick={() => handleEditMode(e._id)}>View Project</button>
                             </div>
                         )
-                    })
+                    }) : null
                 } </div>
         </div>
     )
