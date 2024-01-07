@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
 import ConfirmationBox from '../../components/ConfirmationBox';
-
+import { auth } from '../../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 const BusinessViewer = (props) => {
     const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
     const [projectName, setProjectName] = useState("New Project");
