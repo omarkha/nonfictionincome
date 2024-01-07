@@ -26,9 +26,9 @@ router.post("/api/create-checkout-session", async (req, res) => {
     res.json(session);
 });
 
-router.get("/api/retrieve-stripe-session", async (req, res) => {
-
-    const result = await stripe.checkout.sessions.retrieve(req.body.id)
+router.get("/api/retrieve-stripe-session/:id", async (req, res) => {
+    console.log(req.params.id)
+    const result = await stripe.checkout.sessions.retrieve(req.params.id)
     res.json(result)
 })
 
