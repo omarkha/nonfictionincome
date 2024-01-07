@@ -35,7 +35,7 @@ const PurchaseSuccessPage = (props) => {
 
     return (
         <div className='purchase-success-page'>
-            <button onClick={() => consoleLogInfo()}>Console Log</button>
+
             <h2>Thanks for your order!</h2>
             <h4>Your payment is successful.</h4>
             <p className='thank-you-message'>
