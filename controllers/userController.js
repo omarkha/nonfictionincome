@@ -34,7 +34,7 @@ const getUserByFirebaseId = async (req, res) => {
     try {
         console.log(req.params.fid)
         const user = await User.find({ user_firebase_id: req.params.fid })
-        res.json(user)
+        res.send(user)
     } catch (err) {
         res.send(err)
     }
@@ -62,6 +62,7 @@ const addUser = (req, res) => {
             membership_expiration_date: req.body.membership_expiration_date,
         });
         user.save()
+        res.send(user)
     } catch (error) {
         res.send(error)
     }

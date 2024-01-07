@@ -52,7 +52,9 @@ const BusinessDevelopment = (props) => {
 
         e.preventDefault()
 
-        if (props.businessState.selected_data.length < 20 && title.length > 0) {
+        const selected_data_length = props.businessState.selected_data === undefined ? 0 : props.businessState.selected_data.length;
+
+        if (selected_data_length < 20 && title.length > 0) {
 
             switch (selectedElementType) {
                 case "Motivation":
@@ -84,7 +86,7 @@ const BusinessDevelopment = (props) => {
                     break;
 
             }
-        } else if (props.businessState.selected_data.length >= 20) {
+        } else if (selected_data_length < 20) {
             toast.warn("You can only add up 20 items per list.")
         }
 

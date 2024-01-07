@@ -6,7 +6,7 @@ import axios from "axios"
 import { toast } from 'react-toastify'
 import { auth } from '../config/firebase'
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import { CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut } from '../store/actions/userActions'
+import { CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, SetUserID } from '../store/actions/userActions'
 const SignUpPage = (props) => {
 
     const { sid } = useParams();
@@ -83,8 +83,9 @@ const SignUpPage = (props) => {
         }).then(res => {
             console.log("UserCreated")
             console.log(res)
-            navigate("/dashboard")
-        }).catch(error => {
+            props.setUserID(res._id)
+
+        }).then(() => setTimeout(() => { navigate("/dashboard") }, 3000)).catch(error => {
             toast.warn("A problem occured during account creation on our servers.")
             console.log(error)
         })
@@ -160,6 +161,7 @@ const mapActionsToProps = (dispatch) => {
         customerEmail: (email) => dispatch(AddCustomerEmail(email)),
         customerSessionId: (id) => dispatch(AddCustomerSessionID(id)),
         customerName: (name) => dispatch(AddCustomerName(name)),
+        setUserID: (id) => dispatch(SetUserID(id)),
         signIn: () => dispatch(SignIn()),
         signOut: () => dispatch(SignOut()),
 

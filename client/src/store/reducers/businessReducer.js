@@ -61,7 +61,7 @@ const businessReducer = (state = initialState, action) => {
         case SET_INITIAL_CUSTOMER:
             return { ...state, initial_customer: action.payload }
         case ADD_INTEREST:
-            if (state.interests?.length < 20) {
+            if ((state.interests.length ? state.interests.length : 0) < 20) {
                 return { ...state, interests: [...state.interests, action.payload] }
             }
         case DELETE_INTEREST:
@@ -74,8 +74,6 @@ const businessReducer = (state = initialState, action) => {
             }
         case UPDATE_INTEREST:
             if (action.payload.package) {
-
-
                 return {
                     ...state, interests: state.interests.map((e, i) => {
                         if (i === action.payload.index) {
@@ -89,7 +87,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_INTERESTS:
             return { ...state, interests: [], selected_data: [] }
         case ADD_CUSTOMER:
-            if (state.customers?.length < 20) {
+
+            if ((state.customers.length ? state.customers.length : 0) < 20) {
                 return { ...state, customers: [...state.customers, action.payload] }
             }
         case DELETE_CUSTOMER:
@@ -115,7 +114,8 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_CUSTOMERS:
             return { ...state, customers: [], selected_data: [] }
         case ADD_MOTIVATION:
-            if (state.motivations?.length < 20) {
+
+            if ((state.motivations.length ? state.motivations.length : 0) < 20) {
                 return { ...state, motivations: [...state.motivations, action.payload] }
             }
         case DELETE_MOTIVATION:
@@ -127,19 +127,21 @@ const businessReducer = (state = initialState, action) => {
                 }
             }
         case UPDATE_MOTIVATION:
-            return {
-                ...state, motivations: state.motivations.map((e, i) => {
-                    if (i === action.payload.index) {
-                        return action.payload.package
-                    } else {
-                        return e
-                    }
-                })
+            if (action.payload.package) {
+                return {
+                    ...state, motivations: state.motivations.map((e, i) => {
+                        if (i === action.payload.index) {
+                            return action.payload.package
+                        } else {
+                            return e
+                        }
+                    })
+                }
             }
         case EMPTY_MOTIVATIONS:
             return { ...state, motivations: [], selected_data: [] }
         case ADD_STRUGGLE:
-            if (state.struggles?.length < 20) {
+            if ((state.struggles.length ? state.struggles.length : 0) < 20) {
                 return { ...state, struggles: [...state.struggles, action.payload] }
             }
         case DELETE_STRUGGLE:
@@ -165,7 +167,7 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_STRUGGLES:
             return { ...state, struggles: [], selected_data: [] }
         case ADD_VALUE:
-            if (state.values?.length < 20) {
+            if ((state.values.length ? state.values.length : 0) < 20) {
                 return { ...state, values: [...state.values, action.payload] }
             }
         case DELETE_VALUE:
@@ -191,7 +193,7 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_VALUES:
             return { ...state, values: [], selected_data: [] }
         case ADD_SPECIFICATION:
-            if (state.specifications?.length < 20) {
+            if ((state.specifications.length ? state.specifications.length : 0) < 20) {
                 return { ...state, specifications: [...state.specifications, action.payload] }
             }
         case DELETE_SPECIFICATION:
@@ -217,7 +219,7 @@ const businessReducer = (state = initialState, action) => {
         case EMPTY_SPECIFICATIONS:
             return { ...state, specifications: [], selected_data: [] }
         case ADD_PRODUCT:
-            if (state.products?.length < 20) {
+            if ((state.products.length ? state.products.length : 0) < 20) {
                 return { ...state, products: [...state.products, action.payload] }
             }
         case DELETE_PRODUCT:

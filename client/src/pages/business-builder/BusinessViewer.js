@@ -58,7 +58,7 @@ const BusinessViewer = (props) => {
     const saveBusiness = async () => {
         console.log(props.userState.user_id)
         const userId = props.userState.user_id;
-        if (!props.businessState.edit_mode.isInEditMode) {
+        if (props.businessState.edit_mode.isInEditMode === false) {
 
 
             await axios.post(`${uri}/api/businesses`, {
@@ -69,13 +69,13 @@ const BusinessViewer = (props) => {
                 final_mission_statement: props.businessState.final_mission_statement,
                 final_usp: props.businessState.final_usp,
                 final_product: props.businessState.final_product,
-                interests: [...props.businessState.interests],
-                customers: [...props.businessState.customers],
-                motivations: [...props.businessState.motivations],
-                struggles: [...props.businessState.struggles],
-                values: [...props.businessState.values],
-                specifications: [...props.businessState.specifications],
-                products: [...props.businessState.products],
+                interests: props.businessState.interests ? [...props.businessState.interests] : [],
+                customers: props.businessState.customers ? [...props.businessState.customers] : [],
+                motivations: props.businessState.motivations ? [...props.businessState.motivations] : [],
+                struggles: props.businessState.struggles ? [...props.businessState.struggles] : [],
+                values: props.businessState.values ? [...props.businessState.values] : [],
+                specifications: props.businessState.specifications ? [...props.businessState.specifications] : [],
+                products: props.businessState.products ? [...props.businessState.products] : [],
             })
         } else {
             await axios.put(`${uri}/api/businesses`, {
@@ -88,13 +88,13 @@ const BusinessViewer = (props) => {
                     final_mission_statement: props.businessState.final_mission_statement,
                     final_usp: props.businessState.final_usp,
                     final_product: props.businessState.final_product,
-                    interests: [...props.businessState.interests],
-                    customers: [...props.businessState.customers],
-                    motivations: [...props.businessState.motivations],
-                    struggles: [...props.businessState.struggles],
-                    values: [...props.businessState.values],
-                    specifications: [...props.businessState.specifications],
-                    products: [...props.businessState.products],
+                    interests: props.businessState.interests ? [...props.businessState.interests] : [],
+                    customers: props.businessState.customers ? [...props.businessState.customers] : [],
+                    motivations: props.businessState.motivations ? [...props.businessState.motivations] : [],
+                    struggles: props.businessState.struggles ? [...props.businessState.struggles] : [],
+                    values: props.businessState.values ? [...props.businessState.values] : [],
+                    specifications: props.businessState.specifications ? [...props.businessState.specifications] : [],
+                    products: props.businessState.products ? [...props.businessState.products] : [],
                 }
             })
         }
@@ -104,6 +104,9 @@ const BusinessViewer = (props) => {
     const handleConfirmed = (val) => {
         if (val == true) {
             axios.delete(`${uri}/api/businesses/deleteone/${props.businessState.edit_mode.business_id}`)
+            setShowConfirmBox(false)
+        } else {
+            setShowConfirmBox(false)
         }
     }
 
@@ -112,7 +115,7 @@ const BusinessViewer = (props) => {
 
     return (
         <div className='business-viewer'>
-            {showConfirmBox ? <ConfirmationBox massage={`Are you sure you want to delete ${projectName}?`} handleConfirmed={handleConfirmed} action="Delete Forever" /> : null}
+            {showConfirmBox ? <ConfirmationBox message={`Are you sure you want to delete ${projectName}?`} handleConfirmed={handleConfirmed} action="Delete Forever" /> : null}
             <div className='project-name'>
                 <label>Project Name: </label>
                 <input type='text' className='project-name-field' value={projectName} onChange={(e) => updateElement(e.target.value)} placeholder='Project name' />

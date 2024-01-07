@@ -61,7 +61,7 @@ const postBusiness = async (req, res) => {
 
 const deleteBusinessById = (req, res) => {
     try {
-        Business.deleteOne({ id: req.params.business_id }).then(res => console.log(res))
+        Business.deleteOne({ _id: req.params.business_id }).then(res => console.log(res))
         console.log(req.params.business_id + " deleted.")
     } catch (err) {
         res.send(err)
