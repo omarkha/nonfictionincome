@@ -11,9 +11,9 @@ const PurchaseSuccessPage = (props) => {
     const { id } = useParams()
     const [allSessions, setAllSessions] = useState({});
     const idString = String.toString(id);
-
+    const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
     const consoleLogInfo = () => {
-        axios.get("http://localhost:3001/api/retrieve-stripe-session").then(res => {
+        axios.get(uri + "/api/retrieve-stripe-session").then(res => {
             setAllSessions(res.data)
             res.data.data.map((e, i) => {
                 if (e.payment_status == "paid") {

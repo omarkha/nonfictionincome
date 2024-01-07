@@ -8,9 +8,11 @@ export const AddCustomerSessionID = (customer_id) => ({
     type: ADD_CUSTOMER_SESSION_ID,
     payload: customer_id
 })
+
 export const CustomerPurchaseSuccessful = () => ({
     type: CUSTOMER_PURCHASE_SUCCESSFUL,
 })
+
 export const CustomerPurchaseFailed = () => ({
     type: CUSTOMER_PURCHASE_FAILED,
 
