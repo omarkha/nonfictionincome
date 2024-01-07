@@ -7,6 +7,7 @@ import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateIn
 import ConfirmationBox from '../../components/ConfirmationBox';
 import { auth } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { SetUserID } from '../../store/actions/userActions';
 const BusinessViewer = (props) => {
     const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
     const [projectName, setProjectName] = useState("New Project");
@@ -30,7 +31,7 @@ const BusinessViewer = (props) => {
     }
 
     const fetchUserId = async (fireid) => {
-        await axios.get(`${uri}/api/users/firebase/${fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => saveBusiness()).catch(err => console.log(err))
+        await axios.get(`${uri}/api/users/firebase/${props.userState.firebase_id ? props.userState.firebase_id : fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); saveBusiness(res.data[0]._id) }).catch(err => console.log(err))
     }
 
 
@@ -66,9 +67,9 @@ const BusinessViewer = (props) => {
     }
 
 
-    const saveBusiness = async () => {
+    const saveBusiness = async (uid) => {
         console.log(props.userState.user_id)
-        const userId = props.userState.user_id;
+        const userId = props.userState.user_id ? props.userState.user_id : uid;
         if (props.businessState.edit_mode.isInEditMode === false) {
 
 
@@ -229,7 +230,7 @@ const mapActionsToProps = (dispatch) => {
         removeCustomer: (index) => dispatch(DeleteCustomer(index)),
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
 
-
+        setUserID: (val) => dispatch(SetUserID(val)),
         updateBusinessName: (obj) => dispatch(UpdateBusinessName(obj)),
 
         addFinalProduct: (val) => dispatch(AddFinalProduct(val)),

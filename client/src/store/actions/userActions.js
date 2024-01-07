@@ -1,4 +1,4 @@
-import { SET_USER_ID, ADD_BUSINESS_IDS, SIGN_IN, SIGN_OUT, ADD_CUSTOMER_EMAIL, ADD_CUSTOMER_SESSION_ID, CUSTOMER_PURCHASE_FAILED, CUSTOMER_PURCHASE_SUCCESSFUL, ADD_CUSTOMER_NAME } from "../actiontypes"
+import { ADD_FIREBASE_ID, SET_USER_ID, ADD_BUSINESS_IDS, SIGN_IN, SIGN_OUT, ADD_CUSTOMER_EMAIL, ADD_CUSTOMER_SESSION_ID, CUSTOMER_PURCHASE_FAILED, CUSTOMER_PURCHASE_SUCCESSFUL, ADD_CUSTOMER_NAME } from "../actiontypes"
 
 export const AddCustomerEmail = (customer_email) => ({
     type: ADD_CUSTOMER_EMAIL,
@@ -7,6 +7,11 @@ export const AddCustomerEmail = (customer_email) => ({
 export const AddCustomerSessionID = (customer_id) => ({
     type: ADD_CUSTOMER_SESSION_ID,
     payload: customer_id
+})
+
+export const AddFirebaseID = (id) => ({
+    type: ADD_FIREBASE_ID,
+    payload: id
 })
 
 export const CustomerPurchaseSuccessful = () => ({

@@ -23,7 +23,7 @@ import { useEffect } from "react"
 import { auth } from "./config/firebase"
 import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
-import { SetUserID } from './store/actions/userActions';
+import { SetUserID, AddFirebaseID } from './store/actions/userActions';
 import { connect } from "react-redux"
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 function App(props) {
@@ -37,6 +37,7 @@ function App(props) {
       if (user) {
         console.log(user)
         handleUserId(user.uid)
+        props.setFirebaseID(user.uid)
       }
     })
   }
@@ -95,7 +96,7 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = (dispatch) => {
   return {
     setUserID: (val) => dispatch(SetUserID(val)),
-
+    setFirebaseID: (val) => dispatch(AddFirebaseID(val))
   }
 }
 
