@@ -13,7 +13,7 @@ const PurchaseSuccessPage = (props) => {
     const idString = String.toString(id);
     const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
     const consoleLogInfo = () => {
-        axios.get(uri + "/api/retrieve-stripe-session").then(res => {
+        axios.get(uri + "/api/retrieve-stripe-session", { id: id }).then(res => {
             console.log(res)
             setAllSessions(res)
             res.data.map((e, i) => {

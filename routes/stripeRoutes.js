@@ -28,7 +28,7 @@ router.post("/api/create-checkout-session", async (req, res) => {
 
 router.get("/api/retrieve-stripe-session", async (req, res) => {
 
-    const result = await stripe.checkout.sessions.list()
+    const result = await stripe.checkout.sessions.retrieve(req.id)
     res.send(result)
 })
 
