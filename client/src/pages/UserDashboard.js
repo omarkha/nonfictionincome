@@ -18,8 +18,10 @@ const UserDashboard = (props) => {
     const fetchBusinesses = async () => {
         await axios.get(`${uri}/api/businesses/owner/${props.userState.user_id}`).then(res => {
             console.log(res)
-            setBusinesses(res.data)
-            setLoaded(true)
+            if (res.data[1]._id) {
+                setBusinesses(res.data)
+            }
+
         }).catch((err) => { console.log(err); setLoaded(false) })
     }
 
@@ -65,7 +67,7 @@ const UserDashboard = (props) => {
 
 
             <h3>Projects</h3>
-
+            <button onClick={() => setLoaded(true)}>Load Businesses</button>
             <div className='dashboard-projects'>
                 {loaded ?
                     businesses?.map((e, i) => {
