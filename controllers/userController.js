@@ -34,7 +34,7 @@ const getUserByFirebaseId = async (req, res) => {
     try {
         console.log(req.body.fireid)
         const user = await User.findOne({ user_firebase_id: req.body.fireid })
-        res.send(user)
+        res.json(user)
         console.log(user)
     } catch (err) {
         res.send(err)
