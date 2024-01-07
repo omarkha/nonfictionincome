@@ -5,6 +5,7 @@ import { auth } from "../config/firebase"
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { connect } from 'react-redux'
 import { toast } from 'react-toastify'
+import { SignIn, SignOut } from "../store/actions/userActions"
 
 const LoginPage = (props) => {
 

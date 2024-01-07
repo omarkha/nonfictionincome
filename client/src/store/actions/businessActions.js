@@ -194,7 +194,7 @@ export const DeleteProduct = (product) => ({
     payload: product
 })
 
-export const UpdateProduct = (interproductest) => ({
+export const UpdateProduct = (product) => ({
     type: UPDATE_PRODUCT,
     payload: product
 })

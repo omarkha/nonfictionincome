@@ -5,7 +5,7 @@ import axios from "axios"
 import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
-import { ResetBusiness, StartEditMode, StopEditMode } from '../store/actions/businessActions'
+import { CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, StartEditMode, StopEditMode, ResetBusiness } from '../store/actions/businessActions'
 
 const UserDashboard = (props) => {
 
@@ -96,6 +96,9 @@ const mapStateToProps = (state) => {
 
     }
 }
+
+
+
 
 const mapActionsToProps = (dispatch) => {
     return {

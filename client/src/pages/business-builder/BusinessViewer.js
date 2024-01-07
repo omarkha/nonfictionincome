@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import "../../styles/businessviewer.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
+import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
 import ConfirmationBox from '../../components/ConfirmationBox';
 
 const BusinessViewer = (props) => {
@@ -63,6 +63,7 @@ const BusinessViewer = (props) => {
 
             await axios.post(`${uri}/api/businesses`, {
                 owner_id: userId,
+                initial_customer: props.businessState.initial_customer,
                 project_name: props.businessState.business_name,
                 final_customer: props.businessState.final_customer,
                 final_mission_statement: props.businessState.final_mission_statement,
@@ -81,6 +82,7 @@ const BusinessViewer = (props) => {
                 id: props.businessState.edit_mode.business_id,
                 package: {
                     owner_id: userId,
+                    initial_customer: props.businessState.initial_customer,
                     project_name: props.businessState.business_name,
                     final_customer: props.businessState.final_customer,
                     final_mission_statement: props.businessState.final_mission_statement,
@@ -214,6 +216,8 @@ const mapActionsToProps = (dispatch) => {
         addCustomer: (newCustomer) => dispatch(AddCustomer(newCustomer)),
         removeCustomer: (index) => dispatch(DeleteCustomer(index)),
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
+
+
         updateBusinessName: (obj) => dispatch(UpdateBusinessName(obj)),
 
         addFinalProduct: (val) => dispatch(AddFinalProduct(val)),

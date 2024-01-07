@@ -86,8 +86,6 @@ const BusinessDevelopment = (props) => {
             }
         } else if (props.businessState.selected_data.length >= 20) {
             toast.warn("You can only add up 20 items per list.")
-        } else {
-            null
         }
 
 

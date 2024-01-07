@@ -6,7 +6,7 @@ import axios from "axios"
 import { toast } from 'react-toastify'
 import { auth } from '../config/firebase'
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import { SignIn, SignOut } from '../store/actions/userActions'
+import { CustomerPurchaseSuccessful, AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut } from '../store/actions/userActions'
 const SignUpPage = (props) => {
 
 

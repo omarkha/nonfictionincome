@@ -129,7 +129,7 @@ const GettingStarted = (props) => {
     }
 
     const addElement = (e) => {
-        e === "pass" ? null : e.preventDefault()
+        if (e !== "pass") { e.preventDefault() }
 
 
         if (title.length > 0 && title.length < 100) {
@@ -153,8 +153,6 @@ const GettingStarted = (props) => {
             setTitle("")
         } else if (props.businessState.selected_data.length >= 20) {
             toast.warn("You can only add up 20 items per list.")
-        } else {
-            null
         }
 
 
@@ -219,8 +217,6 @@ const GettingStarted = (props) => {
         if (val === true) {
             props.setInitialCustomer(title)
 
-        } else {
-            null
         }
         setShowConfirmBox(false)
     }
