@@ -25,7 +25,8 @@ const BusinessViewer = (props) => {
     const checkLoggedIn = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                fetchUserId(user.uid)
+                const fuid = user.uid;
+                fetchUserId(fuid)
             }
         });
     }
