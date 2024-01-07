@@ -2,7 +2,7 @@
 const stripe = require("stripe")("sk_test_51LewmOI2yKOXdLkUB1UjQbWLfSZHwcf4DBwH9eUsbX3jn4gBT4BZqM64SpyDMitwHKN8g950cWfeL8yfdFrFji5K00ytq3wF9C");
 const express = require("express")
 const router = express.Router();
-const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3000" : window.location.origin;
+const uri = process.env.NODE_ENV === "development" ? "http://localhost:3000" : process.env.APP_HOME_PAGE;
 router.post("/api/create-checkout-session", async (req, res) => {
     const product = req.body;
     const session = await stripe.checkout.sessions.create({
