@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
 import { StartEditMode, StopEditMode, ResetBusiness } from '../store/actions/businessActions'
-import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut } from "../store/actions/userActions"
+import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful } from "../store/actions/userActions"
 const UserDashboard = (props) => {
 
     const [businesses, setBusinesses] = useState([])

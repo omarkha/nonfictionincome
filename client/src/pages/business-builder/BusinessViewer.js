@@ -104,8 +104,6 @@ const BusinessViewer = (props) => {
     const handleConfirmed = (val) => {
         if (val == true) {
             axios.delete(`${uri}/api/businesses/deleteone/${props.businessState.edit_mode.business_id}`)
-        } else {
-            null
         }
     }
 
