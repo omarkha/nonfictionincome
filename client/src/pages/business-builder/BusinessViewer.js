@@ -20,8 +20,18 @@ const BusinessViewer = (props) => {
         }
     }, [])
 
+    const checkLoggedIn = () => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                fetchUserId(user.uid)
+            }
+        });
+    }
 
-    const [editBusiness, setEditBusiness] = useState({});
+    const fetchUserId = async (fireid) => {
+        await axios.get(`${uri}/api/users/firebase/${fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => saveBusiness()).catch(err => console.log(err))
+    }
+
 
     const populateDatabaseBusiness = async () => {
         if (!props.businessState.server_data_loaded) {
@@ -120,7 +130,7 @@ const BusinessViewer = (props) => {
                 <label>Project Name: </label>
                 <input type='text' className='project-name-field' value={projectName} onChange={(e) => updateElement(e.target.value)} placeholder='Project name' />
             </div>
-            <button className='save-business-btn' onClick={() => saveBusiness()} >Save Business</button>
+            <button className='save-business-btn' onClick={() => checkLoggedIn()} >Save Business</button>
             <div className='control-buttons'>
                 <button onClick={() => {
                     navigate("/business-builder/getting-started")
