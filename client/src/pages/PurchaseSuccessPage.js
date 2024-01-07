@@ -14,7 +14,8 @@ const PurchaseSuccessPage = (props) => {
     const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
     const consoleLogInfo = () => {
         axios.get(uri + "/api/retrieve-stripe-session").then(res => {
-            setAllSessions(res.data)
+            console.log(res)
+            setAllSessions(res)
             res.data.map((e, i) => {
                 if (e.payment_status == "paid") {
                     props.customerPurchaseSuccessful();
