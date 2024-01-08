@@ -26,9 +26,9 @@ const BusinessViewer = (props) => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 console.log("FirebaseID");
-                console.log(user)
+                console.log(user.uid)
                 const fuid = user.uid;
-                await axios.get(`${uri}/api/users/firebase/${fuid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); saveBusiness(res.data[0]._id) }).catch(err => console.log(err))
+                await axios.get(`${uri}/api/users/firebase/${user.uid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id); saveBusiness(res.data[0]._id) }).catch(err => console.log(err))
             }
         });
     }
