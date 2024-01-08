@@ -182,3 +182,44 @@ footer .message {
     left: 0;
     background: rgba(25, 25, 25, 0.86)
 }
+
+.dashboard-navigation {
+    background-color: #212121;
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+}
+
+
+.dashboard-navigation h4 {
+    margin: 0;
+    padding: 5px;
+    color: #0ABDBA;
+}
+
+.dashboard-navigation .nav-items {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 21px 0;
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+    gap: 34px;
+    background-color: #0ABDBA;
+    color: #fff;
+}
+
+.dashboard-navigation .nav-item {
+    font-size: 18px;
+    color: #eee;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-navigation .nav-item:hover {
+    font-size: 18px;
+    color: #fff;
+
+}

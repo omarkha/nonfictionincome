@@ -4,17 +4,18 @@
 
 .user-dashboard {
     width: 100%;
-    padding: 55px 23vw;
+    padding: 0 15vw 55px 15vw;
     box-sizing: border-box;
 
 }
 
 
 .user-dashboard .dashboard-projects {
+    padding: 55px 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 13px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 21px;
 }
 
 .dashboard-projects .dashboard-project {

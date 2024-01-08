@@ -134,24 +134,7 @@ const ProductPage = (props) => {
                 <br />
 
                 <br /><br /> <br />
-                <div className='copy-checkout'>
-                    <h4>Limited Time Offer</h4>
-                    <div className='price'>
 
-                        <h5>
-                            <strike>$49.99 USD</strike>
-                        </h5>
-                        <h4>  $19.99 USD</h4>
-                    </div>
-
-                    <button className='checkout-btn'>Buy Now</button>
-                    <div className='payment-method'>
-                        <img src={visa} alt="visa logo" />
-                        <img src={mastercard} alt="mastercard  logo" />
-                        <img src={americanexpress} alt="americanexpress  logo" />
-                        <img src={paypal} alt="payapl logo" />
-                    </div>
-                </div>
                 <h3><u>What You Get:</u></h3>
                 <ul>
                     <li> The Non-Fiction Income Method: A practical shortcut to start making money online</li>

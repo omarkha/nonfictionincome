@@ -7,6 +7,7 @@ import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
 import { StartEditMode, StopEditMode, ResetBusiness } from '../store/actions/businessActions'
 import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful, SetUserID } from "../store/actions/userActions"
+import DashboardNavigation from '../components/DashboardNavigation'
 const UserDashboard = (props) => {
 
     const [businesses, setBusinesses] = useState([])
@@ -23,6 +24,7 @@ const UserDashboard = (props) => {
             console.log(res)
             if (res.data[0]._id) {
                 setBusinesses(res.data)
+
             }
 
         }).catch((err) => { console.log(err); setLoaded(false) })
@@ -48,7 +50,7 @@ const UserDashboard = (props) => {
         });
     }
 
-    const [loaded, setLoaded] = useState(false)
+    const [loadBusinesses, setLoadBusinesses] = useState(false)
 
     const handleEditMode = (tid) => {
         props.resetBusiness()
@@ -59,20 +61,27 @@ const UserDashboard = (props) => {
 
     return (
         <div className='user-dashboard'>
-            <div className='user-info'>
-                <h4>You're logged in as {userEmail}</h4>
+            <div className='dashboard-navigation'>
+                <div className='nav-items'>
+                    <div className='nav-item'>
+                        Settings
+                    </div>
+                    <div className='nav-item'>
+                        Information
+                    </div>
+                    <div className='nav-item' onClick={() => setLoadBusinesses(true)}>
+                        Your Businesses
+                    </div>
+                    <div className='nav-item' onClick={() => handleNewBusiness()}>
+                        Create Business
+                    </div>
+
+
+                </div>
+                <h4>Welcome Back! you're logged in as {userEmail}</h4>
             </div>
-
-
-            <div className='tool' onClick={() => handleNewBusiness()}>
-                + New Business
-            </div>
-
-
-            <h3>Projects</h3>
-            <button onClick={() => setLoaded(true)}>Load Businesses</button>
             <div className='dashboard-projects'>
-                {loaded ?
+                {loadBusinesses ?
                     businesses?.map((e, i) => {
 
                         return (
