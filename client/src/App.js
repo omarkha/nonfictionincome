@@ -44,9 +44,9 @@ function App(props) {
 
 
 
-  const handleUserId = async (fireID) => {
+  const handleUserId = async (fireid) => {
 
-    await axios.get(`${uri}/api/users/firebase/`, { fireid: fireID }).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => console.log(props.userState.user_id)).catch(err => console.log(err))
+    await axios.get(`${uri}/api/users/firebase/${fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => console.log(props.userState.user_id)).catch(err => console.log(err))
   }
 
   const initialOptions = {

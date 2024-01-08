@@ -15,7 +15,7 @@ const UserDashboard = (props) => {
     const uri = window.location.origin === "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
 
     const fetchUserId = async (fireid) => {
-        await axios.get(`${uri}/api/users/firebase/`, { fireid: fireid }).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => fetchBusinesses()).catch(err => console.log(err))
+        await axios.get(`${uri}/api/users/firebase/${fireid}`).then(res => { console.log(res); console.log(res.data[0]._id); props.setUserID(res.data[0]._id) }).then(() => fetchBusinesses()).catch(err => console.log(err))
     }
 
     const fetchBusinesses = async () => {
@@ -43,6 +43,7 @@ const UserDashboard = (props) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 fetchUserId(user.uid)
+                setUserEmail(user.email)
             }
         });
     }
