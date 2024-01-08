@@ -1,4 +1,5 @@
 import {
+    CHOOSE_NICHE,
     SET_INITIAL_CUSTOMER,
     POPULATE_PRODUCTS, POPULATE_SPECIFICATIONS, POPULATE_VALUES, POPULATE_STRUGGLES, POPULATE_MOTIVATIONS, POPULATE_CUSTOMERS, POPULATE_INTERESTS,
     START_EDIT_MODE, STOP_EDIT_MODE, RESET_BUSINESS,
@@ -49,6 +50,11 @@ export const SelectInterests = () => ({
 
 export const EmptyInterests = () => ({
     type: EMPTY_INTERESTS,
+})
+
+export const ChooseNiche = (niche) => ({
+    type: CHOOSE_NICHE,
+    payload: niche
 })
 
 

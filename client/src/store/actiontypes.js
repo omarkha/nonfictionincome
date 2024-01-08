@@ -78,6 +78,7 @@ export const UPDATE_BUSINESS_NAME = 'UPDATE_BUSINESS_NAME'
 export const START_EDIT_MODE = 'START_EDIT_MODE'
 export const STOP_EDIT_MODE = 'STOP_EDIT_MODE'
 
+export const CHOOSE_NICHE = 'CHOOSE_NICHE'
 
 
 //          User

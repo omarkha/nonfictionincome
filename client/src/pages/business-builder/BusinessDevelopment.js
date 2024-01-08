@@ -16,6 +16,22 @@ const BusinessDevelopment = (props) => {
     const handleArea = (element) => {
         setSelectedElementType(element)
         handlePopulation(element)
+        switch (element) {
+            case "Motivation":
+                setElementDescription("Ask ChatGPT (or any research tool) for the motivations that drive your specified group of customers to pursue their topic of interest.")
+                break;
+            case "Struggle":
+                setElementDescription("What struggles, challenges, problems, and pain-points are your specified group of customers facing in their pursuit of achieving their motivations?")
+                break;
+            case "Value":
+                setElementDescription("Ask ChatGPT (or any research tool) for the values of your specified group of customers.")
+                break;
+            case "Specification":
+                setElementDescription("Choose the demographics and psychographics you prefer, strategically.")
+                break;
+            default:
+                break;
+        }
         setSelectedIndex(-1);
     }
 
@@ -222,11 +238,12 @@ const BusinessDevelopment = (props) => {
 
     }
 
+    const [elementDescription, setElementDescription] = useState("")
 
     return (
         <div className='business-builder'>
             <BuilderNavigation page="business_development" />
-            <h3>{props.businessState.initial_customer}</h3>
+            <h3>{props.businessState.initial_customer} interested in {props.businessSate.chosen_niche}</h3>
             <div className='builder-body'>
 
 
@@ -276,7 +293,7 @@ const BusinessDevelopment = (props) => {
                             <form className='editor' onSubmit={(e) => addElement(e)}>
 
                                 <div className='element'>
-                                    <h4>{selectedElementType}</h4>
+                                    <h4>{elementDescription}</h4>
                                     <input maxlength="100" type="text" placeholder={selectedElementType + " Title"} value={title} onChange={(e) => handleObjectModified("title", e.target.value)} onPaste={(e) => handleObjectModified("title", e.target.value)} />
                                     <textarea maxlength="1000" placeholder={selectedElementType + " Description"} value={description} onChange={(e) => handleObjectModified("desc", e.target.value)} onPaste={(e) => handleObjectModified("desc", e.target.value)}>{description}</textarea>
                                 </div>

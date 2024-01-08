@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import "../../styles/businessviewer.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName } from '../../store/actions/businessActions';
+import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName, ChooseNiche } from '../../store/actions/businessActions';
 import ConfirmationBox from '../../components/ConfirmationBox';
 import { auth } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -55,6 +55,7 @@ const BusinessViewer = (props) => {
                 props.addFinalMissionStatement(res.data.final_mission_statement)
                 props.addFinalProduct(res.data.final_product)
                 props.addFinalUsp(res.data.final_usp)
+                props.chooseNiche(res.data.chosne_niche)
                 props.setServerDataLoaded(true)
             })
         }
@@ -78,6 +79,7 @@ const BusinessViewer = (props) => {
 
             await axios.post(`${uri}/api/businesses`, {
                 owner_id: userId,
+                chosne_niche: props.businessState.chosne_niche,
                 initial_customer: props.businessState.initial_customer,
                 project_name: props.businessState.business_name,
                 final_customer: props.businessState.final_customer,
@@ -97,6 +99,7 @@ const BusinessViewer = (props) => {
                 id: props.businessState.edit_mode.business_id,
                 package: {
                     owner_id: userId,
+                    chosne_niche: props.businessState.chosne_niche,
                     initial_customer: props.businessState.initial_customer,
                     project_name: props.businessState.business_name,
                     final_customer: props.businessState.final_customer,
@@ -126,6 +129,10 @@ const BusinessViewer = (props) => {
     }
 
 
+    const downloadPDF = () => {
+
+    }
+
     const [showConfirmBox, setShowConfirmBox] = useState(false)
 
     return (
@@ -136,7 +143,9 @@ const BusinessViewer = (props) => {
                 <input type='text' className='project-name-field' value={projectName} onChange={(e) => updateElement(e.target.value)} placeholder='Project name' />
             </div>
             <button className='save-business-btn' onClick={() => checkLoggedIn()} >Save Business</button>
+
             <div className='control-buttons'>
+                <button onClick={() => downloadPDF()}>Download PDF</button>
                 <button onClick={() => {
                     navigate("/business-builder/getting-started")
                 }}>Edit</button><button onClick={() => setShowConfirmBox(true)}>Delete</button>
@@ -146,13 +155,15 @@ const BusinessViewer = (props) => {
                 <h1>{projectName} - Business Blueprint</h1>
 
                 <div className="finished-asset">
-                    <h3><u>Unique Selling Proposition</u></h3>
+                    <h3><u>Niche</u></h3>
                     <p>
                         {
-                            props.businessState.final_usp
+                            props.businessState.chosne_niche
                         }
                     </p>
                 </div>
+
+
 
                 <div className="finished-asset">
                     <h3><u>Target Customers</u></h3>
@@ -171,6 +182,16 @@ const BusinessViewer = (props) => {
                         }
                     </p>
                 </div>
+
+                <div className="finished-asset">
+                    <h3><u>Unique Selling Proposition</u></h3>
+                    <p>
+                        {
+                            props.businessState.final_usp
+                        }
+                    </p>
+                </div>
+
 
                 <div className="finished-asset">
                     <h3> <u> First  Product </u>  </h3>
@@ -252,6 +273,8 @@ const mapActionsToProps = (dispatch) => {
         removeFinalMissionStatement: (index) => dispatch(DeleteFinalMissionStatemet(index)),
         updateFinalMissionStatement: (obj) => dispatch(UpdateFinalMissionStatemet(obj)),
 
+        chooseNiche: (val) => dispatch(ChooseNiche(val)),
+
         populateProducts: (arr) => dispatch(PopulateProducts(arr)),
         populateSpecifications: (arr) => dispatch(PopulateSpecifications(arr)),
         populateValues: (arr) => dispatch(PopulateValues(arr)),
@@ -259,7 +282,8 @@ const mapActionsToProps = (dispatch) => {
         populateMotivations: (arr) => dispatch(PopulateMotivations(arr)),
         populateCustomers: (arr) => dispatch(PopulateCustomers(arr)),
         populateInterests: (arr) => dispatch(PopulateInterests(arr)),
-        setServerDataLoaded: (bool) => dispatch(SetServerDataLoaded(bool))
+        setServerDataLoaded: (bool) => dispatch(SetServerDataLoaded(bool)),
+
     }
 }
 

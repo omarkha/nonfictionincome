@@ -34,6 +34,7 @@ const postBusiness = async (req, res) => {
     try {
         console.log(req.body.owner_id)
         const business = new Business({
+            chosen_niche: req.body.chosen_niche,
             initial_customer: req.body.initial_customer,
             owner_id: req.body.owner_id,
             project_name: req.body.project_name,

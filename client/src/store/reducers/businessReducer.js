@@ -1,4 +1,5 @@
 import {
+    CHOOSE_NICHE,
     SET_SERVER_DATA_LOADED,
     POPULATE_PRODUCTS, POPULATE_SPECIFICATIONS, POPULATE_VALUES, POPULATE_STRUGGLES, POPULATE_MOTIVATIONS, POPULATE_CUSTOMERS, POPULATE_INTERESTS,
     START_EDIT_MODE, STOP_EDIT_MODE,
@@ -22,7 +23,8 @@ import {
 
 const initialState = {
     server_data_loaded: false,
-    initial_customer: "",
+    chosen_niche: "Niche",
+    initial_customer: "Customer",
     business_name: "New Project",
     selected_data: [],
     interests: [], customers: [], motivations: [],
@@ -61,6 +63,8 @@ const businessReducer = (state = initialState, action) => {
 
         case SET_INITIAL_CUSTOMER:
             return { ...state, initial_customer: action.payload }
+        case CHOOSE_NICHE:
+            return { ...state, chosen_niche: action.payload }
         case ADD_INTEREST:
             if ((state.interests ? state.interests.length : 0) < 20) {
                 return { ...state, interests: state.interests ? [...state.interests, action.payload] : [action.payload] }

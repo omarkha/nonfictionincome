@@ -15,7 +15,8 @@ import {
     EmptyInterests,
     EmptyCustomers,
     AddFinalCustomer,
-    SetInitialCustomer
+    SetInitialCustomer,
+    ChooseNiche
 } from '../../store/actions/businessActions';
 import ConfirmationBox from '../../components/ConfirmationBox';
 
@@ -72,6 +73,16 @@ const GettingStarted = (props) => {
     const handleArea = (element) => {
         setSelectedElementType(element)
         handlePopulation(element)
+        switch (element) {
+            case "Interest":
+                setElementDescription("List the topics you're interested in and then list the subniches of each topic. After you're done select the subniche you want to pursue and click the pursue button. ")
+                break;
+            case "Customer":
+                setElementDescription("Ask ChatGPT about who is SPENDING MONEY on products in that niche.")
+                break;
+            default:
+                break;
+        }
         setSelectedIndex(-1);
     }
 
@@ -217,11 +228,23 @@ const GettingStarted = (props) => {
 
     const handleConfirmed = (val) => {
         if (val === true) {
-            props.setInitialCustomer(title)
+            switch (selectedElementType) {
+                case "Interest":
+                    props.chooseNiche(title)
+                    break;
+                case "Customer":
+                    props.setInitialCustomer(title)
+                    break;
+                default:
+                    break;
+            }
+
 
         }
         setShowConfirmBox(false)
     }
+
+    const [elementDescription, setElementDescription] = useState("")
 
 
     return (
@@ -265,13 +288,14 @@ const GettingStarted = (props) => {
 
 
                             <form className='element' onSubmit={(e) => addElement(e)} >
-                                <h4>{selectedElementType}</h4>
+                                <h4>{elementDescription}</h4>
                                 <input maxlength="250" type="text" placeholder={selectedElementType + " Title"} value={title} onChange={(e) => handleObjectModified("title", e.target.value)} />
                             </form>
                             <div className="buttons">
 
 
                                 {selectedElementType === "Customer" && selectedIndex !== -1 ? <button className='element-btn choose-btn' onClick={() => setShowConfirmBox(true)}>Serve This Customer</button> : null}
+                                {selectedElementType === "Interest" && selectedIndex !== -1 ? <button className='element-btn choose-btn' onClick={() => setShowConfirmBox(true)}>Pursue This Niche</button> : null}
                                 <button className='element-btn' onClick={() => addElement("pass")}> ADD {selectedElementType}</button>
 
                                 <button className='element-btn' onClick={() => removeElement()}> REMOVE {selectedElementType}</button>
@@ -325,7 +349,8 @@ const mapActionsToProps = (dispatch) => {
         removeCustomer: (ind) => dispatch(DeleteCustomer(ind)),
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
         addFinalCustomer: (val) => dispatch(AddFinalCustomer(val)),
-        setInitialCustomer: (cus) => dispatch(SetInitialCustomer(cus))
+        setInitialCustomer: (cus) => dispatch(SetInitialCustomer(cus)),
+        chooseNiche: (cus) => dispatch(ChooseNiche(cus))
     }
 }
 

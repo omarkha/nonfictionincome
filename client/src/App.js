@@ -26,6 +26,7 @@ import axios from 'axios';
 import { SetUserID, AddFirebaseID } from './store/actions/userActions';
 import { connect } from "react-redux"
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PDFFile from './components/PDFFile';
 function App(props) {
   const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin;
   useEffect(() => {
@@ -78,7 +79,7 @@ function App(props) {
             <Route element={<PurchaseSuccessPage />} path="/purchase-successful" />
             <Route element={<PurchaseCancelPage />} path="/purchase-canceled" />
             <Route element={<AdminDashboard />} path="/admin-dashboard" />
-
+            <Route element={<PDFFile />} path="/pdf-document" />
           </Routes></PayPalScriptProvider>
         <Footer />
       </div>

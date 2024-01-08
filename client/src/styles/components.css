@@ -164,7 +164,7 @@ footer .message {
     left: calc(50vw - 38.2vw / 2);
     top: calc(50vh - 38.2vh / 2);
     background-color: #fff;
-    box-shadow: 0 0 55px 13px #BD0A0D;
+    box-shadow: 0 0 55px 13px #0ABDBA;
     border-radius: 21px;
     display: flex;
     flex-direction: column;
