@@ -16,9 +16,6 @@ const uri = process.env.NODE_ENV === "production" ? "mongodb+srv://copyres:Sahac
 
 app.use(express.static(`${__dirname}/client/build`))
 
-app.get('/*', (req, res) => {
-    res.sendFile(`${__dirname}/client/build/index.html`)
-})
 
 mongoose
     .connect(uri, { useNewUrlParser: true })
