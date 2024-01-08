@@ -32,6 +32,11 @@ app.use(require("./routes/businessRoutes"))
 app.use(require("./routes/stripeRoutes"))
 app.use(require("./routes/userRoutes"))
 
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
+
+
 app.listen(PORT, () => {
     console.log(`Express server listening on port ${PORT}`)
 })
