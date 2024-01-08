@@ -40,7 +40,7 @@ const UserDashboard = (props) => {
     }, [])
 
     const checkLoggedIn = () => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, (user, data) => {
             if (user) {
                 fetchUserId(user.uid)
                 setUserEmail(user.email)
