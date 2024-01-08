@@ -7,7 +7,7 @@ router.get("/api/users", userController.getAllUsers);
 router.get("/api/users/userid/:userid", userController.getUserById);
 router.get("/api/users/email/", userController.getUserByEmail);
 router.get("/api/users/session/:pid", userController.getUserByPayPalSessionId);
-router.get("/api/users/firebase/:fireid", userController.getUserByFirebaseId);
+router.get("/api/users/firebase/:id", userController.getUserByFirebaseId);
 router.post("/api/users", userController.addUser);
 router.put("/api/users", userController.updateUser);
 router.delete("/api/users/userid/:userid", userController.deleteUser);
