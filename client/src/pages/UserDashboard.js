@@ -27,7 +27,7 @@ const UserDashboard = (props) => {
 
             }
 
-        }).catch((err) => { console.log(err); setLoaded(false) })
+        }).catch((err) => { console.log(err); loadBusinesses(false) })
     }
 
     const handleNewBusiness = () => {
