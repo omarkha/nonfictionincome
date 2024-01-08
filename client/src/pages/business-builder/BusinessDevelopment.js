@@ -3,7 +3,7 @@ import "../../styles/businessbuilder.css"
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import BuilderNavigation from '../../components/BuilderNavigation';
-import { EmptyStruggles, EmptyValues, EmptySpecifications, EmptyProducts, AddMotivation, AddProduct, AddSpecification, AddStruggle, AddValue, DeleteMotivation, DeleteProduct, DeleteSpecification, DeleteStruggle, DeleteValue, EmptyMotivations, SelectMotivations, SelectProducts, SelectSpecifications, SelectStruggles, SelectValues, UpdateMotivation, UpdateProduct, UpdateSpecification, UpdateStruggle, UpdateValue } from '../../store/actions/businessActions';
+import { EmptyStruggles, EmptyValues, EmptySpecifications, AddMotivation, AddSpecification, AddStruggle, AddValue, DeleteMotivation, DeleteSpecification, DeleteStruggle, DeleteValue, EmptyMotivations, SelectMotivations, SelectProducts, SelectSpecifications, SelectStruggles, SelectValues, UpdateMotivation, UpdateSpecification, UpdateStruggle, UpdateValue } from '../../store/actions/businessActions';
 
 const BusinessDevelopment = (props) => {
 
@@ -93,11 +93,7 @@ const BusinessDevelopment = (props) => {
                     handlePopulation(selectedElementType);
                     setSelectedIndex(-1)
                     break;
-                case "Product":
-                    props.addProduct({ title: title, description: description })
-                    handlePopulation(selectedElementType);
-                    setSelectedIndex(-1)
-                    break;
+
                 default:
                     break;
 
@@ -126,10 +122,6 @@ const BusinessDevelopment = (props) => {
                 break;
             case "Specification":
                 props.emptySpecifications()
-                setSelectedIndex(-1)
-                break;
-            case "Product":
-                props.emptyProducts()
                 setSelectedIndex(-1)
                 break;
 
@@ -163,9 +155,6 @@ const BusinessDevelopment = (props) => {
                     props.selectSpecifications()
 
                     break;
-                case "Product":
-                    props.updateProduct({ package: { title: (element == "title" ? data : title), description: (element == "description" ? data : description) }, index: selectedIndex })
-                    props.selectProducts()
 
                     break;
                 default:
@@ -197,11 +186,8 @@ const BusinessDevelopment = (props) => {
                 props.selectSpecifications()
                 setSelectedIndex(-1)
                 break;
-            case "Product":
-                props.removeProduct(selectedIndex)
-                props.selectProducts();
-                setSelectedIndex(-1)
-                break;
+
+
             default:
                 break;
 
@@ -227,10 +213,7 @@ const BusinessDevelopment = (props) => {
                 props.selectSpecifications()
                 setSelectedIndex(-1)
                 break;
-            case "Product":
-                props.selectProducts()
-                setSelectedIndex(-1)
-                break;
+
             default:
                 break;
 
@@ -243,7 +226,7 @@ const BusinessDevelopment = (props) => {
     return (
         <div className='business-builder'>
             <BuilderNavigation page="business_development" />
-            <h3>{props.businessState.initial_customer} interested in {props.businessSate.chosen_niche}</h3>
+            <h3>{props.businessState.initial_customer} interested in {props.businessState.chosen_niche}</h3>
             <div className='builder-body'>
 
 
@@ -286,7 +269,7 @@ const BusinessDevelopment = (props) => {
                                 2. Research  the demographic and psychographic landscape of your market with The MBTI and The Enneagram.<br /><br />
                                 3. Use the most profitable Demographic and Psychographic factors in pinning down your Ideal Customers.<br /><br />
                                 4. Add the general struggles, motivations, and values of the psychographic group you chose. <br /><br />
-                                5. Based on the information provided (and hopefully you've read the book), come up with ideas for products that suit your target customers' unique needs.
+
                                 <br /><br />
                             </h3>
                         </div> :
@@ -339,13 +322,13 @@ const mapActionsToProps = (dispatch) => {
         selectMotivations: () => dispatch(SelectMotivations()),
         selectStruggles: () => dispatch(SelectStruggles()),
         selectValues: () => dispatch(SelectValues()),
-        selectProducts: () => dispatch(SelectProducts()),
+
         selectSpecifications: () => dispatch(SelectSpecifications()),
 
         emptyMotivations: () => dispatch(EmptyMotivations()),
         emptyStruggles: () => dispatch(EmptyStruggles()),
         emptyValues: () => dispatch(EmptyValues()),
-        emptyProducts: () => dispatch(EmptyProducts()),
+
         emptySpecifications: () => dispatch(EmptySpecifications()),
 
         addMotivation: (val) => dispatch(AddMotivation(val)),
@@ -364,9 +347,6 @@ const mapActionsToProps = (dispatch) => {
         removeSpecification: (index) => dispatch(DeleteSpecification(index)),
         updateSpecification: (obj) => dispatch(UpdateSpecification(obj)),
 
-        addProduct: (val) => dispatch(AddProduct(val)),
-        removeProduct: (index) => dispatch(DeleteProduct(index)),
-        updateProduct: (obj) => dispatch(UpdateProduct(obj)),
 
 
     }

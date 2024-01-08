@@ -249,7 +249,7 @@ const GettingStarted = (props) => {
 
     return (
         <div className='getting-started'>
-            {showConfirmBox ? <ConfirmationBox message={`You already have an initial customer chosen: ${props.businessState.initial_customer}. Are you sure you want to replace it?`} action="Replace" handleConfirmed={handleConfirmed} /> : null}
+            {showConfirmBox ? <ConfirmationBox message={`Are You sure you want to replace ${selectedElementType === "Customer" ? props.businessState.initial_customer : props.businessState.chosen_niche} with ${title}?`} action="Replace" handleConfirmed={handleConfirmed} /> : null}
             <BuilderNavigation page="getting_started" />
             <div className='builder-body'>
                 <div className='areas'>
@@ -350,7 +350,7 @@ const mapActionsToProps = (dispatch) => {
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
         addFinalCustomer: (val) => dispatch(AddFinalCustomer(val)),
         setInitialCustomer: (cus) => dispatch(SetInitialCustomer(cus)),
-        chooseNiche: (cus) => dispatch(ChooseNiche(cus))
+        chooseNiche: (niche) => dispatch(ChooseNiche(niche))
     }
 }
 

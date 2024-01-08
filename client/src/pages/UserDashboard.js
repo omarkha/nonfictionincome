@@ -6,8 +6,9 @@ import { connect } from 'react-redux'
 import { auth } from "../config/firebase"
 import { onAuthStateChanged } from 'firebase/auth'
 import { StartEditMode, StopEditMode, ResetBusiness } from '../store/actions/businessActions'
-import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful, SetUserID } from "../store/actions/userActions"
+import { AddCustomerEmail, AddCustomerSessionID, AddCustomerName, SignIn, SignOut, CustomerPurchaseSuccessful, SetUserID, SetNumberOfBusinesses } from "../store/actions/userActions"
 import DashboardNavigation from '../components/DashboardNavigation'
+import { toast } from 'react-toastify'
 const UserDashboard = (props) => {
 
     const [businesses, setBusinesses] = useState([])
@@ -24,16 +25,22 @@ const UserDashboard = (props) => {
             console.log(res)
             if (res.data[0]._id) {
                 setBusinesses(res.data)
-
+                props.setNumberOfBusinesses(res.data.length)
             }
 
         }).catch((err) => { console.log(err); loadBusinesses(false) })
     }
 
     const handleNewBusiness = () => {
-        props.resetBusiness()
-        props.stopEditMode()
-        navigate("/business-builder/getting-started")
+        if (businesses.length < 20) {
+
+
+            props.resetBusiness()
+            props.stopEditMode()
+            navigate("/business-builder/getting-started")
+        } else {
+            toast.warn("You've reached the amount of businesses you can create which is 20 businesses.")
+        }
     }
 
     useEffect(() => {
@@ -123,7 +130,7 @@ const mapActionsToProps = (dispatch) => {
         stopEditMode: () => dispatch(StopEditMode()),
         resetBusiness: () => dispatch(ResetBusiness()),
         setUserID: (id) => dispatch(SetUserID(id)),
-
+        setNumberOfBusinesses: (num) => dispatch(SetNumberOfBusinesses(num))
     }
 }
 

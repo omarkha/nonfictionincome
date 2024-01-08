@@ -1,24 +1,24 @@
 import {
     CHOOSE_NICHE,
     SET_SERVER_DATA_LOADED,
-    POPULATE_PRODUCTS, POPULATE_SPECIFICATIONS, POPULATE_VALUES, POPULATE_STRUGGLES, POPULATE_MOTIVATIONS, POPULATE_CUSTOMERS, POPULATE_INTERESTS,
+    POPULATE_SPECIFICATIONS, POPULATE_VALUES, POPULATE_STRUGGLES, POPULATE_MOTIVATIONS, POPULATE_CUSTOMERS, POPULATE_INTERESTS,
     START_EDIT_MODE, STOP_EDIT_MODE,
     ADD_BUSINESS_NAME, DELETE_BUSINESS_NAME, UPDATE_BUSINESS_NAME,
     EMPTY_INTERESTS, EMPTY_CUSTOMERS, EMPTY_MOTIVATIONS, EMPTY_STRUGGLES, EMPTY_VALUES, EMPTY_SPECIFICATIONS, EMPTY_PRODUCTS,
-    ADD_CUSTOMER, ADD_FINAL_CUSTOMER, ADD_FINAL_MISSION_STATEMENT, ADD_FINAL_PRODUCT, ADD_FINAL_USP, ADD_INTEREST, ADD_MOTIVATION,
-    ADD_PRODUCT,
+    ADD_CUSTOMER, ADD_FINAL_CUSTOMER, ADD_FINAL_MISSION_STATEMENT, ADD_FINAL_USP, ADD_INTEREST, ADD_MOTIVATION,
+
     ADD_SPECIFICATION, ADD_STRUGGLE, ADD_VALUE, DELETE_CUSTOMER,
     DELETE_FINAL_CUSTOMER,
     DELETE_FINAL_MISSION_STATEMENT,
-    DELETE_FINAL_PRODUCT,
+
     DELETE_FINAL_USP,
     DELETE_INTEREST,
-    DELETE_MOTIVATION, DELETE_PRODUCT, DELETE_SPECIFICATION, DELETE_STRUGGLE, DELETE_VALUE, SELECT_CUSTOMERS, SELECT_INTERESTS, SELECT_MOTIVATIONS, SELECT_PRODUCTS, SELECT_SPECIFICATIONS, SELECT_STRUGGLES, SELECT_VALUES, UPDATE_CUSTOMER,
+    DELETE_MOTIVATION, DELETE_SPECIFICATION, DELETE_STRUGGLE, DELETE_VALUE, SELECT_CUSTOMERS, SELECT_INTERESTS, SELECT_MOTIVATIONS, SELECT_PRODUCTS, SELECT_SPECIFICATIONS, SELECT_STRUGGLES, SELECT_VALUES, UPDATE_CUSTOMER,
     UPDATE_FINAL_CUSTOMER,
     UPDATE_FINAL_MISSION_STATEMENT,
-    UPDATE_FINAL_PRODUCT,
+
     UPDATE_FINAL_USP,
-    UPDATE_INTEREST, UPDATE_MOTIVATION, UPDATE_PRODUCT, UPDATE_SPECIFICATION, UPDATE_STRUGGLE, UPDATE_VALUE, RESET_BUSINESS, SET_INITIAL_CUSTOMER
+    UPDATE_INTEREST, UPDATE_MOTIVATION, UPDATE_SPECIFICATION, UPDATE_STRUGGLE, UPDATE_VALUE, RESET_BUSINESS, SET_INITIAL_CUSTOMER
 } from "../actiontypes";
 
 const initialState = {
@@ -28,8 +28,8 @@ const initialState = {
     business_name: "New Project",
     selected_data: [],
     interests: [], customers: [], motivations: [],
-    struggles: [], values: [], specifications: [], products: [],
-    final_customer: "", final_product: "", final_usp: "", final_mission_statement: "", edit_mode: { isInEditMode: false, business_id: "" }
+    struggles: [], values: [], specifications: [],
+    final_customer: "", final_usp: "", final_mission_statement: "", edit_mode: { isInEditMode: false, business_id: "" }
 
 }
 
@@ -223,32 +223,7 @@ const businessReducer = (state = initialState, action) => {
             }
         case EMPTY_SPECIFICATIONS:
             return { ...state, specifications: [], selected_data: [] }
-        case ADD_PRODUCT:
-            if ((state.products ? state.products.length : 0) < 20) {
-                return { ...state, products: state.products ? [...state.products, action.payload] : [action.payload] }
-            }
-        case DELETE_PRODUCT:
-            if (Number.isInteger(action.payload)) {
-                return {
-                    ...state, products: state.products.filter((e, i) => {
-                        return i !== action.payload
-                    })
-                }
-            }
-        case UPDATE_PRODUCT:
-            if (action.payload.package) {
-                return {
-                    ...state, products: state.products.map((e, i) => {
-                        if (i === action.payload.index) {
-                            return action.payload.package
-                        } else {
-                            return e
-                        }
-                    })
-                }
-            }
-        case EMPTY_PRODUCTS:
-            return { ...state, products: [], selected_data: [] }
+
         case ADD_FINAL_CUSTOMER:
             return { ...state, final_customer: action.payload }
         case DELETE_FINAL_CUSTOMER:
@@ -259,16 +234,7 @@ const businessReducer = (state = initialState, action) => {
             return {
                 ...state, final_customer: action.payload
             }
-        case ADD_FINAL_PRODUCT:
-            return { ...state, final_product: action.payload }
-        case DELETE_FINAL_PRODUCT:
-            return {
-                ...state, final_product: ""
-            }
-        case UPDATE_FINAL_PRODUCT:
-            return {
-                ...state, final_customer: action.payload
-            }
+
         case ADD_FINAL_USP:
             return { ...state, final_usp: action.payload }
         case DELETE_FINAL_USP:
@@ -335,10 +301,7 @@ const businessReducer = (state = initialState, action) => {
             return {
                 ...state, specifications: action.payload
             }
-        case POPULATE_PRODUCTS:
-            return {
-                ...state, products: action.payload
-            }
+
 
         case SET_SERVER_DATA_LOADED:
             return {

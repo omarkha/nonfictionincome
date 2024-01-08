@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BuilderNavigation from '../../components/BuilderNavigation';
 import "../../styles/finishingup.css"
-import { AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateBusinessName, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP } from '../../store/actions/businessActions';
+import { AddFinalCustomer, AddFinalMissionStatemet, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalUSP, UpdateBusinessName, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalUSP } from '../../store/actions/businessActions';
 import { connect } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const FinishingUp = (props) => {
     const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
 
     const navigate = useNavigate();
-    const [product, setProduct] = useState("");
+
     const [mission, setMission] = useState("");
     const [usp, setUsp] = useState("");
     const [customer, setCustomer] = useState("");
@@ -22,7 +22,7 @@ const FinishingUp = (props) => {
     const generateBusiness = async () => {
         props.addFinalCustomer(customer)
         props.addFinalMissionStatement(mission)
-        props.addFinalProduct(product)
+
         props.addFinalUsp(usp)
         navigate("/business-builder/project-viewer");
     }
@@ -46,7 +46,7 @@ const FinishingUp = (props) => {
             setCustomer(props.businessState.final_customer)
         }
 
-        setProduct(props.businessState.final_product)
+
         setMission(props.businessState.final_mission_statement)
         setUsp(props.businessState.final_usp)
     }
@@ -61,11 +61,7 @@ const FinishingUp = (props) => {
                 props.updateFinalCustomer(value)
 
                 break;
-            case "Product":
-                setProduct(value)
-                props.updateFinalProduct(value)
 
-                break;
             case "USP":
                 setUsp(value)
                 props.updateFinalUsp(value)
@@ -92,17 +88,14 @@ const FinishingUp = (props) => {
                         <h4>Who's your Target Customer? include demographics and psychographics.</h4>
                         <textarea placeholder={"Refer back to identifying CUSTOMERS and SPECIFICATIONS"} value={customer} onPaste={(e) => updateElement("Customer", e.target.value)} onChange={(e) => updateElement("Customer", e.target.value)}>{customer}</textarea>
                     </div>
-                    <div className='asset'>
-                        <h4>What's your product?</h4>
-                        <textarea placeholder={"Refer back to PRODUCTS and select the most profitable one and describe how does it solve your unique customer's pain-points."} value={product} onPaste={(e) => updateElement("Product", e.target.value)} onChange={(e) => updateElement("Product", e.target.value)}>{product}</textarea>
-                    </div>
+
                     <div className='asset'>
                         <h4>What's your Unique Selling Proposition? </h4>
-                        <textarea placeholder={"What does your product promise your specific customer based on their Struggles, Values, and Motivations?"} value={usp} onPaste={(e) => updateElement("USP", e.target.value)} onChange={(e) => updateElement("USP", e.target.value)}>{usp}</textarea>
+                        <textarea placeholder={"example: We GUARANTEE – Fresh hot pizza, delivered in 30 minutes or less or it's FREE!"} value={usp} onPaste={(e) => updateElement("USP", e.target.value)} onChange={(e) => updateElement("USP", e.target.value)}>{usp}</textarea>
                     </div>
                     <div className='asset'>
                         <h4>What's your company's Mission Statement? </h4>
-                        <textarea placeholder={"Look at your Target Customer, their VALUES, and their STRUGGLES"} value={mission} onChange={(e) => updateElement("Mission", e.target.value)} onPaste={(e) => updateElement("Mission", e.target.value)}>{mission}</textarea>
+                        <textarea placeholder={"example: Cassandra Beauty Tools wants to empower customers through our makeup products, encouraging them to use their creativity to create unique and colourful beauty looks that attract attention."} value={mission} onChange={(e) => updateElement("Mission", e.target.value)} onPaste={(e) => updateElement("Mission", e.target.value)}>{mission}</textarea>
                     </div>
 
                 </div><div className='areas'>
@@ -159,11 +152,6 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = (dispatch) => {
     return {
-
-        addFinalProduct: (val) => dispatch(AddFinalProduct(val)),
-        removeFinalProduct: (index) => dispatch(DeleteFinalProduct(index)),
-        updateFinalProduct: (obj) => dispatch(UpdateFinalProduct(obj)),
-
         addFinalUsp: (val) => dispatch(AddFinalUSP(val)),
         removeFinalUsp: (index) => dispatch(DeleteFinalUSP(index)),
         updateFinalUsp: (obj) => dispatch(UpdateFinalUSP(obj)),

@@ -34,6 +34,26 @@
 
 }
 
+.download-pdf-btn {
+    margin: 0 auto;
+    padding: 5px 13px 8px 13px;
+    color: #fff;
+    border-color: #fff;
+    background: #1AA09B;
+    cursor: pointer;
+    border-radius: 13px;
+}
+
+.download-pdf-btn:hover {
+    margin: 0 auto;
+    padding: 5px 13px 8px 13px;
+    color: #1AA09B;
+    border-color: #1AA09B;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 13px;
+}
+
 .business-document h1 {
 
     text-align: center;

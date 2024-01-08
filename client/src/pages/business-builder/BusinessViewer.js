@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import "../../styles/businessviewer.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalProduct, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalProduct, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalProduct, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateProducts, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName, ChooseNiche } from '../../store/actions/businessActions';
+import { SelectInterests, SelectCustomers, AddInterest, DeleteInterest, UpdateInterest, AddCustomer, DeleteCustomer, UpdateCustomer, AddFinalCustomer, AddFinalMissionStatemet, AddFinalUSP, DeleteFinalCustomer, DeleteFinalMissionStatemet, DeleteFinalUSP, UpdateFinalCustomer, UpdateFinalMissionStatemet, UpdateFinalUSP, PopulateCustomers, PopulateInterests, PopulateMotivations, PopulateSpecifications, PopulateStruggles, PopulateValues, SetServerDataLoaded, UpdateBusinessName, ChooseNiche, SetInitialCustomer } from '../../store/actions/businessActions';
 import ConfirmationBox from '../../components/ConfirmationBox';
 import { auth } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { SetUserID } from '../../store/actions/userActions';
+import { PDFDownloadLink } from "@react-pdf/renderer"
+import PDFFile from '../../components/PDFFile';
 const BusinessViewer = (props) => {
     const uri = window.location.origin == "http://localhost:3000" ? "http://localhost:3001" : window.location.origin
     const [projectName, setProjectName] = useState("New Project");
@@ -48,14 +50,13 @@ const BusinessViewer = (props) => {
                 props.populateStruggles(res.data.struggles)
                 props.populateValues(res.data.values)
                 props.populateSpecifications(res.data.specifications)
-                props.populateProducts(res.data.products)
                 setProjectName(res.data.project_name)
+                props.setInitialCustomer(res.data.initial_customer)
                 props.updateBusinessName(res.data.project_name)
                 props.addFinalCustomer(res.data.final_customer)
                 props.addFinalMissionStatement(res.data.final_mission_statement)
-                props.addFinalProduct(res.data.final_product)
                 props.addFinalUsp(res.data.final_usp)
-                props.chooseNiche(res.data.chosne_niche)
+                props.chooseNiche(res.data.chosen_niche)
                 props.setServerDataLoaded(true)
             })
         }
@@ -79,40 +80,37 @@ const BusinessViewer = (props) => {
 
             await axios.post(`${uri}/api/businesses`, {
                 owner_id: userId,
-                chosne_niche: props.businessState.chosne_niche,
+                chosen_niche: props.businessState.chosen_niche,
                 initial_customer: props.businessState.initial_customer,
                 project_name: props.businessState.business_name,
                 final_customer: props.businessState.final_customer,
                 final_mission_statement: props.businessState.final_mission_statement,
                 final_usp: props.businessState.final_usp,
-                final_product: props.businessState.final_product,
                 interests: props.businessState.interests ? [...props.businessState.interests] : [],
                 customers: props.businessState.customers ? [...props.businessState.customers] : [],
                 motivations: props.businessState.motivations ? [...props.businessState.motivations] : [],
                 struggles: props.businessState.struggles ? [...props.businessState.struggles] : [],
                 values: props.businessState.values ? [...props.businessState.values] : [],
                 specifications: props.businessState.specifications ? [...props.businessState.specifications] : [],
-                products: props.businessState.products ? [...props.businessState.products] : [],
             })
         } else {
             await axios.put(`${uri}/api/businesses`, {
                 id: props.businessState.edit_mode.business_id,
                 package: {
                     owner_id: userId,
-                    chosne_niche: props.businessState.chosne_niche,
+                    chosen_niche: props.businessState.chosen_niche,
                     initial_customer: props.businessState.initial_customer,
                     project_name: props.businessState.business_name,
                     final_customer: props.businessState.final_customer,
                     final_mission_statement: props.businessState.final_mission_statement,
                     final_usp: props.businessState.final_usp,
-                    final_product: props.businessState.final_product,
                     interests: props.businessState.interests ? [...props.businessState.interests] : [],
                     customers: props.businessState.customers ? [...props.businessState.customers] : [],
                     motivations: props.businessState.motivations ? [...props.businessState.motivations] : [],
                     struggles: props.businessState.struggles ? [...props.businessState.struggles] : [],
                     values: props.businessState.values ? [...props.businessState.values] : [],
                     specifications: props.businessState.specifications ? [...props.businessState.specifications] : [],
-                    products: props.businessState.products ? [...props.businessState.products] : [],
+
                 }
             })
         }
@@ -129,9 +127,7 @@ const BusinessViewer = (props) => {
     }
 
 
-    const downloadPDF = () => {
 
-    }
 
     const [showConfirmBox, setShowConfirmBox] = useState(false)
 
@@ -145,7 +141,9 @@ const BusinessViewer = (props) => {
             <button className='save-business-btn' onClick={() => checkLoggedIn()} >Save Business</button>
 
             <div className='control-buttons'>
-                <button onClick={() => downloadPDF()}>Download PDF</button>
+                <PDFDownloadLink className='download-pdf-btn' document={<PDFFile businessState={props.businessState} />} fileName={`${props.businessState.business_name}.pdf`}>
+                    {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                </PDFDownloadLink>
                 <button onClick={() => {
                     navigate("/business-builder/getting-started")
                 }}>Edit</button><button onClick={() => setShowConfirmBox(true)}>Delete</button>
@@ -158,7 +156,7 @@ const BusinessViewer = (props) => {
                     <h3><u>Niche</u></h3>
                     <p>
                         {
-                            props.businessState.chosne_niche
+                            props.businessState.chosen_niche
                         }
                     </p>
                 </div>
@@ -193,14 +191,7 @@ const BusinessViewer = (props) => {
                 </div>
 
 
-                <div className="finished-asset">
-                    <h3> <u> First  Product </u>  </h3>
-                    <p>
-                        {
-                            props.businessState.final_product
-                        }
-                    </p>
-                </div>
+
                 <hr />
 
                 <div className='finished-asset'>
@@ -254,12 +245,10 @@ const mapActionsToProps = (dispatch) => {
         removeCustomer: (index) => dispatch(DeleteCustomer(index)),
         updateCustomer: (index) => dispatch(UpdateCustomer(index)),
 
+        setInitialCustomer: (cus) => dispatch(SetInitialCustomer(cus)),
+
         setUserID: (val) => dispatch(SetUserID(val)),
         updateBusinessName: (obj) => dispatch(UpdateBusinessName(obj)),
-
-        addFinalProduct: (val) => dispatch(AddFinalProduct(val)),
-        removeFinalProduct: (index) => dispatch(DeleteFinalProduct(index)),
-        updateFinalProduct: (obj) => dispatch(UpdateFinalProduct(obj)),
 
         addFinalUsp: (val) => dispatch(AddFinalUSP(val)),
         removeFinalUsp: (index) => dispatch(DeleteFinalUSP(index)),
@@ -275,7 +264,7 @@ const mapActionsToProps = (dispatch) => {
 
         chooseNiche: (val) => dispatch(ChooseNiche(val)),
 
-        populateProducts: (arr) => dispatch(PopulateProducts(arr)),
+
         populateSpecifications: (arr) => dispatch(PopulateSpecifications(arr)),
         populateValues: (arr) => dispatch(PopulateValues(arr)),
         populateStruggles: (arr) => dispatch(PopulateStruggles(arr)),

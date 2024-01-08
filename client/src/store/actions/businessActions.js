@@ -188,31 +188,6 @@ export const EmptySpecifications = () => ({
 })
 
 
-// Products
-
-export const AddProduct = (product) => ({
-    type: ADD_PRODUCT,
-    payload: product
-})
-
-export const DeleteProduct = (product) => ({
-    type: DELETE_PRODUCT,
-    payload: product
-})
-
-export const UpdateProduct = (product) => ({
-    type: UPDATE_PRODUCT,
-    payload: product
-})
-
-export const SelectProducts = () => ({
-    type: SELECT_PRODUCTS,
-})
-
-export const EmptyProducts = () => ({
-    type: EMPTY_PRODUCTS,
-})
-
 
 // Final Customer
 
@@ -231,23 +206,6 @@ export const UpdateFinalCustomer = (final_customer) => ({
     payload: final_customer
 })
 
-
-// Final Product
-
-export const AddFinalProduct = (final_product) => ({
-    type: ADD_FINAL_PRODUCT,
-    payload: final_product
-})
-
-export const DeleteFinalProduct = (final_product) => ({
-    type: DELETE_FINAL_PRODUCT,
-    payload: final_product
-})
-
-export const UpdateFinalProduct = (final_product) => ({
-    type: UPDATE_FINAL_PRODUCT,
-    payload: final_product
-})
 
 
 // Final USP
@@ -351,11 +309,6 @@ export const PopulateSpecifications = (arr) => ({
     payload: arr
 })
 
-
-export const PopulateProducts = (arr) => ({
-    type: POPULATE_PRODUCTS,
-    payload: arr
-})
 
 
 export const SetServerDataLoaded = (bool) => ({

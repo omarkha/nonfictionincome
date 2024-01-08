@@ -1,4 +1,4 @@
-import { ADD_FIREBASE_ID, ADD_BUSINESS_IDS, SET_USER_ID, SIGN_IN, SIGN_OUT, ADD_CUSTOMER_EMAIL, ADD_CUSTOMER_SESSION_ID, CUSTOMER_PURCHASE_SUCCESSFUL, CUSTOMER_PURCHASE_FAILED, ADD_CUSTOMER_NAME } from "../actiontypes";
+import { SET_NUMBER_OF_BUSINESSES, ADD_FIREBASE_ID, ADD_BUSINESS_IDS, SET_USER_ID, SIGN_IN, SIGN_OUT, ADD_CUSTOMER_EMAIL, ADD_CUSTOMER_SESSION_ID, CUSTOMER_PURCHASE_SUCCESSFUL, CUSTOMER_PURCHASE_FAILED, ADD_CUSTOMER_NAME } from "../actiontypes";
 
 const initialState = {
     customer_email: "",
@@ -8,11 +8,14 @@ const initialState = {
     firebase_id: "",
     customer_name: "",
     signed_in: false,
-    business_ids: []
+    business_ids: [],
+    number_of_businesses: 0,
 }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_NUMBER_OF_BUSINESSES:
+            return { ...state, number_of_businesses: action.payload }
         case ADD_CUSTOMER_EMAIL:
             return { ...state, customer_email: action.payload }
         case SET_USER_ID:

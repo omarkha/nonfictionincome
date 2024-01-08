@@ -39,7 +39,7 @@ const postBusiness = async (req, res) => {
             owner_id: req.body.owner_id,
             project_name: req.body.project_name,
             final_customer: req.body.final_customer,
-            final_product: req.body.final_product,
+
             final_usp: req.body.final_usp,
             final_mission_statement: req.body.final_mission_statement,
             interests: req.body.interests,
@@ -48,7 +48,7 @@ const postBusiness = async (req, res) => {
             struggles: req.body.struggles,
             values: req.body.values,
             specifications: req.body.specifications,
-            products: req.body.products,
+
 
         });
         business.save()
